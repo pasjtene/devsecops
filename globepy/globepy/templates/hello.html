@@ -1,0 +1,27 @@
+{% load static %}
+
+<head>
+    <script
+            src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous"
+    ></script>
+    <script src="{% static 'main.258c5aab1b2e1683c7ec.app.js' %}"></script>
+</head>
+
+<h1>Hello world from html file...2</h1>
+
+<br />
+The vars: <br />
+Message: {{vars.message}}
+{% if name %}
+<h2>Yes there is a name</h2>
+<br />
+Hello {{ name }}
+{% else %}
+<br />
+
+No there is no name
+{% endif %}
+
+<div id="message"></div>
