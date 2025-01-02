@@ -15,8 +15,8 @@ def is_in_group(user, group_name):
 def say_hello2(request):
     response_data = {}
     response_data["erro"] = "No error found"
-    response_data["message"] = "Hello world"
-    return render(request, "hello.html", {"vars": response_data, "name":"Pascal JT"})
+    response_data["message"] = "Hello world 2"
+    return render(request, "hello.html", {"vars": response_data, "name":"Pascal JT2"})
 
 def home_page(request):
     response_data = {}
