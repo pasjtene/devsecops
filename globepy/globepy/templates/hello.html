@@ -32,11 +32,7 @@ No there is no name
   <p>User does not belong to GRC group</p>
 {% endif %}
 
-{% if request.user | is_in_group:"grcusers" %} 
-    <p>User belongs to GRC USERS group</p>
-{% else %}
-    <p>User does not belong to GRC group</p>
-{% endif %}
+
 
 {% for group_for in request.user.groups.all %}
     {% if group_for.name == 'grcusers' %}
