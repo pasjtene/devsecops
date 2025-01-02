@@ -26,7 +26,7 @@ No there is no name
 
 <div id="message"></div>
 
-{% if  request.user.groups.all.0.name:"grcusers" %}
+{% if  request.user.groups.all.0.name == "grcusers" %}
 <p>User belongs to GRC USERS group</p>
   {% else %}
   <p>User does not belong to GRC group</p>
