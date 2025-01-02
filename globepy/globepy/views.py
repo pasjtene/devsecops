@@ -8,7 +8,7 @@ def say_hello(request):
     return HttpResponse('Hello world...!!! <br/> Another hello world <br> link <a href="/lms/hello2">go to hello2 </a>')
 
 def is_in_group(user, group_name):
-    return user.groups.filter(name=group_name).exist()
+    return user.groups.filter(name=group_name).count()>0
 
 @login_required
 @user_passes_test(lambda user: is_in_group(user, 'grcusers'))
