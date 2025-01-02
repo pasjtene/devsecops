@@ -26,10 +26,22 @@ No there is no name
 
 <div id="message"></div>
 
+{% ifequal user.groups.all.0.name "grcusers" %}
+<p>User belongs to GRC USERS group</p>
+  {% else %}
+  <p>User does not belong to GRC group</p>
+{% endifequal %}
 
-
-{% if request.user|is_in_group:"grcusers" %} 
+{% if request.user | is_in_group:"grcusers" %} 
     <p>User belongs to GRC USERS group</p>
 {% else %}
     <p>User does not belong to GRC group</p>
 {% endif %}
+
+{% for group_for in request.user.groups.all %}
+    {% if group_for.name == 'grcusers' %}
+        Text showed to users in group 'Customers'
+    {% elif group_for.name == 'Sellers' %}
+        Text showed to users in group 'Sellers'
+    {% endif %}
+{% endfor %}
