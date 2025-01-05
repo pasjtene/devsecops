@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     #'corsheaders',
     'globepy',
     'lms',
+    'accounts'
 ]
 
 MIDDLEWARE = [
