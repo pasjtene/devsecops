@@ -30,6 +30,7 @@ DEBUG = True
 #CORS_ORIGIN_ALLOW_ALL = True
 ALLOWED_HOSTS = ['*']
 
+LOGIN_REDIRECT_URL = "/"
 
 # Application definition
 
