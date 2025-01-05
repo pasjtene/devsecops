@@ -16,6 +16,9 @@
 <hr />
 <h2>
   {% if user.is_authenticated %} Hi {{ user.username }} You are logged in
+  <br />
+  Full Name: {{ user.first_name}} {{ user.last_name}}
+  <br />
 
   <a href="{% url 'logout' %}">Log Out</a>
 
