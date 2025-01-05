@@ -1,17 +1,30 @@
 {% load static %}
 
 <head>
-    <script
-            src="https://code.jquery.com/jquery-3.7.1.min.js"
-            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-            crossorigin="anonymous"
-    ></script>
-    <script src="{% static 'main.258c5aab1b2e1683c7ec.app.js' %}"></script>
+  <script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous"
+  ></script>
+  <script src="{% static 'main.258c5aab1b2e1683c7ec.app.js' %}"></script>
 </head>
 
 <h1>Hello world from html file...22</h1>
-<br>
+<br />
 <h1>This is python home</h1>
+
+<hr />
+<h2>
+  {% if user.is_authenticated %} Hi {{ user.username }} You are logged in
+
+  <a href="{% url 'logout' %}">Log Out</a>
+
+  {% else %}
+  <p>Hi Guest, you are NOT logged In</p>
+  <a href="{% url 'login' %}">Log In</a>
+  {% endif %}
+</h2>
+<hr />
 
 <br />
 The vars: <br />
