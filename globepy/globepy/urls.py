@@ -23,9 +23,11 @@ urlpatterns = [
     path('lms/',include('lms.urls')),
     path('home/', views.home_page),
     path('admin/', admin.site.urls),
+    path('accounts/',include("django.contrib.auth.urls")),
     path('hello/', views.say_hello),
     path('hello2/', views.say_hello2),
     path('hello3/', views.say_hello3),
     path('hello4/', views.say_hello4),
     path('login/',views.login)
+    
 ]
