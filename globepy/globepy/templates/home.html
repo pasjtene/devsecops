@@ -9,25 +9,30 @@
   <script src="{% static 'main.258c5aab1b2e1683c7ec.app.js' %}"></script>
 </head>
 
-<h1>Hello world from html file...22</h1>
-<br />
-<h1>This is python home</h1>
-
 <hr />
 <h2>
-  {% if user.is_authenticated %} Hi {{ user.username }} You are logged in
+  {% if user.is_authenticated %} Hi {{ user.username }}
+  <form action="{% url 'logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Log Out</button>
+  </form>
+
   <br />
+  You are logged in <br />
   Full Name: {{ user.first_name}} {{ user.last_name}}
   <br />
 
-  <a href="{% url 'logout' %}">Log Out</a>
-
   {% else %}
-  <p>Hi Guest, you are NOT logged In</p>
   <a href="{% url 'login' %}">Log In</a>
+  <br />
+  <p>Hi Guest, you are NOT logged In</p>
   {% endif %}
 </h2>
 <hr />
+
+<h1>Hello world from html file...22</h1>
+<br />
+<h1>This is python home</h1>
 
 <br />
 The vars: <br />
