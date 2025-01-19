@@ -31,6 +31,12 @@ def home_page(request):
     response_data["message"] = "Hello world"
     return render(request, "home.html", {"vars": response_data, "name":"Pascal JT"})
 
+def flex_start_home_page(request):
+    response_data = {}
+    response_data["erro"] = "No error found"
+    response_data["message"] = "Hello world"
+    return render(request,"flex_start_home.html", {"vars": response_data})
+
 
 def say_hello3(request):
     return JsonResponse({"response":"Hello world json"})
