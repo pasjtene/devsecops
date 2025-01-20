@@ -25,6 +25,7 @@ urlpatterns = [
     path('home/', views.home_page),
     path('flexhome/', views.flex_start_home_page),
     path('blog/', views.blog),
+    path('blogdetails/', views.blog_details),
     path('admin1235/', admin.site.urls),
     path('accounts/', include("accounts.urls")),
     path('accounts/',include("django.contrib.auth.urls")),

@@ -28,6 +28,9 @@ def login(request):
 def blog(request):
     return render(request,"blog.html")
 
+def blog_details(request):
+    return render(request, "blog-details.html")
+
 def home_page(request):
     response_data = {}
     response_data["erro"] = "No error found"
