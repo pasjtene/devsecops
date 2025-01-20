@@ -25,6 +25,9 @@ def say_hello2(request):
 def login(request):
     return render(request, "auth/login.html")
 
+def blog(request):
+    return render(request,"blog.html")
+
 def home_page(request):
     response_data = {}
     response_data["erro"] = "No error found"
