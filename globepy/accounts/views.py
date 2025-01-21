@@ -3,6 +3,7 @@ from django.contrib.auth.models import User, auth
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.shortcuts import render, redirect
+from django.http import HttpResponse, JsonResponse
 
 
 class SignUpView(CreateView):
@@ -19,4 +20,14 @@ def register(request):
         password = request.post['assword']
         
     return render(request, "auth/register.html")
-    
+
+def register_user(request):
+    if request.method == 'POST':
+        username = request.post['username']
+        password = request.post['assword']
+        response_data = {}
+    response_data["username"] = username
+    response_data["password"] = password
+    return JsonResponse(response_data)
+        
+    #return render(request, "auth/register.html")
