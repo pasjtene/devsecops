@@ -18,5 +18,5 @@ def register(request):
         username = request.post['username']
         password = request.post['assword']
         
-        return render(request, "auth/register.html")
+    return render(request, "auth/register.html")
     
