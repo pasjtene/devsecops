@@ -26,11 +26,11 @@ def register_user(request):
     response_data["METHOD"] = request.method
     
     if request.method == 'POST':
-        #username = request.post['username']
-        #password = request.post['assword']
+        username = request.POST['username']
+        password = request.POST['assword']
         
         response_data["username"] = "username"
         response_data["password"] = "password"
-    return JsonResponse(request)
+    return JsonResponse(response_data)
         
     #return render(request, "auth/register.html")
