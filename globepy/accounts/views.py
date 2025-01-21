@@ -27,10 +27,10 @@ def register_user(request):
     
     if request.method == 'POST':
         username = request.POST['username']
-        password = request.POST['assword']
+        password = request.POST['password']
         
-        response_data["username"] = "username"
-        response_data["password"] = "password"
+        response_data["username"] = username
+        response_data["password"] = password
     return JsonResponse(response_data)
         
     #return render(request, "auth/register.html")
