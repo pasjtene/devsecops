@@ -10,4 +10,4 @@ class SignUpView(CreateView):
     template_name = "registration/signup.html"
     
 def login(request):
-    return render(request, "registration/login.html")
+    return render(request, "auth/login.html")
