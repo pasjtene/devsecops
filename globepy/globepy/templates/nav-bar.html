@@ -14,20 +14,18 @@
         <li>
           <a href="#hero" class="active">Home<br /></a>
         </li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="{% url 'nicelogin' %}">Login</a></li>
 
-        <li><a href="#team">Team</a></li>
+        <li><a href="#services">Services</a></li>
+
+        <li><a href="{% url 'nicelogin' %}">Login</a></li>
         <li><a href="{% url 'blogurl' %}">Blog</a></li>
         <li class="dropdown">
           <a href="#"
-            ><span>Dropdown</span>
+            ><span><a href="#about">About</a></span>
             <i class="bi bi-chevron-down toggle-dropdown"></i
           ></a>
           <ul>
-            <li><a href="#">Dropdown 1</a></li>
+            <li><a href="#team">Team</a></li>
             <li class="dropdown">
               <a href="#"
                 ><span>Deep Dropdown</span>
@@ -43,7 +41,7 @@
             </li>
             <li><a href="#">Dropdown 2</a></li>
             <li><a href="#">Dropdown 3</a></li>
-            <li><a href="#">Dropdown 4</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
           </ul>
         </li>
         <li class="listing-dropdown">
