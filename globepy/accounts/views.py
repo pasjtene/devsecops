@@ -22,12 +22,15 @@ def register(request):
     return render(request, "auth/register.html")
 
 def register_user(request):
+    response_data = {}
+    response_data["METHOD"] = request.method
+    
     if request.method == 'POST':
         username = request.post['username']
         password = request.post['assword']
-        response_data = {}
-    response_data["username"] = username
-    response_data["password"] = password
+        
+        response_data["username"] = username
+        response_data["password"] = password
     return JsonResponse(response_data)
         
     #return render(request, "auth/register.html")
