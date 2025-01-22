@@ -14,8 +14,8 @@
 {% if user.is_authenticated %}
 <h2>Yes the user is authenticated</h2>
 <br />
-Welcome {{ user.first_name}} {{ user.lastname}} <br />
-Your eamil: {user.email } {% endif %}
+Welcome {{ user.first_name}} {{ user.last_name}} <br />
+Your eamil: {{ user.email }} {% endif %}
 
 <br />
 The vars: <br />
