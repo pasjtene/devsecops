@@ -37,9 +37,12 @@ def register_user(request):
         response_data["email"] = email
         
         if not password == password2:
-            messages.error(request, "Passwords do not match")
+            messages.error(request, "Your two passwords do not match")
             return redirect('register')
         
+        if User.objects.filter(email=email).exists():
+            messages.error(request,"A user with email: {} already exist.".format(email))
+            
     return JsonResponse(response_data)
         
     #return render(request, "auth/register.html")
