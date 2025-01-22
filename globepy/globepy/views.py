@@ -15,7 +15,7 @@ def is_in_group(user, group_name):
     return user.groups.filter(name=group_name).count()>0
 
 @login_required
-@user_passes_test(lambda user: is_in_group(user, 'grcusers'))
+#@user_passes_test(lambda user: is_in_group(user, 'grcusers'))
 def say_hello2(request):
     response_data = {}
     response_data["erro"] = "No error found"
