@@ -109,13 +109,13 @@
 
                       <div class="col-12">
                         <label for="yourName" class="form-label"
-                          >Your Name</label
+                          >First Name</label
                         >
                         <input
                           type="text"
-                          name="name"
+                          name="first_name"
                           class="form-control"
-                          id="yourName"
+                          id="yourName1"
                           required
                         />
                         <div class="invalid-feedback">
@@ -124,23 +124,18 @@
                       </div>
 
                       <div class="col-12">
-                        <label for="yourUsername" class="form-label"
-                          >Username</label
+                        <label for="yourName" class="form-label"
+                          >Last Name</label
                         >
-                        <div class="input-group has-validation">
-                          <span class="input-group-text" id="inputGroupPrepend"
-                            >@</span
-                          >
-                          <input
-                            type="text"
-                            name="username"
-                            class="form-control"
-                            id="yourUsername"
-                            required
-                          />
-                          <div class="invalid-feedback">
-                            Please choose a username.
-                          </div>
+                        <input
+                          type="text"
+                          name="last_name"
+                          class="form-control"
+                          id="yourName"
+                          required
+                        />
+                        <div class="invalid-feedback">
+                          Please, enter your name!
                         </div>
                       </div>
 
@@ -169,6 +164,22 @@
                           name="password"
                           class="form-control"
                           id="yourPassword"
+                          required
+                        />
+                        <div class="invalid-feedback">
+                          Please enter your password!
+                        </div>
+                      </div>
+
+                      <div class="col-12">
+                        <label for="yourPassword" class="form-label"
+                          >Confirm Password</label
+                        >
+                        <input
+                          type="password"
+                          name="password2"
+                          class="form-control"
+                          id="yourPassword2"
                           required
                         />
                         <div class="invalid-feedback">
