@@ -30,7 +30,7 @@ def register_user(request):
         username = request.POST['email']
         password = request.POST['password']
         password2 = request.POST['password2']
-        email = request.POST['email']
+        email = request.POST['email'].replace(' ','').lower()
         
         response_data["username"] = username
         response_data["password"] = password
@@ -42,6 +42,7 @@ def register_user(request):
         
         if User.objects.filter(email=email).exists():
             messages.error(request,"A user with email: {} already exist.".format(email))
+            return redirect('register')
             
     return JsonResponse(response_data)
         
