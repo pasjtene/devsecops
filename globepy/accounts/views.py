@@ -58,6 +58,7 @@ def register_user(request):
         newUser.save()
         auth.login(request, newUser)
         
-    return JsonResponse(response_data)
+    #return JsonResponse(response_data)
+    return redirect('hello2')
         
     #return render(request, "auth/register.html")

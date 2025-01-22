@@ -30,7 +30,7 @@ urlpatterns = [
     path('accounts/', include("accounts.urls")),
     path('accounts/',include("django.contrib.auth.urls")),
     path('hello/', views.say_hello),
-    path('hello2/', views.say_hello2),
+    path('hello2/', views.say_hello2, name='hello2'),
     path('hello3/', views.say_hello3),
     path('hello4/', views.say_hello4),
     path('login/',views.login)
