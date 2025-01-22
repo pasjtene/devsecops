@@ -1,43 +1,39 @@
 {% load static %}
 
 <head>
-    <script
-            src="https://code.jquery.com/jquery-3.7.1.min.js"
-            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-            crossorigin="anonymous"
-    ></script>
-    <script src="{% static 'main.258c5aab1b2e1683c7ec.app.js' %}"></script>
+  <script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous"
+  ></script>
+  <script src="{% static 'main.258c5aab1b2e1683c7ec.app.js' %}"></script>
 </head>
 
 <h1>Hello world from html file...2</h1>
 
+{% if user.is_authenticated %}
+<h2>Yes the user is authenticated</h2>
+<br />
+Welcome {{ user.first_name}} {{ user.lastname}} <br />
+Your eamil: {user.email } {% endif %}
+
 <br />
 The vars: <br />
-Message: {{vars.message}}
-{% if name %}
+Message: {{vars.message}} {% if name %}
 <h2>Yes there is a name</h2>
 <br />
-Hello {{ name }}
-{% else %}
+Hello {{ name }} {% else %}
 <br />
 
-No there is no name
-{% endif %}
+No there is no name {% endif %}
 
 <div id="message"></div>
 
-{% if  request.user.groups.all.0.name == "grcusers" %}
+{% if request.user.groups.all.0.name == "grcusers" %}
 <p>User belongs to GRC USERS group</p>
-  {% else %}
-  <p>User does not belong to GRC group</p>
-{% endif %}
-
-
-
-{% for group_for in request.user.groups.all %}
-    {% if group_for.name == 'grcusers' %}
-        Text showed to users in group 'Customers'
-    {% elif group_for.name == 'Sellers' %}
-        Text showed to users in group 'Sellers'
-    {% endif %}
-{% endfor %}
+{% else %}
+<p>User does not belong to GRC group</p>
+{% endif %} {% for group_for in request.user.groups.all %} {% if group_for.name
+== 'grcusers' %} Text showed to users in group 'Customers' {% elif
+group_for.name == 'Sellers' %} Text showed to users in group 'Sellers' {% endif
+%} {% endfor %}
