@@ -15,6 +15,28 @@ class SignUpView(CreateView):
 def login(request):
     return render(request, "auth/login.html")
 
+def login_user(request):
+    response_data = {}
+    response_data["METHOD"] = request.method
+    
+    if request.method == 'POST':
+        username = request.POST['email'].replace(' ','').lower()
+        password = request.POST['password']
+        email = request.POST['email'].replace(' ','').lower()
+        
+        response_data["username"] = username
+        response_data["password"] = password
+        response_data["email"] = email
+        
+        if not User.objects.filter(email=email).exists():
+            messages.error(request,"Invalid user credentials for email: {} ".format(email))
+            return redirect('nicelogin')
+        
+        authUser =  User.objects.filter(email=email)
+        
+        auth.login(request, authUser)
+        messages.info(request,"Success you are loged In: {} ".format(email))
+
 def register(request):
     if request.method == 'POST':
         username = request.post['username']
