@@ -28,6 +28,9 @@ def register_user(request):
     
     if request.method == 'POST':
         username = request.POST['email']
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        
         password = request.POST['password']
         password2 = request.POST['password2']
         email = request.POST['email'].replace(' ','').lower()
@@ -43,7 +46,18 @@ def register_user(request):
         if User.objects.filter(email=email).exists():
             messages.error(request,"A user with email: {} already exist.".format(email))
             return redirect('register')
-            
+        
+        newUser =  User.objects.create_user(
+           username=username,
+            email=email,
+            password=password,
+            first_name = first_name,
+            last_name=last_name
+        )
+        
+        newUser.save()
+        auth.login(request, newUser)
+        
     return JsonResponse(response_data)
         
     #return render(request, "auth/register.html")
