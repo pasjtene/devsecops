@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
+from django.contrib import messages
 
 
 class SignUpView(CreateView):
@@ -28,11 +29,16 @@ def register_user(request):
     if request.method == 'POST':
         username = request.POST['email']
         password = request.POST['password']
+        password2 = request.POST['password2']
         email = request.POST['email']
         
         response_data["username"] = username
         response_data["password"] = password
         response_data["email"] = email
+        
+        if not password == password2:
+            messages.error(request, "Passwords do not match")
+            return redirect('register')
         
     return JsonResponse(response_data)
         
