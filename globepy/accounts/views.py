@@ -5,7 +5,7 @@ from django.views.generic import CreateView
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.contrib import messages
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login as auth_login, authenticate
 
 
 class SignUpView(CreateView):
@@ -41,7 +41,7 @@ def login_user(request):
         
         if authUser is not None:
             #auth.login(request, authUser)
-            login(request, authUser)
+            auth_login(request, authUser)
             messages.info(request,"Success you are loged In: {} ".format(email))
             return redirect('nicelogin')
         
