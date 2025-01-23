@@ -18,7 +18,7 @@ def login(request):
 
 def logout_view(request):
     logout(request)
-    messages.success(request,"Success you are loged out: {} ".format(email))
+    messages.success(request,"Success you are loged out")
     return redirect('homepage')
 
 def login_user(request):
