@@ -18,7 +18,7 @@ def login(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('loginpage')
+    return redirect('homepage')
 
 def login_user(request):
     response_data = {}
