@@ -40,9 +40,11 @@ def login_user(request):
             return redirect('nicelogin')
         
         if authUser is not None:
-            auth.login(request, authUser)
+            #auth.login(request, authUser)
+            login(request, authUser)
             messages.info(request,"Success you are loged In: {} ".format(email))
             return redirect('nicelogin')
+        
     return redirect('homepage')
 
 def register(request):
