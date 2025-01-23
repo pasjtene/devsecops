@@ -80,7 +80,7 @@
         </li>
         <li><a href="#contact">Contact</a></li>
         {% if user.is_authenticated %}
-        <li><a href="{% url 'nicelogin' %}">Logout</a></li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
         {% else %}
         <li><a href="{% url 'nicelogin' %}">Login</a></li>
         <li><a href="{% url 'register' %}">Register</a></li>

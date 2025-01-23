@@ -5,7 +5,7 @@ from django.views.generic import CreateView
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.contrib import messages
-from django.contrib.auth import login as auth_login, authenticate
+from django.contrib.auth import login as auth_login, authenticate, logout
 
 
 class SignUpView(CreateView):
@@ -15,6 +15,10 @@ class SignUpView(CreateView):
     
 def login(request):
     return render(request, "auth/login.html")
+
+def logout_view(request):
+    logout(request)
+    return redirect('loginpage')
 
 def login_user(request):
     response_data = {}
