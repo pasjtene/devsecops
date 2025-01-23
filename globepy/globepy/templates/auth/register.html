@@ -68,6 +68,22 @@
 
   <body>
     <main>
+      <header id="header" class="header d-flex align-items-center fixed-top">
+        <div
+          class="container-fluid container-xl position-relative d-flex align-items-center"
+        >
+          <a href="/flexhome/" class="logo d-flex align-items-center me-auto">
+            <!-- Uncomment the line below if you also wish to use an image logo -->
+            <img src="{% static 'hometheme/assets/img/logo.png' %}" alt="" />
+            <h1 class="sitename">CryptoData</h1>
+          </a>
+
+          <nav id="navmenu" class="navmenu">
+            <ul></ul>
+            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+          </nav>
+        </div>
+      </header>
       <div class="container">
         <section
           class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4"
@@ -232,7 +248,7 @@
                       <div class="col-12">
                         <p class="small mb-0">
                           Already have an account?
-                          <a href="pages-login.html">Log in</a>
+                          <a href="{% url 'nicelogin' %}">Log in</a>
                         </p>
                       </div>
                     </form>
@@ -244,8 +260,8 @@
                   <!-- You can delete the links only if you purchased the pro version. -->
                   <!-- Licensing information: https://bootstrapmade.com/license/ -->
                   <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-                  Designed by
-                  <a href="https://bootstrapmade.com/">BootstrapMade</a>
+
+                  <a href="https://cloudcryptodata.com/">CloudCryptoData</a>
                 </div>
               </div>
             </div>
