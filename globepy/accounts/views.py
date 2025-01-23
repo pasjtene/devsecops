@@ -35,7 +35,7 @@ def login_user(request):
         
         authUser =  authenticate(request, username=email, password=password)
         if authUser is None:
-            auth.login(request, authUser)
+            #auth.login(request, authUser)
             messages.info(request,"Success but you are NOT loged In: {} ".format(email))
             return redirect('nicelogin')
         
