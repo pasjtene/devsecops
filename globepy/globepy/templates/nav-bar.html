@@ -1,5 +1,23 @@
 {% load static %}
 <header id="header" class="header d-flex align-items-center fixed-top">
+  {% for message in messages %}
+
+  <div
+    class="alert alert-{{ message.tags }} alert-dismissible fade show"
+    role="alert"
+  >
+    <i class="bi bi-exclamation-octagon me-1"></i>
+    {{ message }}
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+
+  {% endfor %}
+
   <div
     class="container-fluid container-xl position-relative d-flex align-items-center"
   >
@@ -15,8 +33,6 @@
           <a href="#hero" class="active">Home<br /></a>
         </li>
 
-        <li><a href="{% url 'nicelogin' %}">Login</a></li>
-        <li><a href="{% url 'register' %}">Register</a></li>
         <li><a href="{% url 'blogurl' %}">Blog</a></li>
         <li class="dropdown">
           <a href="#about"
@@ -64,6 +80,12 @@
           </ul>
         </li>
         <li><a href="#contact">Contact</a></li>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'nicelogin' %}">Logout</a></li>
+        {% else %}
+        <li><a href="{% url 'nicelogin' %}">Login</a></li>
+        <li><a href="{% url 'register' %}">Register</a></li>
+        {% endif %}
       </ul>
       <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
     </nav>
