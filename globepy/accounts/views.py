@@ -34,9 +34,16 @@ def login_user(request):
             return redirect('nicelogin')
         
         authUser =  authenticate(request, username=email, password=password)
+        if authUser is None:
+            auth.login(request, authUser)
+            messages.info(request,"Success but you are NOT loged In: {} ".format(email))
+            return redirect('nicelogin')
+        
         if authUser is not None:
             auth.login(request, authUser)
             messages.info(request,"Success you are loged In: {} ".format(email))
+            return redirect('nicelogin')
+    return redirect('homepage')
 
 def register(request):
     if request.method == 'POST':
