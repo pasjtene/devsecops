@@ -43,9 +43,9 @@ def login_user(request):
             #auth.login(request, authUser)
             auth_login(request, authUser)
             messages.info(request,"Success you are loged In: {} ".format(email))
-            return redirect('nicelogin')
+            return redirect('homepage')
         
-    return redirect('homepage')
+    return redirect('nicelogin')
 
 def register(request):
     if request.method == 'POST':
