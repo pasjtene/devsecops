@@ -6,11 +6,11 @@ from django.http import JsonResponse
 def say_hello(request):
     return HttpResponse('LMS --- Hello world...!!! <br/> Another hello world <br> link <a href="/lms/hello2">go to hello2 </a>')
 
-def say_hello2(request):
+def dashboardhome(request):
     response_data = {}
     response_data["erro"] = "LMS -- No error found"
     response_data["message"] = "Hello world"
-    return render(request, "hello.html", {"vars": response_data, "name":"Pascal JT"})
+    return render(request, "index.html", {"vars": response_data, "name":"Pascal JT"})
 
 def say_hello3(request):
     return JsonResponse({"response":"Hello world json"})
