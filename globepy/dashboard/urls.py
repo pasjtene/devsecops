@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path('home/', views.dashboardhome, name='dashboard_home'),
+    path('editors', views.formeditors, name='forms-editors')
     
 ]
 
