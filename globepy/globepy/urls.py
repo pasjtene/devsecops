@@ -22,6 +22,7 @@ urlpatterns = [
     #path('', views.home_page),
     path('', views.flex_start_home_page),
     path('lms/',include('lms.urls')),
+    path('dasboard/',include('dasboard.urls')),
     path('home/', views.home_page),
     path('flexhome/', views.flex_start_home_page, name='homepage'),
     path('blog/', views.blog, name='blogurl'),
