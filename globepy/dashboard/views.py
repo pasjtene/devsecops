@@ -10,7 +10,7 @@ def dashboardhome(request):
     response_data = {}
     response_data["erro"] = "LMS -- No error found"
     response_data["message"] = "Hello world"
-    return render(request, "index.html", {"vars": response_data, "name":"Pascal JT"})
+    return render(request, "dashboard/index.html", {"vars": response_data, "name":"Pascal JT"})
 
 def say_hello3(request):
     return JsonResponse({"response":"Hello world json"})
