@@ -12,6 +12,9 @@ def formeditors(request):
     response_data["message"] = "Hello world"
     return render(request, "dashboard/forms-editors.html", {"vars": response_data, "name":"Pascal JT"})
 
+def create_page(request):
+    return render(request, "dashboard/create-page.html")
+
 def dashboardhome(request):
     response_data = {}
     response_data["erro"] = "LMS -- No error found"
