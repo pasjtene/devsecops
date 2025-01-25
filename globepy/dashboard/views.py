@@ -7,12 +7,14 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 def formeditors2(request):
     return HttpResponse('LMS --- Hello world...!!! <br/> Another hello world <br> link <a href="/lms/hello2">go to hello2 </a>')
 
+@login_required
 def formeditors(request):
     response_data = {}
     response_data["erro"] = "LMS -- No error found"
     response_data["message"] = "Hello world"
     return render(request, "dashboard/forms-editors.html", {"vars": response_data, "name":"Pascal JT"})
 
+@login_required
 def create_page(request):
     return render(request, "dashboard/create-page.html")
 
