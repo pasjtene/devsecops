@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 # Create your views here.
 def formeditors2(request):
@@ -15,6 +16,7 @@ def formeditors(request):
 def create_page(request):
     return render(request, "dashboard/create-page.html")
 
+@login_required
 def dashboardhome(request):
     response_data = {}
     response_data["erro"] = "LMS -- No error found"
