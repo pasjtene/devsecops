@@ -18,6 +18,8 @@ class SignUpView(CreateView):
 
 def anonymous_required(function=None, redirect_url=None):
     
+    messages.info("Success already loged In: {} ")
+    
     if not redirect_url:
         redirect_url='homepage'
         
