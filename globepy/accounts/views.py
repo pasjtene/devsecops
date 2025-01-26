@@ -5,6 +5,7 @@ from django.views.generic import CreateView
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.contrib import messages
+from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import login as auth_login, authenticate, logout
 
 
@@ -13,6 +14,23 @@ class SignUpView(CreateView):
     success_url = reverse_lazy("login")
     template_name = "registration/signup.html"
     
+
+
+def anonymous_required(function=None, redirect_url=None):
+    
+    if not redirect_url:
+        redirect_url='homepage'
+        
+    actual_decorator = user_passes_test(
+        lambda u: u.is_anonymous,
+        login_url=redirect_url
+    )
+    
+    if function:
+        return actual_decorator(function)
+    return actual_decorator
+    
+@anonymous_required
 def login(request):
     return render(request, "auth/login.html")
 
@@ -52,6 +70,7 @@ def login_user(request):
         
     return redirect('nicelogin')
 
+@anonymous_required
 def register(request):
     if request.method == 'POST':
         username = request.post['username']
