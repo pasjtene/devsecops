@@ -19,7 +19,20 @@ class ProductCategory(models.Model):
 # Create your models here.
 
 class Product(models.Model):
+    class Currency(models.Model):
+        SWEDISH_CROWN = ("SEK", _("Swedish_crown"))
+        AMERICAN_DOLLAR = ("USD", _("American Dollar"))
+        YEN = ("JPY", _("Yen"))
+        
+    name = models.CharField(max_length=512)
     price = models.DecimalField(
         max_digits=10,
         decimal_places=2,
     )
+    currency = models.CharField(
+        max_length=3,
+        choices = Currency.choices,
+    )
+
+    def __STR__(self):
+        return self.name
