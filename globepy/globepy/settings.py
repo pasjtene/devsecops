@@ -54,7 +54,8 @@ INSTALLED_APPS = [
     'globepy',
     'lms',
     'accounts',
-    'dashboard'
+    'dashboard',
+    'products'
 ]
 
 MIDDLEWARE = [
