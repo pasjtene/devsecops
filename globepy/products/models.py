@@ -19,7 +19,7 @@ class ProductCategory(models.Model):
 # Create your models here.
 
 class Product(models.Model):
-    class Currency(models.Model):
+    class Currency(models.TextChoices):
         SWEDISH_CROWN = ("SEK", _("Swedish_crown"))
         AMERICAN_DOLLAR = ("USD", _("American Dollar"))
         YEN = ("JPY", _("Yen"))
