@@ -14,14 +14,14 @@ class ProductCategory(models.Model):
         on_delete = models.CASCADE
     )
     
-    def __STR__(self):
+    def __str__(self):
         return self.name
 # Create your models here.
 
 class Vendor(models.Model):
     name = models.CharField(max_length=126)
     
-    def __STR__(self):
+    def __str__(self):
         return self.name
     
 class Product(models.Model):
@@ -55,5 +55,5 @@ class Product(models.Model):
         null=True,
     )
 
-    def __STR__(self):
+    def __str__(self):
         return f"{self.title}, {self.subtitle}, {self.vendor}"
