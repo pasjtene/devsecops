@@ -13,4 +13,7 @@ class ProductCategory(models.Model):
         related_name="children_categories",
         on_delete = models.CASCADE
     )
+    
+    def __STR__(self):
+        return self.name
 # Create your models here.
