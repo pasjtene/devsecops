@@ -17,3 +17,9 @@ class ProductCategory(models.Model):
     def __STR__(self):
         return self.name
 # Create your models here.
+
+class Product(models.Model):
+    price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+    )
