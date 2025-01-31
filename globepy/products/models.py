@@ -54,6 +54,19 @@ class Product(models.Model):
         blank=True,
         null=True,
     )
+    
+    category = models.ForeignKey(
+        ProductCategory,
+        #on_delete=models.CASCADE,
+        related_name="products",
+        blank=True,
+        null=True,
+    )
+    
+    image1_url = models.URLField(blank=True, null=True)
+    image2_url = models.URLField(blank=True, null=True)
+    image3_url = models.URLField(blank=True, null=True)
+    image4_url = models.URLField(blank=True, null=True)
 
     def __str__(self):
         return f"{self.title}, {self.subtitle}, {self.vendor}"
