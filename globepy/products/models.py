@@ -18,13 +18,21 @@ class ProductCategory(models.Model):
         return self.name
 # Create your models here.
 
+class Vendor(models.Models):
+    name = models.CharField(max_length=126)
+    
+    def __STR__(self):
+        return self.name
+    
 class Product(models.Model):
     class Currency(models.TextChoices):
-        SWEDISH_CROWN = ("SEK", _("Swedish_crown"))
+        SWEDISH_CROWN = ("SEK", _("Swedish crown"))
         AMERICAN_DOLLAR = ("USD", _("American Dollar"))
         YEN = ("JPY", _("Yen"))
         
-    name = models.CharField(max_length=512)
+    title = models.CharField(max_length=512)
+    subtitle = models.CharField(max_length=512)
+    
     price = models.DecimalField(
         max_digits=10,
         decimal_places=2,
@@ -32,7 +40,20 @@ class Product(models.Model):
     currency = models.CharField(
         max_length=3,
         choices = Currency.choices,
+        default=Currency.AMERICAN_DOLLAR,
+    )
+    
+    product_variation_ids = PostgresFields.ArrayField(
+        models.IntegerField(null=True, blank=True)
+    )
+    
+    vendor = models.ForeignKey(
+        Vendor,
+        on_delete=models.CASCADE,
+        related_name="products",
+        blank=True,
+        null=True,
     )
 
     def __STR__(self):
-        return self.name
+        return f"{self.title}, {self.subtitle}, {self.vendor}"
