@@ -36,6 +36,9 @@ def anonymous_required(function=None, redirect_url=None):
 def login(request):
     return render(request, "auth/login.html")
 
+def ailogin(request):
+    return render(request, 'auth/ailogin.html')
+
 def logout_view(request):
     logout(request)
     messages.success(request,"Success you are loged out")
