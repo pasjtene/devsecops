@@ -18,7 +18,7 @@ class ProductCategory(models.Model):
         return self.name
 # Create your models here.
 
-class Vendor(models.Models):
+class Vendor(models.Model):
     name = models.CharField(max_length=126)
     
     def __STR__(self):
