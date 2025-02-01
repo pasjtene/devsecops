@@ -35,7 +35,7 @@ class Vendor(models.Model):
     name = models.CharField(max_length=126)
     addressline1 = models.CharField(null=True, blank=True)
     addressline2 = models.CharField(null=True, blank=True)
-    zipcode = models.CharField(max_length=10)
+    zipcode = models.CharField(max_length=10, null=True, blank=True)
     
     country = models.CharField(
         max_length = 3,
