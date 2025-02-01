@@ -14,6 +14,9 @@ class ProductCategory(models.Model):
         on_delete = models.CASCADE
     )
     
+    class Meta:
+        verbose_name_plural = "Product categories"
+    
     def __str__(self):
         return self.name
 # Create your models here.
@@ -58,7 +61,8 @@ class Product(models.Model):
     category = models.ForeignKey(
         ProductCategory,
         on_delete=models.SET_NULL,
-        related_name="products",
+        #related_name="products",
+        related_name="children_products",
         blank=True,
         null=True,
     )
