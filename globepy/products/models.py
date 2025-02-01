@@ -78,9 +78,11 @@ class Product(models.Model):
         return f"{self.title}, {self.subtitle}, {self.vendor}"
   
     
-#class ProductInline(admin.TabularInline):  # or admin.StackedInline for a different layout admin.TabularInline
-    #model = Product
+class ProductInline(admin.TabularInline):  # or admin.StackedInline for a different layout admin.TabularInline
+    model = Product
     #extra = 1  # Number of empty product forms to display
+    fields = ['title', 'vendor']  # Specify fields to display
+    readonly_fields = ['title', 'vendor']  # Make certain fields read-only
 
 
 @admin.register(ProductCategory)
