@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 from django.contrib.postgres import fields as PostgresFields
 
@@ -61,8 +62,8 @@ class Product(models.Model):
     category = models.ForeignKey(
         ProductCategory,
         on_delete=models.SET_NULL,
-        #related_name="products",
-        related_name="children_products",
+        related_name="products",
+        #related_name="children_products",
         blank=True,
         null=True,
     )
@@ -74,3 +75,18 @@ class Product(models.Model):
 
     def __str__(self):
         return f"{self.title}, {self.subtitle}, {self.vendor}"
+    
+class ProductInline(admin.TabularInline):  # or admin.StackedInline for a different layout
+    model = Product
+    extra = 1  # Number of empty product forms to display
+
+@admin.register(ProductCategory)
+class ProductCategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description')
+    inlines = [ProductInline]
+
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('name', 'category', 'price')
+    list_filter = ('category',)
+    search_fields = ('name', 'description')
