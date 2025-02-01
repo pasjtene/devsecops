@@ -35,6 +35,7 @@ class Product(models.Model):
         YEN = ("JPY", _("Yen"))
         
     title = models.CharField(max_length=512)
+    ddescription = models.TextField()
     subtitle = models.CharField(max_length=512)
     
     price = models.DecimalField(
@@ -87,6 +88,6 @@ class ProductCategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'price')
+    list_display = ('title', 'category', 'price')
     list_filter = ('category',)
-    search_fields = ('name', 'description')
+    search_fields = ('title', 'description')
