@@ -25,11 +25,11 @@ class ProductCategory(models.Model):
 class Vendor(models.Model):
     class Country(models.TextChoices):
         USA = ("USA", _("United State of America"))
-        CAN = ("CAN", _("CAN", _("Canada")))
+        CAN = ("CAN", _("Canada"))
         
     class State(models.TextChoices):
-        NJ = ("NJ", _("NJ", "New Jersey"))
-        NY = ("NY", _("NY", "New York"))
+        NJ = ("NJ", _("New Jersey"))
+        NY = ("NY", _("New York"))
         
            
     name = models.CharField(max_length=126)
