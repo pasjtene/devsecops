@@ -81,8 +81,8 @@ class Product(models.Model):
 class ProductInline(admin.TabularInline):  # or admin.StackedInline for a different layout admin.TabularInline
     model = Product
     #extra = 1  # Number of empty product forms to display
-    fields = ['title', 'vendor']  # Specify fields to display
-    readonly_fields = ['title', 'vendor']  # Make certain fields read-only
+    fields = ['title', 'vendor', 'category']  # Specify fields to display
+    readonly_fields = ['title', 'vendor','category']  # Make certain fields read-only
 
 
 @admin.register(ProductCategory)
