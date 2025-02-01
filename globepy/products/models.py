@@ -83,9 +83,7 @@ class ProductInline(admin.TabularInline):  # or admin.StackedInline for a differ
     extra = 1  # Number of empty product forms to display
 
 
-
-"""_summary_
-        @admin.register(ProductCategory)
+@admin.register(ProductCategory)
 class ProductCategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'description')
     inlines = [ProductInline]
@@ -95,5 +93,5 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ('title', 'category', 'price')
     list_filter = ('category',)
     search_fields = ('title', 'description')
-        """
+       
 
