@@ -20,10 +20,34 @@ class ProductCategory(models.Model):
     
     def __str__(self):
         return self.name
-# Create your models here.
+
 
 class Vendor(models.Model):
+    class Country(models.TextChoices):
+        USA = ("USA", _("United State of America"))
+        CAN = ("CAN", _("CAN", _("Canada")))
+        
+    class State(models.TextChoices):
+        NJ = ("NJ", _("NJ", "New Jersey"))
+        NY = ("NY", _("NY", "New York"))
+        
+           
     name = models.CharField(max_length=126)
+    addressline1 = models.CharField(null=True, blank=True)
+    addressline2 = models.CharField(null=True, blank=True)
+    zipcode = models.CharField(max_length=10)
+    
+    country = models.CharField(
+        max_lenght = 3,
+        choices = Country.choices,
+        default=Country.USA
+    )
+    
+    state = models.CharField(
+        max_lenght = 3,
+        choices = State.choices,
+        default=State.NY
+    )
     
     def __str__(self):
         return self.name
