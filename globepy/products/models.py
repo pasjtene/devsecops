@@ -78,8 +78,8 @@ class Product(models.Model):
         return f"{self.title}, {self.subtitle}, {self.vendor}"
   
     
-class ProductInline(admin.StackedInline):  # or admin.StackedInline for a different layout admin.TabularInline
-    model = Product
+#class ProductInline(admin.TabularInline):  # or admin.StackedInline for a different layout admin.TabularInline
+    #model = Product
     #extra = 1  # Number of empty product forms to display
 
 
