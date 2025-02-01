@@ -35,7 +35,7 @@ class Product(models.Model):
         YEN = ("JPY", _("Yen"))
         
     title = models.CharField(max_length=512)
-    ddescription = models.TextField()
+    description = models.TextField(null=True, blank=True)
     subtitle = models.CharField(max_length=512)
     
     price = models.DecimalField(
