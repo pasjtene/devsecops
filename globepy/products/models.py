@@ -38,13 +38,13 @@ class Vendor(models.Model):
     zipcode = models.CharField(max_length=10)
     
     country = models.CharField(
-        max_lenght = 3,
+        max_length = 3,
         choices = Country.choices,
         default=Country.USA
     )
     
     state = models.CharField(
-        max_lenght = 3,
+        max_length = 3,
         choices = State.choices,
         default=State.NY
     )
