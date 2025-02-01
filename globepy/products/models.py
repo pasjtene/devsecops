@@ -76,12 +76,16 @@ class Product(models.Model):
 
     def __str__(self):
         return f"{self.title}, {self.subtitle}, {self.vendor}"
+  
     
 class ProductInline(admin.TabularInline):  # or admin.StackedInline for a different layout
     model = Product
     extra = 1  # Number of empty product forms to display
 
-@admin.register(ProductCategory)
+
+
+"""_summary_
+        @admin.register(ProductCategory)
 class ProductCategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'description')
     inlines = [ProductInline]
@@ -91,3 +95,5 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ('title', 'category', 'price')
     list_filter = ('category',)
     search_fields = ('title', 'description')
+        """
+
