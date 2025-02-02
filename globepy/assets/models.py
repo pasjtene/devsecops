@@ -42,7 +42,7 @@ class RegulatoryFramework(models.Model):
                  "GDPR": "General Data Protection Regulation",
                  }
     short_description = models.CharField(
-        blank = True,
+        blank = True, null=True,
         default = framworks.get(title)
         ) 
     
