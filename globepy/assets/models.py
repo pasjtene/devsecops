@@ -39,6 +39,9 @@ class RegulatoryFramework(models.Model):
         default=FrameworkName.HIPAA
     )
     description = models.TextField(null=True, blank=True)
+    
+    def __str__(self):
+        return self.title
         
 class Vendor(models.Model):
     class Country(models.TextChoices):
