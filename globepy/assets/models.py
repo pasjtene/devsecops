@@ -122,9 +122,9 @@ class ProductCategoryAdmin(admin.ModelAdmin):
     inlines = [AssetInline]
 
 @admin.register(Asset)
-class ProductAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category', 'price')
+class AssetAdmin(admin.ModelAdmin):
+    list_display = ('name', 'category', 'price')
     list_filter = ('category',)
-    search_fields = ('title', 'description')
+    search_fields = ('name', 'description')
        
 
