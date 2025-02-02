@@ -104,7 +104,7 @@ class Asset(models.Model):
         #models.IntegerField(null=True, blank=True)
     #)
     
-    regulatoryFrameworks = models.ManyToManyField(RegulatoryFramework, related_name="assets")
+    regulatoryFrameworks = models.ManyToManyField(RegulatoryFramework, related_name="assets", blank=True)
     
     vendor = models.ForeignKey(
         Vendor,
@@ -149,5 +149,6 @@ class AssetAdmin(admin.ModelAdmin):
     list_display = ('name', 'category', 'price')
     list_filter = ('category',)
     search_fields = ('name', 'description')
+    filter_horizontal = ('regulatoryFrameworks',)
        
 
