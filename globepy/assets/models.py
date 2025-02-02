@@ -38,11 +38,21 @@ class RegulatoryFramework(models.Model):
         choices = FrameworkName.choices,
         default=FrameworkName.HIPAA
     )
+    framworks = {"HIPAA": "Health Insurance Portability and Accountability Act", 
+                 "GDPR": "General Data Protection Regulation",
+                 }
+    short_description = models.CharField(
+        blank = True,
+        default = framworks.get(title)
+        ) 
+    
     description = models.TextField(null=True, blank=True)
     
     def __str__(self):
         return self.title
         
+
+
 class Vendor(models.Model):
     class Country(models.TextChoices):
         USA = ("USA", _("United State of America"))
