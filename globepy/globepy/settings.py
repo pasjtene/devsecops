@@ -55,7 +55,8 @@ INSTALLED_APPS = [
     'lms',
     'accounts',
     'dashboard',
-    'products'
+    'products',
+    'assets'
 ]
 
 MIDDLEWARE = [

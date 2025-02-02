@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 from django.contrib.postgres import fields as PostgresFields
 
-class ProductCategory(models.Model):
+class AssetCategory(models.Model):
     name = models.CharField(max_length=256)
     icon_url = models.URLField(blank=True)
     description = models.TextField()
@@ -16,7 +16,7 @@ class ProductCategory(models.Model):
     )
     
     class Meta:
-        verbose_name_plural = "Product categories"
+        verbose_name_plural = "Asset categories"
     
     def __str__(self):
         return self.name
@@ -59,15 +59,15 @@ class Vendor(models.Model):
     def __str__(self):
         return self.name
     
-class Product(models.Model):
+class Asset(models.Model):
     class Currency(models.TextChoices):
         SWEDISH_CROWN = ("SEK", _("Swedish crown"))
         AMERICAN_DOLLAR = ("USD", _("American Dollar"))
         YEN = ("JPY", _("Yen"))
         
-    title = models.CharField(max_length=512)
+    name = models.CharField(max_length=512)
     description = models.TextField(null=True, blank=True)
-    subtitle = models.CharField(max_length=512)
+    aka = models.CharField(max_length=512)
     
     price = models.DecimalField(
         max_digits=10,
@@ -79,9 +79,9 @@ class Product(models.Model):
         default=Currency.AMERICAN_DOLLAR,
     )
     
-    product_variation_ids = PostgresFields.ArrayField(
-        models.IntegerField(null=True, blank=True)
-    )
+    #product_variation_ids = PostgresFields.ArrayField(
+        #models.IntegerField(null=True, blank=True)
+    #)
     
     vendor = models.ForeignKey(
         Vendor,
@@ -92,9 +92,9 @@ class Product(models.Model):
     )
     
     category = models.ForeignKey(
-        ProductCategory,
+        AssetCategory,
         on_delete=models.SET_NULL,
-        related_name="products",
+        related_name="assets",
         #related_name="children_products",
         blank=True,
         null=True,
@@ -106,22 +106,22 @@ class Product(models.Model):
     image4_url = models.URLField(blank=True, null=True)
 
     def __str__(self):
-        return f"{self.title}, {self.subtitle}, {self.vendor}"
+        return f"{self.name}, {self.category}, {self.vendor}"
   
     
-class ProductInline(admin.TabularInline):  # or admin.StackedInline for a different layout admin.TabularInline
-    model = Product
+class AssetInline(admin.TabularInline):  # or admin.StackedInline for a different layout admin.TabularInline
+    model = Asset
     #extra = 1  # Number of empty product forms to display
-    fields = ['title', 'vendor', 'category']  # Specify fields to display
-    readonly_fields = ['title', 'vendor','category']  # Make certain fields read-only
+    fields = ['name', 'vendor', 'category']  # Specify fields to display
+    readonly_fields = ['name', 'vendor','category']  # Make certain fields read-only
 
 
-@admin.register(ProductCategory)
+@admin.register(AssetCategory)
 class ProductCategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'description')
-    inlines = [ProductInline]
+    inlines = [AssetInline]
 
-@admin.register(Product)
+@admin.register(Asset)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('title', 'category', 'price')
     list_filter = ('category',)
