@@ -41,11 +41,12 @@ class RegulatoryFramework(models.Model):
     framworks = {"HIPAA": "Health Insurance Portability and Accountability Act", 
                  "GDPR": "General Data Protection Regulation",
                  }
-    short_description = framworks.get(title)
-    #models.CharField(
+    #short_description = framworks.get(title)
+    
+    short_description2 = models.CharField(
         #blank = True, null=True,
-        #default = framworks.get(title)
-        #) 
+        default = framworks.get(title)
+        ) 
     
     description = models.TextField(null=True, blank=True)
     
