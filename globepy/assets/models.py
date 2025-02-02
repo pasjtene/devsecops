@@ -43,7 +43,7 @@ class RegulatoryFramework(models.Model):
                  }
     #short_description = framworks.get(title)
     
-    short_description2 = models.CharField(
+    short_description = models.CharField(
         #blank = True, null=True,
         default = framworks.get(title)
         ) 
@@ -51,7 +51,7 @@ class RegulatoryFramework(models.Model):
     description = models.TextField(null=True, blank=True)
     
     def __str__(self):
-        return self.title
+        return f"{self.title}: {self.short_description}"
         
 
 
