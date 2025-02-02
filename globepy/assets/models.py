@@ -22,6 +22,20 @@ class AssetCategory(models.Model):
         return self.name
 
 
+class RegulatoryFramework(models.Model):
+    class FrameworkName(models.TextChoices):
+        HIPAA = ("HIPAA", _("Health Insurance Portability and Accountability Act"))
+        GDPR = ("GDPR", _("General Data Protection Regulation"))
+        GDPR = ("GDPR", _("General Data Protection Regulation"))
+        PCIDSS = ("PCIDSS", _("Payment Card Industry Data Security Standard"))
+        FedRAMP = ("FEDRAMP", _("Federal Risk and Authorization Management Program"))
+        
+    title = models.CharField(
+        max_length = 10,
+        choices = FrameworkName.choices,
+        default=FrameworkName.HIPAA
+    ) 
+        
 class Vendor(models.Model):
     class Country(models.TextChoices):
         USA = ("USA", _("United State of America"))
@@ -82,6 +96,8 @@ class Asset(models.Model):
     #product_variation_ids = PostgresFields.ArrayField(
         #models.IntegerField(null=True, blank=True)
     #)
+    
+    regulatoryFrameworks = models.ManyToManyField(RegulatoryFramework, related_name="assets")
     
     vendor = models.ForeignKey(
         Vendor,
