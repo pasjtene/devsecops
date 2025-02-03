@@ -3,6 +3,6 @@ from .models import *
 
 admin.site.register(RegulatoryFramework)
 admin.site.register(Vendor)
-#admin.site.register(Product)
+admin.site.register(Risk)
 
 # Register your models here.
