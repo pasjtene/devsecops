@@ -69,7 +69,7 @@ class Risk(models.Model):
     name = models.CharField(
         max_length = 10,
         choices = RiskName.choices,
-        default=RiskName.HIPAA
+        default=RiskName.A012025
     )
     
     risks = {
