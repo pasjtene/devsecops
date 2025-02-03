@@ -53,7 +53,43 @@ class RegulatoryFramework(models.Model):
     def __str__(self):
         return f"{self.title}: {self.short_description}"
         
-
+class Risk(models.Model):
+    class RiskName(models.TextChoices):
+        A012025 = ("A012025", _("Broken Access Control"))
+        A022025 = ("A022025", _("Cryptographic Failures"))
+        A032025 = ("A032025", _("Injection")) 
+        A042025 = ("A042025", _("Insecure Design"))
+        A052025 = ("A052025", _("Security Misconfiguration"))
+        A062025 = ("A062025", _("Vulnerable and Outdated Components"))
+        A072025 = ("A072025", _("Identification and Authentication Failures"))
+        A082025 = ("A082025", _("Software and Data Integrity Failures"))
+        A092025 = ("A092025", _("Security Logging and Monitoring Failures")) 
+        A102025 = ("A102025", _("Server-Side Request Forgery - SSRF"))
+        
+    name = models.CharField(
+        max_length = 10,
+        choices = RiskName.choices,
+        default=RiskName.HIPAA
+    )
+    
+    risks = {
+        "A012021": "Broken Access Control", 
+        "A022025": "Cryptographic Failures",
+        "A032025": "Injection",
+        "A042025" : "Insecure Design"
+        }
+    
+    #short_description = framworks.get(title)
+    
+    short_description = models.CharField(
+        #blank = True, null=True,
+        default = risks.get(name)
+        ) 
+    
+    description = models.TextField(null=True, blank=True)
+    
+    def __str__(self):
+        return f"{self.title}: {self.short_description}"
 
 class Vendor(models.Model):
     class Country(models.TextChoices):
@@ -117,6 +153,7 @@ class Asset(models.Model):
     #)
     
     regulatoryFrameworks = models.ManyToManyField(RegulatoryFramework, related_name="assets", blank=True)
+    risks = models.ManyToManyField(Risk, related_name="assets", blank=True)
     
     vendor = models.ForeignKey(
         Vendor,
@@ -161,6 +198,6 @@ class AssetAdmin(admin.ModelAdmin):
     list_display = ('name', 'category', 'price')
     list_filter = ('category',)
     search_fields = ('name', 'description')
-    filter_horizontal = ('regulatoryFrameworks',)
+    filter_horizontal = ('regulatoryFrameworks','risks',)
        
 
