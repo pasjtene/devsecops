@@ -89,7 +89,7 @@ class Risk(models.Model):
     description = models.TextField(null=True, blank=True)
     
     def __str__(self):
-        return f"{self.title}: {self.short_description}"
+        return f"{self.name}: {self.short_description}"
 
 class Vendor(models.Model):
     class Country(models.TextChoices):
