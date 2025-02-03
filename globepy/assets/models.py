@@ -136,11 +136,12 @@ class Asset(models.Model):
         
     name = models.CharField(max_length=512)
     description = models.TextField(null=True, blank=True)
-    aka = models.CharField(max_length=512)
+    aka = models.CharField(max_length=512, null=True, blank=True)
     
     price = models.DecimalField(
         max_digits=10,
         decimal_places=2,
+        null=True, blank=True
     )
     currency = models.CharField(
         max_length=3,
