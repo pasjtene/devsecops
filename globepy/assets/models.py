@@ -251,7 +251,7 @@ class AssetCategoryAdmin(admin.ModelAdmin):
 class RegulatoryFrameworkAdmin(admin.ModelAdmin):
     list_display = ('title','short_description')
     #list_filter = ('title')
-    filter_horizontal = ('SecurityRequirements')
+    filter_horizontal = ('regulatoryFrameworks','securityRequirements')
 
 @admin.register(Asset)
 class AssetAdmin(admin.ModelAdmin):
