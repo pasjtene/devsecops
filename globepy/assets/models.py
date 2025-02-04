@@ -22,6 +22,56 @@ class AssetCategory(models.Model):
         return self.name
 
 
+
+
+class SecurityRequirement(models.Model):
+    class RequirementList(models.TextChoices):
+        # FISMA https://security.cms.gov/learn/federal-information-security-modernization-act-fisma
+        # PCIDSS https://pcidssguide.com/pci-dss-requirements/
+        PCIDSSR1 = ("PCIDSSR1", _("Configure and use firewalls to protect cardholder data"))
+        PCIDSSR11 = ("PCIDSSR11", _("Create and implement standards for configuration of firewalls and routers"))
+        PCIDSSR12 = ("PCIDSSR12", _("Create a firewall and router configuration that restricts connections betweenuntrusted networks and all system components in the cardholder data environment")) 
+        PCIDSSR13 = ("PCIDSSR13", _("Restrict direct global access to any system component of the cardholder data medium over the internet."))
+        PCIDSSR14 = ("PCIDSSR14", _("Install personal firewall software on all mobile devices that are connected to the internet and used to access the network when they are out of the network"))
+        PCIDSSR15 = ("PCIDSSR15", _("Make sure that security policies and operational procedures for managing firewalls are documented, in use, and known to all affected parties"))
+        PCIDSSR2 = ("PCIDSSR2", _("Do not use the vendor’s default settings for system passwords and other security parameters"))
+        PCIDSSR21 = ("PCIDSSR21", _("Always change the default settings and values ​​provided by the manufacturer and remove or disable unnecessary default accounts before installing any system on the network"))
+        PCIDSSR22 = ("PCIDSSR22", _("Create configuration standards for all components of the system")) 
+        PCIDSSR23 = ("PCIDSSR23", _("Encrypt all non-console administrative access to devices using strong encryption"))
+        FISMAR1 = ("FISMAR1", _("Implement continuous monitoring"))
+        FISMAR2 = ("FISMAR2", _("Conduct annual security reviews"))
+        FISMAR3 = ("FISMAR3", _("Perform risk assessment"))
+        FISMAR4 = ("FISMAR4", _("Document the controls in the system security plan"))
+        FISMAR5 = ("FISMAR5", _("Meet baseline security controls"))
+        FISMAR6 = ("FISMAR6", _("Perform system risk categorization"))
+        
+        
+        
+    name = models.CharField(
+        max_length = 15,
+        choices = RequirementList.choices,
+        default=RequirementList.PCIDSSR15
+    )
+    
+    secRequirements = {               
+        "PCIDSSR2": "Do not use the vendors default settings for system passwords and other security parameters",
+        "PCIDSSR21": "Always change the default settings and values ​​provided by the manufacturer and remove or disable unnecessary default accounts before installing any system on the network",
+        "PCIDSSR22": "Create configuration standards for all components of the system", 
+        "PCIDSSR23": "Encrypt all non-console administrative access to devices using strong encryption",
+        }
+    
+    #short_description = framworks.get(title)
+    
+    short_description = models.CharField(
+        #blank = True, null=True,
+        default = secRequirements.get(name)
+        ) 
+    
+    description = models.TextField(null=True, blank=True)
+    
+    def __str__(self):
+        return f"{self.name}: {self.short_description}"        
+
 class RegulatoryFramework(models.Model):
     class FrameworkName(models.TextChoices):
         HIPAA = ("HIPAA", _("Health Insurance Portability and Accountability Act"))
@@ -32,6 +82,7 @@ class RegulatoryFramework(models.Model):
         SOX = ("SOX", _("Sarbanes–Oxley Act"))
         NYDFS = ("NYDFS", _("New York State Department of Financial Services"))
         CMMC =  ("CMMC", _("Cybersecurity Maturity Model Certification"))
+        FISMA =  ("FISMA", _("Federal Information Security Modernization Act"))
         
     title = models.CharField(
         max_length = 10,
@@ -49,10 +100,11 @@ class RegulatoryFramework(models.Model):
         ) 
     
     description = models.TextField(null=True, blank=True)
+    securityRequirements = models.ManyToManyField(SecurityRequirement, related_name="regulatoryFrameworks", blank=True)
     
     def __str__(self):
         return f"{self.title}: {self.short_description}"
-        
+
 class Risk(models.Model):
     class RiskName(models.TextChoices):
         A012025 = ("A012025", _("Broken Access Control"))
@@ -76,7 +128,8 @@ class Risk(models.Model):
         "A012021": "Broken Access Control", 
         "A022025": "Cryptographic Failures",
         "A032025": "Injection",
-        "A042025" : "Insecure Design"
+        "A042025" : "Insecure Design",
+        "A052025" : "Security Misconfiguration",
         }
     
     #short_description = framworks.get(title)
@@ -190,9 +243,15 @@ class AssetInline(admin.TabularInline):  # or admin.StackedInline for a differen
 
 
 @admin.register(AssetCategory)
-class ProductCategoryAdmin(admin.ModelAdmin):
+class AssetCategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'description')
     inlines = [AssetInline]
+
+@admin.register(RegulatoryFramework)
+class RegulatoryFrameworkAdmin(admin.ModelAdmin):
+    list_display = ('title','short_description')
+    #list_filter = ('title')
+    filter_horizontal = ('SecurityRequirements')
 
 @admin.register(Asset)
 class AssetAdmin(admin.ModelAdmin):
