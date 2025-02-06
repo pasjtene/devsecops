@@ -2,8 +2,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.productshome, name='products_home'),
-    path('editors/', views.formeditors, name='forms-editors'),
+    path('', views.list_all_assets, name='list_all_assets'),
+    path('listall/', views.list_all_assets, name='list_all_assets'),
     path('create-page/', views.create_page, name='create-new-page')    
 ]
 

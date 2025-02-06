@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required, user_passes_test
+from .models import Asset
 
 # Create your views here.
 def formeditors2(request):
@@ -25,8 +26,9 @@ def dashboardhome(request):
     response_data["message"] = "Hello world"
     return render(request, "dashboard/index.html", {"vars": response_data, "name":"Pascal JT"})
 
-def say_hello3(request):
-    return JsonResponse({"response":"Hello world json"})
+def list_all_assets(request):
+    assets = Asset.objects.all()
+    return render(request, 'assets/aiasset_list.html', {'assets':assets})
 
 def say_hello4(request):
     response_data = {}
