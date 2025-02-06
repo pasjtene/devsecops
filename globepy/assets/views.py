@@ -28,7 +28,7 @@ def dashboardhome(request):
 
 def list_all_assets(request):
     assets = Asset.objects.all()
-    return render(request, 'assets/aiasset_list.html', {'assets':assets})
+    return render(request, 'assets/aiassets_dashboard.html', {'assets':assets})
 
 def say_hello4(request):
     response_data = {}
