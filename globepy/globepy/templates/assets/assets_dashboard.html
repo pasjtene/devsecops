@@ -963,9 +963,15 @@
                       <tbody>
                         {% for asset in assets %}
                         <tr>
-                          <th scope="row"><a href="#">#{{ asset.id }}</a></th>
+                          <th scope="row">
+                            <a href="{% url 'asset-details'  asset.id %}"
+                              >#{{ asset.id }}</a
+                            >
+                          </th>
                           <td>
-                            <a href="#" class="text-primary"
+                            <a
+                              href="{% url 'asset-details'  asset.id %}"
+                              class="text-primary"
                               >{{ asset.name }}</a
                             >
                           </td>

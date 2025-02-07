@@ -39,8 +39,9 @@ def list_all_assets(request):
         'total_unique_assets':total_unique_assets
         })
 
-def say_hello4(request):
-    response_data = {}
-    response_data["erro"] = "No error found"
-    response_data["message"] = "Hello world"
-    return JsonResponse(response_data)
+
+def assetdetails(request, id):
+    asset = Asset.objects.get(id=id)
+    return render(request, 'assets/asset-details.html',{
+        'asset':asset,
+    })
