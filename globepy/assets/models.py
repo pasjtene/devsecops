@@ -186,7 +186,22 @@ class Asset(models.Model):
         SWEDISH_CROWN = ("SEK", _("Swedish crown"))
         AMERICAN_DOLLAR = ("USD", _("American Dollar"))
         YEN = ("JPY", _("Yen"))
-        
+    
+    class Impact_level(models.TextChoices):
+        Low = ("Low", _("Limited adverse effect in case of a compromise"))
+        Moderate = ("Moderate", _("Serious adverse effect in case of a compromise"))
+        High = ("High", _("Severe adverse effect in case of a compromise"))
+        Critical = ("critical", _("Catastrophic adverse effect in case of a compromise"))
+    
+    class Risk_status(models.TextChoices):
+        Reduced = ("Reduced", _("Controls have been implemented and the risk is reduced"))
+        Mitigated = ("Mitigated", _("Controls have been implemented and the risk is - Mitigated"))
+        Accepted = ("Accepted", _("The risk is accepted. impact is manageable "))
+        Transfered = ("Transfered", _("Risk is transfered to a third party"))
+        Avoided = ("Avoided", _("Asset is not used a a way that it can constitute any risk - Avoided"))
+        Mitigating = ("Mitigating", _("Controls are being implemented - Mitigating"))
+        Monitoring = ("Monitoring", _("Controls have been implemented and the risk is monitored"))
+            
     name = models.CharField(max_length=512)
     description = models.TextField(null=True, blank=True)
     aka = models.CharField(max_length=512, null=True, blank=True)
@@ -198,6 +213,18 @@ class Asset(models.Model):
     )
     
     quantity = models.PositiveIntegerField(default=1)
+    
+    impact_level = models.CharField(
+        max_length=12,
+        choices = Impact_level.choices,
+        default=Impact_level.Moderate,
+    )
+    
+    risk_status = models.CharField(
+        max_length=10,
+        choices = Risk_status.choices,
+        default=Risk_status.Mitigating,
+    )
     
     currency = models.CharField(
         max_length=3,
