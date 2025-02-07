@@ -28,7 +28,16 @@ def dashboardhome(request):
 
 def list_all_assets(request):
     assets = Asset.objects.all()
-    return render(request, 'assets/assets_dashboard.html', {'assets':assets})
+    total_price = sum(asset.price * asset.quantity for asset in assets) #cal culate the total price of all assets
+    total_assets = sum(asset.quantity for asset in assets) # calculate the total number of assets
+    total_unique_assets = assets.count()
+    
+    return render(request, 'assets/assets_dashboard.html', {
+        'assets':assets,
+        'total_price': total_price,
+        'total_assets':total_assets,
+        'total_unique_assets':total_unique_assets
+        })
 
 def say_hello4(request):
     response_data = {}

@@ -196,6 +196,9 @@ class Asset(models.Model):
         decimal_places=2,
         null=True, blank=True
     )
+    
+    quantity = models.PositiveIntegerField(default=1)
+    
     currency = models.CharField(
         max_length=3,
         choices = Currency.choices,
