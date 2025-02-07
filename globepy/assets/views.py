@@ -34,7 +34,7 @@ def list_all_assets(request):
     
     return render(request, 'assets/assets_dashboard.html', {
         'assets':assets,
-        'total_price': total_price,
+        'total_price': round(total_price),
         'total_assets':total_assets,
         'total_unique_assets':total_unique_assets
         })
