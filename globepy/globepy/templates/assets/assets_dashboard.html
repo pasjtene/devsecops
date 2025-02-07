@@ -948,7 +948,8 @@
                           <th scope="col">Asset Category</th>
                           <th scope="col">Price</th>
                           <th scope="col">Qty</th>
-                          <th scope="col">Status</th>
+                          <th scope="col">Impact Level</th>
+                          <th scope="col">Risk Status</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -963,8 +964,11 @@
                           <td>{{ asset.category }}</td>
                           <td>${{ asset.price }}</td>
                           <td>{{ asset.quantity }}</td>
+                          <td>{{ asset.impact_level }}</td>
                           <td>
-                            <span class="badge bg-success">Accepted</span>
+                            <span class="badge bg-success"
+                              >{{ asset.risk_status }}</span
+                            >
                           </td>
                         </tr>
                         {% endfor %}
