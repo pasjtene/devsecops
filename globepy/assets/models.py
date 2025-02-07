@@ -188,19 +188,19 @@ class Asset(models.Model):
         YEN = ("JPY", _("Yen"))
     
     class Impact_level(models.TextChoices):
-        Low = ("Low", _("Limited adverse effect in case of a compromise"))
-        Moderate = ("Moderate", _("Serious adverse effect in case of a compromise"))
-        High = ("High", _("Severe adverse effect in case of a compromise"))
-        Critical = ("critical", _("Catastrophic adverse effect in case of a compromise"))
+        Low = ("Low", _("Low")) #Limited adverse effect in case of a compromise
+        Moderate = ("Moderate", _("Moderate")) #Serious adverse effect in case of a compromise
+        High = ("High", _("High")) #Severe adverse effect in case of a compromise
+        Critical = ("critical", _("Critical")) #Catastrophic adverse effect in case of a compromise
     
     class Risk_status(models.TextChoices):
-        Reduced = ("Reduced", _("Controls have been implemented and the risk is reduced"))
-        Mitigated = ("Mitigated", _("Controls have been implemented and the risk is - Mitigated"))
-        Accepted = ("Accepted", _("The risk is accepted. impact is manageable "))
-        Transfered = ("Transfered", _("Risk is transfered to a third party"))
-        Avoided = ("Avoided", _("Asset is not used a a way that it can constitute any risk - Avoided"))
-        Mitigating = ("Mitigating", _("Controls are being implemented - Mitigating"))
-        Monitoring = ("Monitoring", _("Controls have been implemented and the risk is monitored"))
+        Reduced = ("Reduced", _("Reduced")) #Controls have been implemented and the risk is reduced
+        Mitigated = ("Mitigated", _("Mitigated")) #Controls have been implemented and the risk is - Mitigated
+        Accepted = ("Accepted", _("Accepted")) #The risk is accepted. impact is manageable 
+        Transfered = ("Transfered", _("Transfered")) #Risk is transfered to a third party
+        Avoided = ("Avoided", _("Avoided")) #Asset is not used a a way that it can constitute any risk - Avoided
+        Mitigating = ("Mitigating", _("Mitigating")) #Controls are being implemented - Mitigating
+        Monitoring = ("Monitoring", _("Monitoring")) #Controls have been implemented and the risk is monitored
             
     name = models.CharField(max_length=512)
     description = models.TextField(null=True, blank=True)
