@@ -109,11 +109,18 @@
                 </div>
 
                 <div class="row">
-                  <div class="col-lg-3 col-md-4 label">Country</div>
+                  <div class="col-lg-3 col-md-4 label">
+                    Regulatory Frameworks
+                  </div>
                   <div class="col-lg-9 col-md-8">
-                    USA {% for framework in asset.regulatoryFrameworks.all %}
+                    {% for framework in asset.regulatoryFrameworks.all %}
                     {{framework.title}}, {% endfor %}
                   </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Country</div>
+                  <div class="col-lg-9 col-md-8">USA</div>
                 </div>
 
                 <div class="row">
