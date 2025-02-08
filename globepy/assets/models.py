@@ -46,9 +46,9 @@ class SecurityRequirement(models.Model):
         FISMAR6 = ("FISMAR6", _("Perform system risk categorization"))
         # https://www.itgovernance.eu/blog/en/summary-of-the-gdprs-10-key-requirements#International-data-transfers
         # https://gdpr-info.eu/art-35-gdpr/
-        GDPR1 = ("GDPR1", _("Lawful, fair and transparent processing"))
-        GDPR2 = ("GDPR2", _("Limitation of purpose, data and storage"))
-        GDPR3 = ("GDPR3", _("Data accuracy, integrity and confidentiality"))
+        GDPR1 = ("GDPR1", _("Lawful, fair and transparent processing: - The first GDPR data protection principle (in Article 5) mandates that organisations document a lawful basis, such as legitimate interest or consent, for processing personal data."))
+        GDPR2 = ("GDPR2", _("Limitation of purpose, data and storage: -The second, third and fifth GDPR data protection principles reflect another key tenet of the Regulation: that you minimise your personal data collection and processing"))
+        GDPR3 = ("GDPR3", _("Data accuracy, integrity and confidentiality: -You must ensure that personal data you hold is accurate and complete, otherwise it’s not fit for purpose."))
         GDPR4 = ("GDPR4", _("Data protection impact assessment - DPIA: Article 35(3)"))
         GDPR5 = ("GDPR5", _("Privacy by design - GDPR Article 25"))
         GDPR6 = ("GDPR6", _("A Contract is established between data Controller and data processor- GDPR Article 28"))
