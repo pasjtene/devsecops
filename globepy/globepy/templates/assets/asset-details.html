@@ -381,12 +381,17 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
               <div class="tab-pane fade pt-3" id="profile-settings">
                 <!-- Settings Form -->
                 <form>
+                  {% for framework in asset.regulatoryFrameworks.all %}
                   <div class="row mb-3">
                     <label
                       for="fullName"
                       class="col-md-4 col-lg-3 col-form-label"
-                      >PCI-DSS Security requirements</label
                     >
+                      {{framework.title}} Security requirements, PCI-DSS
+                      Security requirements</label
+                    >
+                    {%for requirement in framework.securityRequirements.all %}
+
                     <div class="col-md-8 col-lg-9">
                       <div class="form-check">
                         <input
@@ -396,9 +401,13 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                           checked
                         />
                         <label class="form-check-label" for="changesMade">
-                          Configure and use firewalls to protect cardholder data
+                          {{requirement.short_description}} Configure and use
+                          firewalls to protect cardholder data
                         </label>
                       </div>
+
+                      {% endfor %}
+
                       <div class="form-check">
                         <input
                           class="form-check-input"
@@ -435,6 +444,8 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                       </div>
                     </div>
                   </div>
+
+                  {% endfor %}
 
                   <div class="text-center">
                     <button type="submit" class="btn btn-primary">
