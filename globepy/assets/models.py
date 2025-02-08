@@ -44,8 +44,18 @@ class SecurityRequirement(models.Model):
         FISMAR4 = ("FISMAR4", _("Document the controls in the system security plan"))
         FISMAR5 = ("FISMAR5", _("Meet baseline security controls"))
         FISMAR6 = ("FISMAR6", _("Perform system risk categorization"))
-        
-        
+        # https://www.itgovernance.eu/blog/en/summary-of-the-gdprs-10-key-requirements#International-data-transfers
+        # https://gdpr-info.eu/art-35-gdpr/
+        GDPR1 = ("GDPR1", _("Lawful, fair and transparent processing"))
+        GDPR2 = ("GDPR2", _("Limitation of purpose, data and storage"))
+        GDPR3 = ("GDPR3", _("Data accuracy, integrity and confidentiality"))
+        GDPR4 = ("GDPR4", _("Data protection impact assessment - DPIA: Article 35(3)"))
+        GDPR5 = ("GDPR5", _("Privacy by design - GDPR Article 25"))
+        GDPR6 = ("GDPR6", _("A Contract is established between data Controller and data processor- GDPR Article 28"))
+        GDPR7 = ("GDPR7", _("Data subject rights: GDPR Chapter III (Articles 12–22) -The right to be informed, -The right of access, -The right to rectification, -The right to erasure, -The right to restrict processing, -The right to data portability, -The right to object, -Rights in relation to automated decision-making, including profiling"))
+        GDPR8 = ("GDPR8", _("Data protection officer: The requirements for a DPO, including when to appoint one are laid out in Articles 37–39"))
+        GDPR9 = ("GDPR9", _("International data transfers- The scope of GDPR is limited to organisations based or operating in the EU. Chapter V (Articles 44–50) restricts international data transfers outside the EEA, unless appropriate safeguards are in place."))
+        GDPR10 = ("GDPR10", _("Personal data breach reporting: - the GDPR (Article 33) requires the data controller to report any data breach to its supervisory authority within 72 hours of becoming aware of the breach"))
         
     name = models.CharField(
         max_length = 15,
