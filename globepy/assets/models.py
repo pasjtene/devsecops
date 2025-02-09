@@ -356,4 +356,4 @@ class ComplianceStatus(admin.ModelAdmin):
     list_display = ('asset', 'framework', 'requirement', 'detail','owner')
     list_filter = ('asset','framework',)
     search_fields = ('framework', 'requirement')
-    filter_horizontal = ('asset','framework','requirement','owner')
+    #filter_horizontal = ('asset','framework','requirement','owner')
