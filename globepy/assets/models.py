@@ -343,7 +343,7 @@ class ComplianceStatus(models.Model):
     )
     
     def __str__(self):
-        return f"{self.description}"
+        return self.description
     
 class AssetInline(admin.TabularInline):  # or admin.StackedInline for a different layout admin.TabularInline
     model = Asset
