@@ -402,6 +402,12 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                         />
                         <label class="form-check-label" for="changesMade">
                           {{requirement.short_description}}
+                          <br />
+                          {%for item in complianceItems.all %}
+                          <span style="color: blue">
+                            {{ item.description }}
+                          </span>
+                          {%endfor %}
                         </label>
                       </div>
 
