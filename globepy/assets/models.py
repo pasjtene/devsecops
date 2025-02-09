@@ -366,15 +366,19 @@ class AssetAdmin(admin.ModelAdmin):
     list_filter = ('category',)
     search_fields = ('name', 'description')
     filter_horizontal = ('regulatoryFrameworks','risks',)
-       
+
+"""
 @admin.register(ComplianceStatus)
 class ComplianceStatus(admin.ModelAdmin):
     list_display = ('asset', 'framework', 'requirement', 'details','owner')
     list_filter = ('asset','framework',)
     search_fields = ('framework', 'requirement')
     
-    def save_model(self, request, obj, form, change):
-        if not obj.pk:  # If the object is being created
-            obj.created_by = request.user
-        super().save_model(request, obj, form, change)
+    #def save_model(self, request, obj, form, change):
+        #if not obj.pk:  # If the object is being created
+            #obj.created_by = request.user
+        #super().save_model(request, obj, form, change)
     #filter_horizontal = ('asset','framework','requirement','owner')
+
+"""       
+
