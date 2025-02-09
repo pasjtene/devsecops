@@ -315,15 +315,18 @@ class ComplianceStatus(models.Model):
     
     owner = models.ForeignKey(
         User,
-        on_delete=models.SET_NULL
+        on_delete=models.SET_NULL,
+        null=True, blank=True
     )
     assigned_to = models.ForeignKey(
         User,
-        on_delete=models.SET_NULL
+        on_delete=models.SET_NULL,
+        null=True, blank=True
     )
     created_by = models.ForeignKey(
         User,
-        on_delete=models.SET_NULL
+        on_delete=models.SET_NULL,
+        null=True, blank=True
     )
     
 class AssetInline(admin.TabularInline):  # or admin.StackedInline for a different layout admin.TabularInline
