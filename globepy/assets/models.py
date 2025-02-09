@@ -290,8 +290,8 @@ class ComplianceStatus(models.Model):
         Canceled = ("Canceled", _("Canceled"))
         Paused = ("Paused", _("Paused"))
         
-    
    
+    description = models.CharField(max_lenth=50, default="Give a short description, framework and asset")
     asset = models.ForeignKey(
         Asset,
         on_delete=models.CASCADE,
@@ -341,6 +341,9 @@ class ComplianceStatus(models.Model):
         null=True, blank=True,
         related_name="compliance_items_created"
     )
+    
+    def __str__(self):
+        return f"{self.description}"
     
 class AssetInline(admin.TabularInline):  # or admin.StackedInline for a different layout admin.TabularInline
     model = Asset
