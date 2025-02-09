@@ -339,8 +339,7 @@ class ComplianceStatus(models.Model):
         User,
         on_delete=models.SET_NULL,
         null=True, blank=True,
-        related_name="compliance_items_created",
-        #default=loggedin_user
+        related_name="compliance_items_created"
     )
     
 class AssetInline(admin.TabularInline):  # or admin.StackedInline for a different layout admin.TabularInline
