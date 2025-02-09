@@ -275,6 +275,9 @@ class Asset(models.Model):
     def __str__(self):
         return f"{self.name}, {self.category}, {self.vendor}"
   
+def loggedin_user(request):
+    current_user = request.user
+    return current_user
 
 class ComplianceStatus(models.Model):
     class CompletionStatus(models.TextChoices):
@@ -283,24 +286,27 @@ class ComplianceStatus(models.Model):
         Canceled = ("Canceled", _("Canceled"))
         Paused = ("Paused", _("Paused"))
         
+    
+   
+    asset = models.ForeignKey(
+        Asset,
+        on_delete=models.CASCADE,
+        )
+    
+    framework = models.ForeignKey(
+        RegulatoryFramework,
+        on_delete=models.CASCADE
+    )
+    
     requirement = models.ForeignKey(
         SecurityRequirement,
         on_delete=models.CASCADE,
         #related_name="requirement"
         )
-    asset = models.ForeignKey(
-        Asset,
-        on_delete=models.CASCADE,
-        )
-    framework = models.ForeignKey(
-        RegulatoryFramework,
-        on_delete=models.CASCADE
-    )
-    details = models.CharField(max_length=300) #give detail of the current compliance status of the requirement
-    implementation_percent = models.DecimalField(
-        max_digits=10,
-        decimal_places=2,
-        null=True, blank=True
+    details = models.TextField(max_length=300) #give detail of the current compliance status of the requirement
+    implementation_percent = models.PositiveIntegerField(
+        default=0,
+        null=True, blank=True,
     )
     
     completion_Status = models.CharField(
@@ -329,7 +335,8 @@ class ComplianceStatus(models.Model):
         User,
         on_delete=models.SET_NULL,
         null=True, blank=True,
-        related_name="compliance_items_created"
+        related_name="compliance_items_created",
+        default=loggedin_user
     )
     
 class AssetInline(admin.TabularInline):  # or admin.StackedInline for a different layout admin.TabularInline
