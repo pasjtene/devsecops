@@ -286,7 +286,7 @@ class ComplianceStatus(models.Model):
     requirement = models.ForeignKey(
         SecurityRequirement,
         on_delete=models.CASCADE,
-        related_name="assets"
+        #related_name="requirement"
         )
     asset = models.ForeignKey(
         Asset,
@@ -316,17 +316,20 @@ class ComplianceStatus(models.Model):
     owner = models.ForeignKey(
         User,
         on_delete=models.SET_NULL,
-        null=True, blank=True
+        null=True, blank=True,
+        related_name="compliance_items_owned"
     )
     assigned_to = models.ForeignKey(
         User,
         on_delete=models.SET_NULL,
-        null=True, blank=True
+        null=True, blank=True,
+        related_name="compliance_items_assigned"
     )
     created_by = models.ForeignKey(
         User,
         on_delete=models.SET_NULL,
-        null=True, blank=True
+        null=True, blank=True,
+        related_name="compliance_items_created"
     )
     
 class AssetInline(admin.TabularInline):  # or admin.StackedInline for a different layout admin.TabularInline
