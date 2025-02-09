@@ -353,7 +353,7 @@ class AssetAdmin(admin.ModelAdmin):
        
 @admin.register(ComplianceStatus)
 class ComplianceStatus(admin.ModelAdmin):
-    list_display = ('asset', 'framework', 'requirement', 'detail','owner')
+    list_display = ('asset', 'framework', 'requirement', 'details','owner')
     list_filter = ('asset','framework',)
     search_fields = ('framework', 'requirement')
     #filter_horizontal = ('asset','framework','requirement','owner')
