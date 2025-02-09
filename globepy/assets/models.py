@@ -308,10 +308,10 @@ class ComplianceStatus(models.Model):
         choices=CompletionStatus.choices,
         default=CompletionStatus.InProgress
     )
-    implementation_start_date = models.DateTimeField(Null=True, Blank=True)
+    implementation_start_date = models.DateTimeField(null=True, blank=True)
     
-    expected_completion_date = models.DateTimeField(Null=True, Blank=True)
-    actual_implementation_date = models.DateTimeField(Null=True, Blank=True)
+    expected_completion_date = models.DateTimeField(null=True, blank=True)
+    actual_implementation_date = models.DateTimeField(null=True, blank=True)
     
     owner = models.ForeignKey(
         User,
