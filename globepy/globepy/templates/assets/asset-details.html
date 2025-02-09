@@ -404,12 +404,12 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                           {{requirement.short_description}} RIDIS
                           {{requirement.id}}
                           <br />
-                          {%for item in complianceItems.all %}
+                          {% for item in complianceItems.all %}
                           <span style="color: blue">
                             compliance item {{ item.description }} CIRIDIS
                             {{item.id}}
                             <br />
-                            {%if (item.requirement_id == "requirement.id") %}
+                            {% if item.requirement_id == requirement.id %}
 
                             <span style="color: red"
                               >Match {{ item.description }} {{
