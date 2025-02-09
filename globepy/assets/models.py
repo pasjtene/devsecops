@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 from django.contrib.postgres import fields as PostgresFields
+from django.contrib.auth.models import User, auth
 
 class AssetCategory(models.Model):
     name = models.CharField(max_length=256)
@@ -274,6 +275,56 @@ class Asset(models.Model):
     def __str__(self):
         return f"{self.name}, {self.category}, {self.vendor}"
   
+
+class ComplianceStatus(models.Model):
+    class CompletionStatus(models.TextChoices):
+        Complete = ("Complete", _("Complete"))
+        InProgress = ("InProgress", _("InProgress"))
+        Canceled = ("Canceled", _("Canceled"))
+        Paused = ("Paused", _("Paused"))
+        
+    requirement = models.ForeignKey(
+        SecurityRequirement,
+        on_delete=models.SET_NULL,
+        related_name="assets"
+        )
+    asset = models.ForeignKey(
+        Asset,
+        on_delete=models.SET_NULL
+        )
+    framework = models.ForeignKey(
+        RegulatoryFramework,
+        on_delete=models.SET_NULL
+    )
+    details = models.CharField(max_length=300) #give detail of the current compliance status of the requirement
+    implementation_percent = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        null=True, blank=True
+    )
+    
+    completion_Status = models.CharField(
+        max_length=12,
+        choices=CompletionStatus.choices,
+        default=CompletionStatus.InProgress
+    )
+    implementation_start_date = models.DateTimeField(Null=True, Blank=True)
+    
+    expected_completion_date = models.DateTimeField(Null=True, Blank=True)
+    actual_implementation_date = models.DateTimeField(Null=True, Blank=True)
+    
+    owner = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL
+    )
+    assigned_to = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL
+    )
+    created_by = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL
+    )
     
 class AssetInline(admin.TabularInline):  # or admin.StackedInline for a different layout admin.TabularInline
     model = Asset
@@ -300,4 +351,9 @@ class AssetAdmin(admin.ModelAdmin):
     search_fields = ('name', 'description')
     filter_horizontal = ('regulatoryFrameworks','risks',)
        
-
+@admin.register(ComplianceStatus)
+class ComplianceStatus(admin.ModelAdmin):
+    list_display = ('asset', 'framework', 'requirement', 'detail','owner')
+    list_filter = ('asset','framework',)
+    search_fields = ('framework', 'requirement')
+    filter_horizontal = ('asset','framework','requirement','owner')
