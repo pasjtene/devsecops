@@ -285,16 +285,16 @@ class ComplianceStatus(models.Model):
         
     requirement = models.ForeignKey(
         SecurityRequirement,
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         related_name="assets"
         )
     asset = models.ForeignKey(
         Asset,
-        on_delete=models.SET_NULL
+        on_delete=models.CASCADE,
         )
     framework = models.ForeignKey(
         RegulatoryFramework,
-        on_delete=models.SET_NULL
+        on_delete=models.CASCADE
     )
     details = models.CharField(max_length=300) #give detail of the current compliance status of the requirement
     implementation_percent = models.DecimalField(
