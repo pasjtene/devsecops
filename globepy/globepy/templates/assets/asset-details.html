@@ -401,11 +401,21 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                           checked
                         />
                         <label class="form-check-label" for="changesMade">
-                          {{requirement.short_description}}
+                          {{requirement.short_description}} RIDIS
+                          {{requirement.id}}
                           <br />
                           {%for item in complianceItems.all %}
                           <span style="color: blue">
-                            compliance item {{ item.description }}
+                            compliance item {{ item.description }} CIRIDIS
+                            {{item.id}}
+                            <br />
+                            {%if item.requirement_id==requirement.id %}
+
+                            <span style="color: red"
+                              >Match {{ item.description }} {{
+                              item.completion_Status }}
+                            </span>
+                            {% endif %}
                           </span>
                           {%endfor %}
                         </label>
