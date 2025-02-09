@@ -198,6 +198,13 @@ class Asset(models.Model):
         AMERICAN_DOLLAR = ("USD", _("American Dollar"))
         YEN = ("JPY", _("Yen"))
     
+    IMPACT_LEVEL_CHOICES = [
+        ('Low', 'Low'),
+        ('Moderate', 'Moderate'),
+        ('High', 'High'),
+        ('Critical', 'Critical'),
+    ]
+    
     class Impact_level(models.TextChoices):
         Low = ("Low", _("Low")) #Limited adverse effect in case of a compromise
         Moderate = ("Moderate", _("Moderate")) #Serious adverse effect in case of a compromise
@@ -227,8 +234,8 @@ class Asset(models.Model):
     
     impact_level = models.CharField(
         max_length=12,
-        choices = Impact_level.choices,
-        default=Impact_level.Moderate,
+        choices = IMPACT_LEVEL_CHOICES,
+        default="Moderate",
     )
     
     risk_status = models.CharField(
@@ -274,10 +281,13 @@ class Asset(models.Model):
 
     def __str__(self):
         return f"{self.name}, {self.category}, {self.vendor}"
-  
+
+"""
 def loggedin_user(request):
     current_user = request.user
     return current_user
+"""  
+
 
 class ComplianceStatus(models.Model):
     class CompletionStatus(models.TextChoices):
@@ -336,7 +346,7 @@ class ComplianceStatus(models.Model):
         on_delete=models.SET_NULL,
         null=True, blank=True,
         related_name="compliance_items_created",
-        default=loggedin_user
+        #default=loggedin_user
     )
     
 class AssetInline(admin.TabularInline):  # or admin.StackedInline for a different layout admin.TabularInline
@@ -369,4 +379,9 @@ class ComplianceStatus(admin.ModelAdmin):
     list_display = ('asset', 'framework', 'requirement', 'details','owner')
     list_filter = ('asset','framework',)
     search_fields = ('framework', 'requirement')
+    
+    def save_model(self, request, obj, form, change):
+        if not obj.pk:  # If the object is being created
+            obj.created_by = request.user
+        super().save_model(request, obj, form, change)
     #filter_horizontal = ('asset','framework','requirement','owner')
