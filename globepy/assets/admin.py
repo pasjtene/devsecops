@@ -16,7 +16,7 @@ class ComplianceStatus(admin.ModelAdmin):
             obj.created_by = request.user
         super().save_model(request, obj, form, change)
 
-admin.site.register(Asset, AssetAdmin)
+#admin.site.register(Asset, AssetAdmin)
 admin.register(ComplianceStatus)
 
 # Register your models here.
