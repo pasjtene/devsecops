@@ -282,12 +282,6 @@ class Asset(models.Model):
     def __str__(self):
         return f"{self.name}, {self.category}, {self.vendor}"
 
-"""
-def loggedin_user(request):
-    current_user = request.user
-    return current_user
-"""  
-
 
 class ComplianceStatus(models.Model):
     class CompletionStatus(models.TextChoices):
