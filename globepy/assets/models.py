@@ -291,7 +291,7 @@ class ComplianceStatus(models.Model):
         Paused = ("Paused", _("Paused"))
         
    
-    description = models.CharField(max_lenth=50, default="Give a short description, framework and asset")
+    description = models.CharField(max_length=50, default="Give a short description, framework and asset")
     asset = models.ForeignKey(
         Asset,
         on_delete=models.CASCADE,
