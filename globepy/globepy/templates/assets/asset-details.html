@@ -477,23 +477,6 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                 </div>
                               </div>
 
-                              <div class="col-md-4">
-                                <label
-                                  for="validationCustom02"
-                                  class="form-label"
-                                  >Actual date</label
-                                >
-                                <input
-                                  type="date"
-                                  class="form-control"
-                                  id="validationCustom02"
-                                  value="{{item.actual_implementation_date}}"
-                                  required
-                                />
-                                <div class="valid-feedback">Looks good!</div>
-                              </div>
-
-
                               <div class="control-group">
                                 <div class="controls controls-row row-fluid">
 
@@ -541,7 +524,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                               </div>
                             </div>
                         
-                              <div class="col-md-3">
+                              <div class="controls controls-row row-fluid">
                                 <label
                                   for="cst"
                                   class="form-label"
@@ -554,9 +537,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                   required
                                 />
                                 
-                              </div>
-
-                              <div class="col-md-3">
+                             
                                 <label
                                   for="cst"
                                   class="form-label"
@@ -566,6 +547,22 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                   type="text"
                                   class="span4"
                                   id="cst" value="{{ item.implementation_percent }}"
+                                  required
+                                />
+                                
+                              </div>
+
+                              <div class="col-md-4">
+                                <label
+                                  for="validationCustom02"
+                                  class="form-label"
+                                  >Actual date</label
+                                >
+                                <input
+                                  type="date"
+                                  class="form-control"
+                                  id="validationCustom02"
+                                  value="{{item.actual_implementation_date}}"
                                   required
                                 />
                                 
