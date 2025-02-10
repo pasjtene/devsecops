@@ -450,14 +450,6 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                               </div>
 
                               <div class="control-group">
-                                <div class="controls row-fluid">
-                                  <input
-                                    type="text"
-                                    class="span11"
-                                    placeholder="Street"
-                                  />
-                                </div>
-
                                 <div class="controls controls-row row-fluid">
                                   <label for="isdate" class="form-label"
                                     >Start date</label
@@ -489,23 +481,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                 <label
                                   for="validationCustom02"
                                   class="form-label"
-                                  >Expected completion date</label
-                                >
-                                <input
-                                  type="date"
-                                  class="form-control"
-                                  id="validationCustom02"
-                                  value="{{item.expected_completion_date}}"
-                                  required
-                                />
-                                <div class="valid-feedback">Looks good!</div>
-                              </div>
-
-                              <div class="col-md-4">
-                                <label
-                                  for="validationCustom02"
-                                  class="form-label"
-                                  >Actual completion date</label
+                                  >Actual date</label
                                 >
                                 <input
                                   type="date"
@@ -521,18 +497,38 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                 <label
                                   for="validationCustom03"
                                   class="form-label"
-                                  >City</label
+                                  >Owner</label
                                 >
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  id="validationCustom03"
-                                  required
-                                />
+                                <div class="form-group row">
+                                  <label class="col-sm-2 col-form-label"
+                                    >Entrata</label
+                                  >
+                                  <div
+                                    class="col-sm-10"
+                                    onchange="verificaEntrata()"
+                                  >
+                                    <select
+                                      class="col-sm-3"
+                                      name="owner"
+                                      id="ownerID"
+                                    >
+                                      {% for value in form.fields.owner.choices
+                                      %}
+                                      <span>
+                                        <option value="{{ value.id }}">
+                                          {{ value.username }}
+                                        </option>
+                                      </span>
+
+                                      {% endfor %}
+                                    </select>
+                                  </div>
+                                </div>
                                 <div class="invalid-feedback">
                                   Please provide a valid city.
                                 </div>
                               </div>
+
                               <div class="col-md-3">
                                 <label
                                   for="validationCustom04"
