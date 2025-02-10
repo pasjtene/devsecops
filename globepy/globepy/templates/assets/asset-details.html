@@ -498,7 +498,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                 <div class="controls controls-row row-fluid">
 
                              
-                                <div class="form-group11">
+                                
                                   <label for="ownerID"
                                     >Owner</label
                                   >
@@ -519,21 +519,12 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
 
                                       {% endfor %}
                                     </select>
-                                </div>
-                              </div>
 
-                             
-                                <div class="form-group11">
-                                  <label for="sownerID"
+                                    <label for="sownerID"
                                     >Assigned To</label
                                   >
                                   
-                                    <select
-                                    class="span4"
-                                      name="assigned_to"
-                                      id="sownerID"
-                                    >
-                                    
+                                    <select class="span4" name="assigned_to" id="sownerID">
                                       {% for assigneduser in users.all %}
                                       
                                       <span>
@@ -544,10 +535,12 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
 
                                       {% endfor %}
                                     </select>
-                                </div>
+
+                              </div>
+ 
                               </div>
                             </div>
-                             
+                        
                               <div class="col-md-3">
                                 <label
                                   for="cst"
