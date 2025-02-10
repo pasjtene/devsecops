@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .models import Asset, RegulatoryFramework, ComplianceStatus
+from .forms import ComplianceStatusForm
 
 # Create your views here.
 def formeditors2(request):
@@ -44,8 +45,10 @@ def assetdetails(request, id):
     asset = Asset.objects.get(id=id)
     regulatoryFrameworks = RegulatoryFramework.objects.all()
     complianceItems = ComplianceStatus.objects.all()
+    form = ComplianceStatusForm()
     return render(request, 'assets/asset-details.html',{
         'asset':asset,
         'regulatoryFrameworks':regulatoryFrameworks,
         'complianceItems': complianceItems,
+        'form': form,
     })

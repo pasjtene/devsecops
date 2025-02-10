@@ -401,8 +401,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                           checked
                         />
                         <label class="form-check-label" for="changesMade">
-                          {{requirement.short_description}} RIDIS
-                          {{requirement.id}}
+                          {{requirement.short_description}}
                           <br />
                           {% for item in complianceItems.all %}
 
@@ -412,6 +411,16 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                           <span style="color: red"
                             >Match {{ item.description }} <br />
                             Completion Status: {{ item.completion_Status }}
+
+                            <div class="container mt-4">
+                              <h2>Create New Compliance Status</h2>
+                              <form method="post">
+                                {% csrf_token %} {{ form.as_p }}
+                                <button type="submit" class="btn btn-primary">
+                                  Save compliance status
+                                </button>
+                              </form>
+                            </div>
                           </span>
                           {% endif %} {%endfor %}
                         </label>
