@@ -514,12 +514,11 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                     >
                                      
                                       <br />
-                                      {% for value in form.fields.owner.choices %}
+                                      {% for user in users.all %}
                                       
-
                                       <span>
-                                        <option value="{{ value.id }}">
-                                          {{ value.username }}
+                                        <option value="{{ user.id }}">
+                                          {{ user.username }}
                                         </option>
                                       </span>
 
