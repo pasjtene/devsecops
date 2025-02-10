@@ -459,14 +459,8 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                 </div>
 
                                 <div class="controls controls-row row-fluid">
-                                  <input
-                                    type="text"
-                                    class="span7"
-                                    placeholder="City"
-                                  />
-
                                   <label for="isdate" class="form-label"
-                                    >implementation start date</label
+                                    >Start date</label
                                   >
                                   <input
                                     type="date"
@@ -475,23 +469,20 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                     value="{{item.implementation_start_date}}"
                                     required
                                   />
-                                </div>
-                              </div>
 
-                              <div class="col-md-4">
-                                <label
-                                  for="validationCustom02"
-                                  class="form-label"
-                                  >implementation start date</label
-                                >
-                                <input
-                                  type="date"
-                                  class="form-control"
-                                  id="validationCustom02"
-                                  value="{{item.implementation_start_date}}"
-                                  required
-                                />
-                                <div class="valid-feedback">Looks good!</div>
+                                  <label
+                                    for="validationCustom02"
+                                    class="form-label"
+                                    >Completion date</label
+                                  >
+                                  <input
+                                    type="date"
+                                    class="span4"
+                                    id="validationCustom02"
+                                    value="{{item.expected_completion_date}}"
+                                    required
+                                  />
+                                </div>
                               </div>
 
                               <div class="col-md-4">
