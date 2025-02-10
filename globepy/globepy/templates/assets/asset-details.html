@@ -494,7 +494,6 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                               </div>
 
                               <div class="col-md-12">
-                                
                                 <div class="form-group row">
                                   <label for="ownerID"
                                     >Owner</label
@@ -516,48 +515,48 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
 
                                       {% endfor %}
                                     </select>
-                                 
-                                </div>
-                                <div class="invalid-feedback">
-                                  Please provide a valid city.
                                 </div>
                               </div>
 
-                              <div class="col-md-3">
-                                <label
-                                  for="validationCustom04"
-                                  class="form-label"
-                                  >State</label
-                                >
-                                <select
-                                  class="form-select"
-                                  id="validationCustom04"
-                                  required
-                                >
-                                  <option selected disabled value="">
-                                    Choose...
-                                  </option>
-                                  <option>...</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                  Please select a valid state.
+                              <div class="col-md-12">
+                                <div class="form-group row">
+                                  <label for="sownerID"
+                                    >Assigned To</label
+                                  >
+                                  
+                                    <select
+                                      class="col-sm-6"
+                                      name="assigned_to"
+                                      id="sownerID"
+                                    >
+                                    
+                                      {% for assigneduser in users.all %}
+                                      
+                                      <span>
+                                        <option value="{{ assigneduser.id }}">
+                                          {{ assigneduser.username }}
+                                        </option>
+                                      </span>
+
+                                      {% endfor %}
+                                    </select>
                                 </div>
                               </div>
+
+                             
                               <div class="col-md-3">
                                 <label
-                                  for="validationCustom05"
+                                  for="cst"
                                   class="form-label"
-                                  >Zip</label
+                                  >Completion status</label
                                 >
                                 <input
                                   type="text"
                                   class="form-control"
-                                  id="validationCustom05"
+                                  id="cst" value="{{ item.completion_Status }}"
                                   required
                                 />
-                                <div class="invalid-feedback">
-                                  Please provide a valid zip.
-                                </div>
+                                
                               </div>
                               <div class="col-12">
                                 <div class="form-check">
