@@ -410,12 +410,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
 
                           <span style="color: red"
                             >Match {{ item.description }} <br />
-                            Completion Status 1: {{ item.completion_Status }} [
-                            'description', 'asset', 'framework', 'requirement',
-                            'details', 'implementation_percent',
-                            'completion_Status',
-                            'implementation_start_date','expected_completion_date','actual_implementation_date','owner','assigned_to','created_by'
-                            ]
+                            Completion Status 1: {{ item.completion_Status }}
 
                             <h5 class="card-title">
                               Create New Compliance Status in Multi Columns Form
@@ -665,19 +660,6 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                             <!-- End Multi Columns Form -->
 
                             Completion Status 2: {{ item.completion_Status }}
-
-                            <!-- End Multi Columns Form 
-                            <div class="container mt-4">
-                              <h2>Create New Compliance Status</h2>
-                              <form method="post">
-                                {% csrf_token %} {{ form.as_p }}
-                                <button type="submit" class="btn btn-primary">
-                                  Save compliance status
-                                </button>
-                              </form>
-                            </div>
-
-                          -->
                           </span>
                           {% endif %} {%endfor %}
                         </label>
