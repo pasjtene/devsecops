@@ -15,7 +15,7 @@ class ComplianceStatusForm(forms.ModelForm):
     class Meta:
         model = ComplianceStatus
         fields = [
-            'description', 'asset', 'framework', 'requirement', 'details', 'implementation_percent', 'completion_status',
+            'description', 'asset', 'framework', 'requirement', 'details', 'implementation_percent', 'completion_Status',
             'implementation_start_date','expected_completion_date','actual_implementation_date','owner','assigned_to','created_by'
             ]
         widgets = {
