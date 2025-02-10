@@ -408,7 +408,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                           <br />
                           {% if item.requirement_id == requirement.id %}
 
-                          <span style="color: red"
+                          <span
                             >Match {{ item.description }} <br />
                             Completion Status 1: {{ item.completion_Status }}
 
@@ -419,7 +419,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                             <!-- Multi Columns Form -->
                             <form
                               method="post"
-                              class="row g-3 needs-validation"
+                              class="row g-3 needs-validation container-fluid"
                               novalidate
                             >
                               {% csrf_token %}
@@ -447,6 +447,29 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                 >
                                   {{item.detail}}
                                 </textarea>
+                              </div>
+
+                              <div class="control-group">
+                                <div class="controls row-fluid">
+                                  <input
+                                    type="text"
+                                    class="span11"
+                                    placeholder="Street"
+                                  />
+                                </div>
+
+                                <div class="controls controls-row row-fluid">
+                                  <input
+                                    type="text"
+                                    class="span4"
+                                    placeholder="Zip"
+                                  />
+                                  <input
+                                    type="text"
+                                    class="span7"
+                                    placeholder="City"
+                                  />
+                                </div>
                               </div>
 
                               <div class="col-md-4">
