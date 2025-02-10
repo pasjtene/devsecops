@@ -464,30 +464,39 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                 />
                                 <div class="valid-feedback">Looks good!</div>
                               </div>
+
                               <div class="col-md-4">
                                 <label
-                                  for="validationCustomUsername"
+                                  for="validationCustom02"
                                   class="form-label"
-                                  >Username</label
+                                  >Expected completion date</label
                                 >
-                                <div class="input-group has-validation">
-                                  <span
-                                    class="input-group-text"
-                                    id="inputGroupPrepend"
-                                    >@</span
-                                  >
-                                  <input
-                                    type="text"
-                                    class="form-control"
-                                    id="validationCustomUsername"
-                                    aria-describedby="inputGroupPrepend"
-                                    required
-                                  />
-                                  <div class="invalid-feedback">
-                                    Please choose a username.
-                                  </div>
-                                </div>
+                                <input
+                                  type="date"
+                                  class="form-control"
+                                  id="validationCustom02"
+                                  value="{{item.expected_completion_date}}"
+                                  required
+                                />
+                                <div class="valid-feedback">Looks good!</div>
                               </div>
+
+                              <div class="col-md-4">
+                                <label
+                                  for="validationCustom02"
+                                  class="form-label"
+                                  >Actual completion date</label
+                                >
+                                <input
+                                  type="date"
+                                  class="form-control"
+                                  id="validationCustom02"
+                                  value="{{item.actual_implementation_date}}"
+                                  required
+                                />
+                                <div class="valid-feedback">Looks good!</div>
+                              </div>
+
                               <div class="col-md-6">
                                 <label
                                   for="validationCustom03"
