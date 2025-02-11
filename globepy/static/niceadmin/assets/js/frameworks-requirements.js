@@ -15,12 +15,12 @@
    
     function viewRequirementDetails() {
         $('.requirement-description').click(function(e){
-            e.preventDefaul();
+            
             console.log("Requirement clicked...!")
-            $(this).closest('.requirement-details').find(".activity-edit").show();
+            
             $(this).closest('.requirement-details').show();
-            $('#pageusers').show();
-            $('.usersmodal').draggable();
+            $(this).closest('.requirement-details').find(".activity-edit").show();
+            
         });
     
        
