@@ -48,10 +48,12 @@ def assetdetails(request, id):
     regulatoryFrameworks = RegulatoryFramework.objects.all()
     complianceItems = ComplianceStatus.objects.all()
     form = ComplianceStatusForm()
+    completion_Status = ComplianceStatus.completion_Status
     return render(request, 'assets/asset-details.html',{
         'asset':asset,
         'regulatoryFrameworks':regulatoryFrameworks,
         'complianceItems': complianceItems,
         'form': form,
-        'users': users
+        'users': users,
+        'completion_status_choices':completion_Status
     })
