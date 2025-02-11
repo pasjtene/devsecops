@@ -450,10 +450,10 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                               <div class="control-group">
                                 <div class="controls controls-row row-fluid">
                                   <label for="isdate" class="form-label"
-                                    >Start date in ({{item.implementation_start_date|timeuntil }})</label
+                                    >Start date: (({{item.implementation_start_date}})) in ({{item.implementation_start_date|timeuntil }})</label
                                   >
                                   <input
-                                  type="datetime-local" 
+                                  type="datetime-local" name="implementation_start_date"
                                     class="span4"
                                     id="isdate"
                                     value="{{item.implementation_start_date|date:'Y-m-d\TH:i'}}"
