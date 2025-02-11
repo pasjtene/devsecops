@@ -53,6 +53,7 @@ def update_compliance_requirement(request, id):
         complianceItem.completion_Status = request.POST.get('completion_status')
         owner_id = request.POST.get('owner_id')
         complianceItem.owner = User.objects.get(id=owner_id) if owner_id else None
+        complianceItem. actual_implementation_date = request.POST.get('actual_implementation_date')
         
         assigned_to_id = request.POST.get('assigned_to_id')
         complianceItem.assigned_to = User.objects.get(id=assigned_to_id) if assigned_to_id else None
