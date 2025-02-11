@@ -291,6 +291,12 @@ class ComplianceStatus(models.Model):
         Paused = ("Paused", _("Paused"))
         
    
+    COMPLETION_STATUS_CHOICES = [
+        ('Complete', 'Complete'),
+        ('InProgress', 'InProgress'),
+        ('Canceled', 'Canceled'),
+        ('Paused','Paused')
+    ]
     description = models.CharField(max_length=50, default="Give a short description, framework and asset")
     asset = models.ForeignKey(
         Asset,
