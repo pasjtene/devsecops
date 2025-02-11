@@ -391,7 +391,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                       {{framework.title}} Security requirements</label
                     >
 
-                    <div class="col-md-8 col-lg-9">
+                    <div class="col-md-8 col-lg-9" class="requirement-description">
                       {%for requirement in framework.securityRequirements.all %}
                       <div class="form-check" >
                         <input
@@ -401,20 +401,22 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                           checked
                         />
 
-                       
-                          {{requirement.short_description}}
+                       <span class="requirement-description-head">
+                        {{requirement.short_description}}
+                       </span>
+                          
                           <br />
                           {% for item in complianceItems.all %}
 
                           <br />
                           {% if item.requirement_id == requirement.id %}
 
-                          <div class="requirement-description" style="border: 2px solid green;" >
+                          <div class="requirement-description11" style="border: 2px solid green;" >
                            
-                            <div class="requirement-description-head" style="border: 2px solid blue;" >
+                            <div class="requirement-description-head11" style="border: 2px solid blue;" >
                               {{requirement.short_description}} <br/>
                               {{item.description}}
-                            <div>
+                            </div>
 
                             <div style="display: none; border: 2px solid red;" class="requirement-details">
                            
