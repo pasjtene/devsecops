@@ -401,11 +401,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                           checked
                         />
 
-                        <!---  
-<label class="form-check-label " for="changesMade">
-                        -->
-                        
-                          
+                       
                           {{requirement.short_description}}
                           <br />
                           {% for item in complianceItems.all %}
@@ -414,9 +410,10 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                           {% if item.requirement_id == requirement.id %}
 
                           <div class="requirement-description" style="border: 2px solid green;" >
+                           <div class="requirement-description-head">
                             {{requirement.short_description}} <br/>
                             {{item.description}}
-
+                            <div>
                             <div style="display: none; border: 2px solid red;" class="requirement-details">
                            
                               <h5 class="card-title">
