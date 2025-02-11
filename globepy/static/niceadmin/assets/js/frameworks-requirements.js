@@ -14,7 +14,7 @@
      */
    
     function viewRequirementDetails() {
-        $('.requirement-description').click(function(e){
+        $('.requirement-description-head').click(function(e){
             
             console.log("Requirement clicked...!")
             //$('.requirement-details').show();
