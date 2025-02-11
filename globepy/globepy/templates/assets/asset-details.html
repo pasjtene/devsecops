@@ -409,9 +409,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                           {% if item.requirement_id == requirement.id %}
 
                           <span
-                            >Match {{ item.description }} <br />
-                            Completion Status 1: {{ item.completion_Status }}
-
+                           
                             <h5 class="card-title">
                               Create New Compliance Status in Multi Columns Form
                             </h5>
@@ -425,12 +423,12 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                               {% csrf_token %}
                               <div class="col-md-6">
                                 <label for="inputName5" class="form-label"
-                                  >Brefly Describe the compliance status</label
+                                  >Briefly Describe the compliance status</label
                                 >
                                 <input
                                   type="text"
-                                  class="form-control"
-                                  id="inputName5"
+                                  name="description"
+                                  id="inputName5" value="{{ item.description }}"
                                 />
                               </div>
 
