@@ -54,6 +54,9 @@ def update_compliance_requirement(request, id):
         owner_id = request.POST.get('owner_id')
         complianceItem.owner = User.objects.get(id=owner_id) if owner_id else None
         
+        assigned_to_id = request.POST.get('assigned_to_id')
+        complianceItem.assigned_to = User.objects.get(id=assigned_to_id) if assigned_to_id else None
+        
         
         category_id = request.POST.get('category')
         risk_status = request.POST.get('risk_status')
@@ -62,15 +65,6 @@ def update_compliance_requirement(request, id):
 
         #category = Category.objects.get(id=category_id)
         #reviewed_by = User.objects.get(id=reviewed_by_id) if reviewed_by_id else None
-
-       # asset = Asset(
-            
-            #category=category,
-            #risk_status=risk_status,
-            #risk_level=risk_level,
-            #created_by=request.user,
-            #reviewed_by=reviewed_by,
-        #)
         
         complianceItem.save()
     

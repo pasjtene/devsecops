@@ -503,11 +503,11 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                     >Assigned To</label
                                   >
                                   
-                                    <select style="max-width:150px;" name="assigned_to" id="sownerID">
+                                    <select style="max-width:150px;" name="assigned_to_id" id="sownerID">
                                       {% for assigneduser in users.all %}
                                       
                                       <span>
-                                        <option value="{{ assigneduser.id }}">
+                                        <option {% if  assigneduser.id == item.assigned_to_id %} selected{% endif %} value="{{ assigneduser.id }}">
                                           {{ assigneduser.username }}
                                         </option>
                                       </span>
