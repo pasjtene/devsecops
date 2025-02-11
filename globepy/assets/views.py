@@ -49,6 +49,8 @@ def update_compliance_requirement(request, id):
         complianceItem = ComplianceStatus.objects.get(id=id)
         complianceItem.details = request.POST.get('details')
         complianceItem.description = request.POST.get('description')
+        complianceItem.implementation_percent = request.POST.get('implementation_percent')
+        
         
         category_id = request.POST.get('category')
         risk_status = request.POST.get('risk_status')
