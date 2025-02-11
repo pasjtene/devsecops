@@ -19,8 +19,8 @@
             console.log("Requirement clicked...!")
             //$('.requirement-details').show();
             
-            $(this).closest('.requirement-details').slideToggle( "slow" );
-            $(this).closest('.requirement-details').find(".activity-edit").show();
+            //$(this).closest('.requirement-details').slideToggle( "slow" );
+            $(this).closest('.requirement-description').find(".requirement-details").show();
             
         });
     
