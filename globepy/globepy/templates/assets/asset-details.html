@@ -400,7 +400,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                           id="changesMade"
                           checked
                         />
-                        <label class="form-check-label" for="changesMade">
+                        <label class="form-check-label requirement-description" for="changesMade">
                           {{requirement.short_description}}
                           <br />
                           {% for item in complianceItems.all %}
@@ -408,7 +408,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                           <br />
                           {% if item.requirement_id == requirement.id %}
 
-                          <div style="border: 2px solid red;">
+                          <div style="dispay: none; border: 2px solid red;" class="requirement-details">
                            
                             <h5 class="card-title">
                               Update Compliance Status for this requirement
