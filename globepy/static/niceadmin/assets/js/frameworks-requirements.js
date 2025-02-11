@@ -8,7 +8,7 @@
 
 (function() {
     "use strict";
-  
+    viewRequirementDetails() 
     /**
      * Easy selector helper function
      */
