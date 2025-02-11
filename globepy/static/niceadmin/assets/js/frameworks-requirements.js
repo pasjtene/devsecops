@@ -17,6 +17,7 @@
         $('.requirement-description').click(function(e){
             
             console.log("Requirement clicked...!")
+            $('.requirement-details').show();
             
             $(this).closest('.requirement-details').show();
             $(this).closest('.requirement-details').find(".activity-edit").show();
