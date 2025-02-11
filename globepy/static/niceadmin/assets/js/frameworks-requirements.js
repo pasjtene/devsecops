@@ -20,7 +20,7 @@
             //$('.requirement-details').show();
             
             //$(this).closest('.requirement-details').slideToggle( "slow" );
-            $(this).closest('.requirement-description').find(".requirement-details").show();
+            $(this).closest('.requirement-description').find(".requirement-details").slideToggle( "slow" );
             
         });
     
