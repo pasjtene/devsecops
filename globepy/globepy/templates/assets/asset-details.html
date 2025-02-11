@@ -527,6 +527,14 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                   
                                   >Completion status</label
                                 >
+
+                                <select id="completion_Status" name="completion_Status" required>
+                                  {% for value, label in completion_status_choices %}
+                                  <option selected="{{ item.completion_Status }}" value="{{ value }}">{{ label }}</option>
+                                  {% endfor %}
+                                </select>
+
+
                                 <input
                                   type="text"
                                   class="col-xs-3"  size="12"
