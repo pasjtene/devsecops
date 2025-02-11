@@ -41,7 +41,26 @@ def list_all_assets(request):
         'total_unique_assets':total_unique_assets
         })
 
-
+def update_compliance_requirement(request, id):
+    #asset = Asset.objects.get(id=id)
+    complianceItem = ComplianceStatus.objects.get(id=id)
+    
+    asset = Asset.objects.get(id=complianceItem.asset_id)
+    users = User.objects.all()
+    regulatoryFrameworks = RegulatoryFramework.objects.all()
+    complianceItems = ComplianceStatus.objects.all()
+    form = ComplianceStatusForm()
+    completion_Status_choices = ComplianceStatus.COMPLETION_STATUS_CHOICES
+    
+    return render(request, 'assets/asset-details.html',{
+        'asset':asset,
+        'regulatoryFrameworks':regulatoryFrameworks,
+        'complianceItems': complianceItems,
+        'form': form,
+        'users': users,
+        'completion_status_choices':completion_Status_choices
+    })
+    
 def assetdetails(request, id):
     asset = Asset.objects.get(id=id)
     users = User.objects.all()
@@ -49,6 +68,7 @@ def assetdetails(request, id):
     complianceItems = ComplianceStatus.objects.all()
     form = ComplianceStatusForm()
     completion_Status = ComplianceStatus.COMPLETION_STATUS_CHOICES
+    
     return render(request, 'assets/asset-details.html',{
         'asset':asset,
         'regulatoryFrameworks':regulatoryFrameworks,

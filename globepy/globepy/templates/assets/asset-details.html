@@ -381,7 +381,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
               <div class="tab-pane fade pt-3" id="profile-settings">
                 <!-- Settings Form -->
 
-                <form>
+                <div
                   {% for framework in asset.regulatoryFrameworks.all %}
                   <div class="row mb-3">
                     <label
@@ -415,7 +415,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                             </h5>
 
                             <!-- Multi Columns Form -->
-                            <form
+                            <form action="{% url 'update-compliance-requirement' {{ item.requirement_id }} %}"
                               method="post"
                               class="row g-3 needs-validation container-fluid"
                               novalidate
@@ -591,7 +591,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                       Save Changes
                     </button>
                   </div>
-                </form>
+                </div>
 
                 <!-- End settings Form -->
               </div>
