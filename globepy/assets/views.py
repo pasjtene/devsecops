@@ -51,7 +51,8 @@ def update_compliance_requirement(request, id):
         complianceItem.description = request.POST.get('description')
         complianceItem.implementation_percent = request.POST.get('implementation_percent')
         complianceItem.completion_Status = request.POST.get('completion_status')
-        
+        owner_id = request.POST.get('owner_id')
+        complianceItem.owner = User.objects.get(id=owner_id) if owner_id else None
         
         
         category_id = request.POST.get('category')
