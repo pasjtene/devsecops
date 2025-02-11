@@ -381,9 +381,9 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
               <div class="tab-pane fade pt-3" id="profile-settings">
                 <!-- Settings Form -->
 
-                <div>
+                <form>
                   {% for framework in asset.regulatoryFrameworks.all %}
-                  <div class="row mb-3" style="border-color:red">
+                  <div class="row mb-3">
                     <label
                       for="fullName"
                       class="col-md-4 col-lg-3 col-form-label"
@@ -582,8 +582,6 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
 
                       {% endfor %}
                     </div>
-
-
                   </div>
                   <hr />
                   <hr />
@@ -593,7 +591,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                       Save Changes
                     </button>
                   </div>
-                </div>
+                </form>
 
                 <!-- End settings Form -->
               </div>
