@@ -50,6 +50,8 @@ def update_compliance_requirement(request, id):
         complianceItem.details = request.POST.get('details')
         complianceItem.description = request.POST.get('description')
         complianceItem.implementation_percent = request.POST.get('implementation_percent')
+        complianceItem.completion_Status = request.POST.get('completion_status')
+        
         
         
         category_id = request.POST.get('category')
