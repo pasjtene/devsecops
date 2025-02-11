@@ -43,7 +43,31 @@ def list_all_assets(request):
 
 def update_compliance_requirement(request, id):
     #asset = Asset.objects.get(id=id)
-    complianceItem = ComplianceStatus.objects.get(id=id)
+    
+    
+    if request.method == 'POST':
+        complianceItem = ComplianceStatus.objects.get(id=id)
+        complianceItem.details = request.POST.get('details')
+        complianceItem.description = request.POST.get('description')
+        
+        category_id = request.POST.get('category')
+        risk_status = request.POST.get('risk_status')
+        risk_level = request.POST.get('risk_level')
+        reviewed_by_id = request.POST.get('reviewed_by')
+
+        #category = Category.objects.get(id=category_id)
+        #reviewed_by = User.objects.get(id=reviewed_by_id) if reviewed_by_id else None
+
+       # asset = Asset(
+            
+            #category=category,
+            #risk_status=risk_status,
+            #risk_level=risk_level,
+            #created_by=request.user,
+            #reviewed_by=reviewed_by,
+        #)
+        
+        complianceItem.save()
     
     asset = Asset.objects.get(id=complianceItem.asset_id)
     users = User.objects.all()
