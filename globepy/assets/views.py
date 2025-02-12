@@ -44,31 +44,38 @@ def list_all_assets(request):
 def create_compliance_requirement(request,frameworkid, assetid, requirementid):
      
      if request.method == 'POST':
-        complianceItem = ComplianceStatus.objects.get(id=id)
-        complianceItem.details = request.POST.get('details')
-        complianceItem.description = request.POST.get('description')
-        complianceItem.implementation_percent = request.POST.get('implementation_percent')
-        complianceItem.completion_Status = request.POST.get('completion_status')
+        
         owner_id = request.POST.get('owner_id')
-        complianceItem.owner = User.objects.get(id=owner_id) if owner_id else None
-        complianceItem. actual_implementation_date = request.POST.get('actual_implementation_date')
-        complianceItem. expected_completion_date = request.POST.get('expected_completion_date')
-        complianceItem. implementation_start_date = request.POST.get('implementation_start_date')
+        #complianceItem.owner = User.objects.get(id=owner_id) if owner_id else None
+        #complianceItem. actual_implementation_date = request.POST.get('actual_implementation_date')
+        #complianceItem. expected_completion_date = request.POST.get('expected_completion_date')
+        #complianceItem. implementation_start_date = request.POST.get('implementation_start_date')
         
-        assigned_to_id = request.POST.get('assigned_to_id')
-        complianceItem.assigned_to = User.objects.get(id=assigned_to_id) if assigned_to_id else None
+        #assigned_to_id = request.POST.get('assigned_to_id')
+        #complianceItem.assigned_to = User.objects.get(id=assigned_to_id) if assigned_to_id else None
         
+        compliance_status = ComplianceStatus (
+            framework_id = frameworkid,
+            asset_id = assetid,
+            requirement_id = requirementid,
+            details = request.POST.get('details'),
+            description = request.POST.get('description'),
+            implementation_percent = request.POST.get('implementation_percent'),
+            completion_Status = request.POST.get('completion_status'),
+            owner = User.objects.get(id=owner_id) if owner_id else None,
+            actual_implementation_date = request.POST.get('actual_implementation_date'),
+            expected_completion_date = request.POST.get('expected_completion_date'),
+            implementation_start_date = request.POST.get('implementation_start_date'),
+            assigned_to_id = request.POST.get('assigned_to_id'),
+            
+        )
         
-        category_id = request.POST.get('category')
-        risk_status = request.POST.get('risk_status')
-        risk_level = request.POST.get('risk_level')
-        reviewed_by_id = request.POST.get('reviewed_by')
 
         #category = Category.objects.get(id=category_id)
         #reviewed_by = User.objects.get(id=reviewed_by_id) if reviewed_by_id else None
         
-        complianceItem.save()
-        asset = Asset.objects.get(id=complianceItem.asset_id)
+        compliance_status.save()
+        asset = Asset.objects.get(id=assetid)
         users = User.objects.all()
         regulatoryFrameworks = RegulatoryFramework.objects.all()
         complianceItems = ComplianceStatus.objects.all()
@@ -105,14 +112,7 @@ def update_compliance_requirement(request, id):
         assigned_to_id = request.POST.get('assigned_to_id')
         complianceItem.assigned_to = User.objects.get(id=assigned_to_id) if assigned_to_id else None
         
-        
-        category_id = request.POST.get('category')
-        risk_status = request.POST.get('risk_status')
-        risk_level = request.POST.get('risk_level')
-        reviewed_by_id = request.POST.get('reviewed_by')
-
-        #category = Category.objects.get(id=category_id)
-        #reviewed_by = User.objects.get(id=reviewed_by_id) if reviewed_by_id else None
+    
         
         complianceItem.save()
    
