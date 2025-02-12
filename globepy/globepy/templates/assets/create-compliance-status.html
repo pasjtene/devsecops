@@ -1,0 +1,898 @@
+{% extends 'layout/base.html' %} {% load static %} {% block content %}
+
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h1>Profile</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item">Dashboard</li>
+        <li class="breadcrumb-item active">Asset</li>
+        <li class="breadcrumb-item active">{{ asset.name }}</li>
+      </ol>
+    </nav>
+  </div>
+  <!-- End Page Title -->
+
+  <section class="section profile">
+    <div class="row">
+      <div class="col-xl-4">
+        <div class="card">
+          <div
+            class="card-body profile-card pt-4 d-flex flex-column align-items-center"
+          >
+            <img
+              src="{% static 'niceadmin/assets/img/profile-img.jpg' %}"
+              alt="Profile"
+              class="rounded-circle"
+            />
+            <h2>{{ asset.name }}</h2>
+            <h3>{{ asset.category }}</h3>
+            <div class="social-links mt-2">
+              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-8">
+        <div class="card">
+          <div class="card-body pt-3">
+            <!-- Bordered Tabs -->
+            <ul class="nav nav-tabs nav-tabs-bordered">
+              <li class="nav-item">
+                <button
+                  class="nav-link active"
+                  data-bs-toggle="tab"
+                  data-bs-target="#profile-overview"
+                >
+                  Overview
+                </button>
+              </li>
+
+              <li class="nav-item">
+                <button
+                  class="nav-link"
+                  data-bs-toggle="tab"
+                  data-bs-target="#profile-edit"
+                >
+                  Governance
+                </button>
+              </li>
+
+              <li class="nav-item">
+                <button
+                  class="nav-link"
+                  data-bs-toggle="tab"
+                  data-bs-target="#profile-settings"
+                >
+                  Compliance
+                </button>
+              </li>
+
+              <li class="nav-item">
+                <button
+                  class="nav-link"
+                  data-bs-toggle="tab"
+                  data-bs-target="#profile-change-password"
+                >
+                  Risk Management
+                </button>
+              </li>
+            </ul>
+            <div class="tab-content pt-2">
+              <div
+                class="tab-pane fade show active profile-overview"
+                id="profile-overview"
+              >
+                <h5 class="card-title">About</h5>
+                <p class="small fst-italic">{{ asset.description }}</p>
+
+                <h5 class="card-title">Asset Details</h5>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Asset Name</div>
+                  <div class="col-lg-9 col-md-8">{{ asset.name }}</div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Vendor</div>
+                  <div class="col-lg-9 col-md-8">{{ asset.vendor }}</div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Impact Level</div>
+                  <div class="col-lg-9 col-md-8">{{ asset.impact_level }}</div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">
+                    Regulatory Frameworks
+                  </div>
+                  <div class="col-lg-9 col-md-8">
+                    {% for framework in asset.regulatoryFrameworks.all %}
+                    {{framework.title}}, {% endfor %}
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Country</div>
+                  <div class="col-lg-9 col-md-8">USA</div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Address</div>
+                  <div class="col-lg-9 col-md-8">
+                    A108 Adam Street, New York, NY 535022
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Phone</div>
+                  <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Email</div>
+                  <div class="col-lg-9 col-md-8">k.anderson@example.com</div>
+                </div>
+              </div>
+
+              <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+                <!-- Profile Edit Form -->
+                <form>
+                  <div class="row mb-3">
+                    <label
+                      for="profileImage"
+                      class="col-md-4 col-lg-3 col-form-label"
+                      >Profile Image</label
+                    >
+                    <div class="col-md-8 col-lg-9">
+                      <img
+                        src="{% static 'niceadmin/assets/img/profile-img.jpg' %}"
+                        alt="Profile"
+                      />
+                      <div class="pt-2">
+                        <a
+                          href="#"
+                          class="btn btn-primary btn-sm"
+                          title="Upload new profile image"
+                          ><i class="bi bi-upload"></i
+                        ></a>
+                        <a
+                          href="#"
+                          class="btn btn-danger btn-sm"
+                          title="Remove my profile image"
+                          ><i class="bi bi-trash"></i
+                        ></a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label
+                      for="fullName"
+                      class="col-md-4 col-lg-3 col-form-label"
+                      >Full Name</label
+                    >
+                    <div class="col-md-8 col-lg-9">
+                      <input
+                        name="fullName"
+                        type="text"
+                        class="form-control"
+                        id="fullName"
+                        value="Kevin Anderson"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="about" class="col-md-4 col-lg-3 col-form-label"
+                      >About</label
+                    >
+                    <div class="col-md-8 col-lg-9">
+                      <textarea
+                        name="about"
+                        class="form-control"
+                        id="about"
+                        style="height: 100px"
+                      >
+Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea
+                      >
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label
+                      for="company"
+                      class="col-md-4 col-lg-3 col-form-label"
+                      >Company</label
+                    >
+                    <div class="col-md-8 col-lg-9">
+                      <input
+                        name="company"
+                        type="text"
+                        class="form-control"
+                        id="company"
+                        value="Lueilwitz, Wisoky and Leuschke"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="Job" class="col-md-4 col-lg-3 col-form-label"
+                      >Job</label
+                    >
+                    <div class="col-md-8 col-lg-9">
+                      <input
+                        name="job"
+                        type="text"
+                        class="form-control"
+                        id="Job"
+                        value="Web Designer"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label
+                      for="Country"
+                      class="col-md-4 col-lg-3 col-form-label"
+                      >Country</label
+                    >
+                    <div class="col-md-8 col-lg-9">
+                      <input
+                        name="country"
+                        type="text"
+                        class="form-control"
+                        id="Country"
+                        value="USA"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label
+                      for="Address"
+                      class="col-md-4 col-lg-3 col-form-label"
+                      >Address</label
+                    >
+                    <div class="col-md-8 col-lg-9">
+                      <input
+                        name="address"
+                        type="text"
+                        class="form-control"
+                        id="Address"
+                        value="A108 Adam Street, New York, NY 535022"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="Phone" class="col-md-4 col-lg-3 col-form-label"
+                      >Phone</label
+                    >
+                    <div class="col-md-8 col-lg-9">
+                      <input
+                        name="phone"
+                        type="text"
+                        class="form-control"
+                        id="Phone"
+                        value="(436) 486-3538 x29071"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="Email" class="col-md-4 col-lg-3 col-form-label"
+                      >Email</label
+                    >
+                    <div class="col-md-8 col-lg-9">
+                      <input
+                        name="email"
+                        type="email"
+                        class="form-control"
+                        id="Email"
+                        value="k.anderson@example.com"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label
+                      for="Twitter"
+                      class="col-md-4 col-lg-3 col-form-label"
+                      >Twitter Profile</label
+                    >
+                    <div class="col-md-8 col-lg-9">
+                      <input
+                        name="twitter"
+                        type="text"
+                        class="form-control"
+                        id="Twitter"
+                        value="https://twitter.com/#"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label
+                      for="Facebook"
+                      class="col-md-4 col-lg-3 col-form-label"
+                      >Facebook Profile</label
+                    >
+                    <div class="col-md-8 col-lg-9">
+                      <input
+                        name="facebook"
+                        type="text"
+                        class="form-control"
+                        id="Facebook"
+                        value="https://facebook.com/#"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label
+                      for="Instagram"
+                      class="col-md-4 col-lg-3 col-form-label"
+                      >Instagram Profile</label
+                    >
+                    <div class="col-md-8 col-lg-9">
+                      <input
+                        name="instagram"
+                        type="text"
+                        class="form-control"
+                        id="Instagram"
+                        value="https://instagram.com/#"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label
+                      for="Linkedin"
+                      class="col-md-4 col-lg-3 col-form-label"
+                      >Linkedin Profile</label
+                    >
+                    <div class="col-md-8 col-lg-9">
+                      <input
+                        name="linkedin"
+                        type="text"
+                        class="form-control"
+                        id="Linkedin"
+                        value="https://linkedin.com/#"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary">
+                      Save Changes
+                    </button>
+                  </div>
+                </form>
+                <!-- End Profile Edit Form -->
+              </div>
+
+              <div class="tab-pane fade pt-3" id="profile-settings">
+                <!-- Settings Form -->
+
+                
+                  {% for framework in asset.regulatoryFrameworks.all %}
+                  <div class="row mb-3">
+                    <label
+                      for="fullName"
+                      class="col-md-4 col-lg-3 col-form-label"
+                    >
+                      {{framework.title}} Security requirements</label
+                    >
+
+                    <div class="col-md-8 col-lg-9" class="requirement-description12">
+                      {%for requirement in framework.securityRequirements.all %}
+                      <div class="form-check" >
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="changesMade"
+                          checked
+                        />
+
+
+                        <span class="requirement-description-head11">
+                          {{requirement.short_description}}
+  
+                         </span>
+
+                         {% for item1 in complianceItems.all %}
+
+                         
+                         {% if not item1.requirement_id == requirement.id and item1.asset_id == asset.id and item1.framework_id == framework.id  %}
+
+                        <div class="requirement-description" >
+                           
+                          <div class="requirement-description-head" style="border-top: 1px solid #E8E8E8; background-color: #F5F5F5" >
+                            
+                            Completion status: Not Started
+                          </div>
+
+                          <div style="display: none; border: 2px solid #F5F5F5;" class="requirement-details">
+                         
+                            <h5 class="card-title">
+                              Create Compliance Status for this requirement <br/>
+                              Framework_id: {{framework.id}}
+                              Requirement_id: {{requirement.id}}
+                              Asset_id {{asset.id}}
+                            </h5>
+
+                            <!-- Multi Columns Form -->
+                            <form action="{% url 'create-compliance-requirement' frameworkid=framework.id assetid=asset.id requirementid=requirement.id  %}"
+                              method="post"
+                              class="row g-3 needs-validation container-fluid"
+                              novalidate
+                            >
+                              {% csrf_token %}
+                              <div >
+                                <label for="description" class="form-label"
+                                  >Description</label
+                                >
+                                <input style="max-width:450px;" size="32"
+                                  type="text"
+                                  name="description"
+                                  id="description1" value=""
+                                />
+                              </div>
+
+                              <div class="mb-8">
+                                <label
+                                  for="exampleFormControlTextarea1"
+                                  class="form-label"
+                                  >Give details of actions taken</label
+                                >
+                                <textarea class="form-control" name="details" id="Textarea1"
+                                rows="2"
+                              >{{item.details}}</textarea>
+                                
+                                  
+                              </div>
+
+                              <div class="control-group">
+                                <div class="controls controls-row row-fluid">
+                                  <label for="isdate" class="form-label"
+                                    >Start date: Not set</label
+                                  >
+                                  <input
+                                  type="datetime-local" name="implementation_start_date"
+                                    class="span4"
+                                    id="isdate"
+                                    value=""
+                                    required
+                                  />
+
+
+                                  <label
+                                  for="validationCustom022"
+                                  class="form-label"
+                                  >Completion date : Not set</label
+                                >
+                                <input
+                                  type="datetime-local" name="expected_completion_date"
+                                  class="span4"
+                                  id="validationCustom022"
+                                  value=""
+                                  required
+                                />
+
+
+                                </div>
+                              </div>
+
+                              <div class="control-group">
+                                <div class="controls controls-row row-fluid">
+
+                                  <label for="ownerID"
+                                    >Owner</label
+                                  >
+                                  
+                                    <select style="max-width:150px;"
+                                    
+                                      name="owner_id"
+                                      id="ownerID"
+                                    >
+                                    
+                                      {% for user in users.all %}
+                                      
+                                      <span>
+                                        <option {% if  user.id == item.owner_id %} selected{% endif %} value="{{ user.id }}">
+                                          {{ user.username }}
+                                        </option>
+                                      </span>
+
+                                      {% endfor %}
+                                    </select>
+
+                                    <label for="sownerID"
+                                    >Assigned To</label
+                                  >
+                                  
+                                    <select style="max-width:150px;" name="assigned_to_id" id="sownerID">
+                                      {% for assigneduser in users.all %}
+                                      
+                                      <span>
+                                        <option {% if  assigneduser.id == item.assigned_to_id %} selected{% endif %} value="{{ assigneduser.id }}">
+                                          {{ assigneduser.username }}
+                                        </option>
+                                      </span>
+
+                                      {% endfor %}
+                                    </select>
+
+                              </div>
+
+                              <div class="controls controls-row row-fluid">
+                                <label
+                                  for="cst"
+                                  
+                                  >Completion status ({{ item.completion_Status }})</label
+                                >
+
+                                <select id="completion_Status" name="completion_status" required>
+                                  {% for value, label in completion_status_choices %}
+                                  <option {% if value == item.completion_Status %} selected{% endif %} value="{{ value }}">{{ label }}</option>
+                                  {% endfor %}
+                                </select>
+                              </div>
+
+                              
+                              <div class="controls controls-row row-fluid">
+                           
+                                <label
+                                  for="ipercent"
+                                  >Completion percent</label
+                                >
+                                <input 
+                                  type="text" name="implementation_percent"
+                                  class="col-xs-2" maxlength="3" size="4"
+                                  id="ipercent" value="{{ item.implementation_percent }}"
+                                  required
+                                />
+                                
+                              </div>
+
+
+                              <div class="controls controls-row row-fluid">
+                                <label
+                                  for="validationCustom02"
+                                  class="form-label"
+                                  >Actual completion date ({{item.actual_implementation_date}}): {{item.actual_implementation_date|timesince}}</label
+                                >
+                                <input
+                                  type="datetime-local" name="actual_implementation_date"
+                                  class="span4"
+                                  id="validationCustom02"
+                                  value=""
+                                  required
+                                />
+                                
+                              </div>
+
+
+                              <div class="control-group">
+                                here 4
+                               </div>
+   
+                               
+                                   <button type="submit" class="btn btn-primary">
+                                     Submit
+                                   </button>
+
+ 
+                              </div>
+                        
+                            </form>
+                            <!-- End Multi Columns Form -->
+                          </div>
+
+                        </div>
+
+
+
+                  {% endif %}
+                  {% endfor %}
+                          
+                          <br />
+                          {% for item in complianceItems.all %}
+
+                         
+                          {% if item.requirement_id == requirement.id and item.asset_id == asset.id and item.framework_id == framework.id  %}
+
+                          <div class="requirement-description" >
+                           
+                            <div class="requirement-description-head" style="border: 2px solid blue; background-color: #F0F8FF" >
+                              
+                              {{item.description}} <br>
+                              Completion status: ({{ item.completion_Status }})
+                            </div>
+
+                            <div style="display: none; border: 2px solid #F5F5F5;" class="requirement-details">
+                           
+                              <h5 class="card-title">
+                                Update Compliance Status for this requirement
+                              </h5>
+  
+                              <!-- Multi Columns Form -->
+                              <form action="{% url 'update-compliance-requirement'  item.id %}"
+                                method="post"
+                                class="row g-3 needs-validation container-fluid"
+                                novalidate
+                              >
+                                {% csrf_token %}
+                                <div >
+                                  <label for="description" class="form-label"
+                                    >Description</label
+                                  >
+                                  <input style="max-width:450px;" size="32"
+                                    type="text"
+                                    name="description"
+                                    id="description1" value="{{ item.description }}"
+                                  />
+                                </div>
+  
+                                <div class="mb-8">
+                                  <label
+                                    for="exampleFormControlTextarea1"
+                                    class="form-label"
+                                    >Give details of actions taken</label
+                                  >
+                                  <textarea class="form-control" name="details" id="Textarea1"
+                                  rows="2"
+                                >{{item.details}}</textarea>
+                                  
+                                    
+                                </div>
+  
+                                <div class="control-group">
+                                  <div class="controls controls-row row-fluid">
+                                    <label for="isdate" class="form-label"
+                                      >Start date: ({{item.implementation_start_date}}) in {{item.implementation_start_date|timeuntil }}</label
+                                    >
+                                    <input
+                                    type="datetime-local" name="implementation_start_date"
+                                      class="span4"
+                                      id="isdate"
+                                      value="{{item.implementation_start_date|date:'Y-m-d\TH:i'}}"
+                                      required
+                                    />
+  
+  
+                                    <label
+                                    for="validationCustom022"
+                                    class="form-label"
+                                    >Completion date ({{item.expected_completion_date}}): {{item.expected_completion_date|timesince}}</label
+                                  >
+                                  <input
+                                    type="datetime-local" name="expected_completion_date"
+                                    class="span4"
+                                    id="validationCustom022"
+                                    value="{{ item.expected_completion_date|date:'Y-m-d\TH:i' }}"
+                                    required
+                                  />
+  
+  
+                                  </div>
+                                </div>
+  
+                                <div class="control-group">
+                                  <div class="controls controls-row row-fluid">
+  
+                                    <label for="ownerID"
+                                      >Owner</label
+                                    >
+                                    
+                                      <select style="max-width:150px;"
+                                      
+                                        name="owner_id"
+                                        id="ownerID"
+                                      >
+                                      
+                                        {% for user in users.all %}
+                                        
+                                        <span>
+                                          <option {% if  user.id == item.owner_id %} selected{% endif %} value="{{ user.id }}">
+                                            {{ user.username }}
+                                          </option>
+                                        </span>
+  
+                                        {% endfor %}
+                                      </select>
+  
+                                      <label for="sownerID"
+                                      >Assigned To</label
+                                    >
+                                    
+                                      <select style="max-width:150px;" name="assigned_to_id" id="sownerID">
+                                        {% for assigneduser in users.all %}
+                                        
+                                        <span>
+                                          <option {% if  assigneduser.id == item.assigned_to_id %} selected{% endif %} value="{{ assigneduser.id }}">
+                                            {{ assigneduser.username }}
+                                          </option>
+                                        </span>
+  
+                                        {% endfor %}
+                                      </select>
+  
+                                </div>
+  
+                                <div class="controls controls-row row-fluid">
+                                  <label
+                                    for="cst"
+                                    
+                                    >Completion status ({{ item.completion_Status }})</label
+                                  >
+  
+                                  <select id="completion_Status" name="completion_status" required>
+                                    {% for value, label in completion_status_choices %}
+                                    <option {% if value == item.completion_Status %} selected{% endif %} value="{{ value }}">{{ label }}</option>
+                                    {% endfor %}
+                                  </select>
+                                </div>
+  
+                                
+                                <div class="controls controls-row row-fluid">
+                             
+                                  <label
+                                    for="ipercent"
+                                    >Completion percent</label
+                                  >
+                                  <input 
+                                    type="text" name="implementation_percent"
+                                    class="col-xs-2" maxlength="3" size="4"
+                                    id="ipercent" value="{{ item.implementation_percent }}"
+                                    required
+                                  />
+                                  
+                                </div>
+  
+  
+                                <div class="controls controls-row row-fluid">
+                                  <label
+                                    for="validationCustom02"
+                                    class="form-label"
+                                    >Actual completion date ({{item.actual_implementation_date}}): {{item.actual_implementation_date|timesince}}</label
+                                  >
+                                  <input
+                                    type="datetime-local" name="actual_implementation_date"
+                                    class="span4"
+                                    id="validationCustom02"
+                                    value="{{ item.actual_implementation_date|date:'Y-m-d\TH:i' }}"
+                                    required
+                                  />
+                                  
+                                </div>
+  
+  
+                                <div class="control-group">
+                                  here 4
+                                 </div>
+     
+                                 
+                                     <button type="submit" class="btn btn-primary">
+                                       Submit
+                                     </button>
+  
+   
+                                </div>
+                              
+                          
+                             
+                                
+                              </form>
+                              <!-- End Multi Columns Form -->
+                            </div>
+
+                          </div>
+                          {% else %} 
+
+                         
+
+                          {% endif %} 
+                          
+                          {%endfor %}
+
+  <!---  
+ </label>
+   -->
+                       
+
+
+                      </div>
+
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <hr />
+                  <hr />
+                  {% endfor %}
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary">
+                      Save Changes
+                    </button>
+                  </div>
+                </div>
+
+                <!-- End settings Form -->
+              </div>
+
+              <div class="tab-pane fade pt-3" id="profile-change-password">
+                <!-- Change Password Form -->
+                <form>
+                  <div class="row mb-3">
+                    <label
+                      for="currentPassword"
+                      class="col-md-4 col-lg-3 col-form-label"
+                      >Current Password</label
+                    >
+                    <div class="col-md-8 col-lg-9">
+                      <input
+                        name="password"
+                        type="password"
+                        class="form-control"
+                        id="currentPassword"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label
+                      for="newPassword"
+                      class="col-md-4 col-lg-3 col-form-label"
+                      >New Password</label
+                    >
+                    <div class="col-md-8 col-lg-9">
+                      <input
+                        name="newpassword"
+                        type="password"
+                        class="form-control"
+                        id="newPassword"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label
+                      for="renewPassword"
+                      class="col-md-4 col-lg-3 col-form-label"
+                      >Re-enter New Password</label
+                    >
+                    <div class="col-md-8 col-lg-9">
+                      <input
+                        name="renewpassword"
+                        type="password"
+                        class="form-control"
+                        id="renewPassword"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary">
+                      Change Password
+                    </button>
+                  </div>
+                </form>
+                <!-- End Change Password Form -->
+              </div>
+            </div>
+            <!-- End Bordered Tabs -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<!-- End #main -->
+{% endblock %}
