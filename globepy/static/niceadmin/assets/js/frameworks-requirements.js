@@ -28,13 +28,11 @@
 
         $('.edit-compliance-status').click(function(e){
           
-            $(this).closest('.requirement-details').find(".editable").toggle( "slow" );
+            $(this).closest('.requirement-details').find(".editable").toggle();
+            $(this).closest('.requirement-details').find(".non-editable").toggle();
             
         });
 
-        
-
     }
-   
 
   })();
