@@ -407,10 +407,10 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
   
                          </span>
 
-                         {% for item in complianceItems.all %}
+                         {% for item1 in complianceItems.all %}
 
                          
-                         {% if not (item.requirement_id == requirement.id and item.asset_id == asset.id and item.framework_id == asset.id ) %}
+                         {% if not item1.requirement_id == requirement.id and item1.asset_id == asset.id and item1.framework_id == asset.id  %}
 
                         <div class="requirement-description" style="border: 2px solid green;" >
                            
