@@ -15,16 +15,17 @@
    
     function viewRequirementDetails() {
         $('.requirement-description-head').click(function(e){
-            
-            console.log("Requirement clicked...!")
-            //$('.requirement-details').show();
-            
-            //$(this).closest('.requirement-details').slideToggle( "slow" );
+          
             $(this).closest('.requirement-description').find(".requirement-details").slideToggle( "slow" );
             
         });
-    
-       
+
+        $('.create-compliance-item').click(function(e){
+          
+            $(this).closest('.requirement-description-head11').find(".requirement-details").slideToggle( "slow" );
+            
+        });
+
     }
    
 
