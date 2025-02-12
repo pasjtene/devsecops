@@ -413,7 +413,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                           {% for item in complianceItems.all %}
 
                          
-                          {% if item.requirement_id == requirement.id %}
+                          {% if item.requirement_id == requirement.id && item.asset_id == asset.id %}
 
                           <div class="requirement-description" style="border: 2px solid green;" >
                            
@@ -613,10 +613,10 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                             <div style="display: none; border: 2px solid red;" class="requirement-details">
                            
                               <h5 class="card-title">
-                                Create Compliance Status for this requirement
+                                Create Compliance Status for this requirement <br/>
                                 Framework_id: {{framework.id}}
-                        Framework_id: {{requirement.id}}
-                        Asset_id {{asset.id}}
+                                Requirement_id: {{requirement.id}}
+                                Asset_id {{asset.id}}
                               </h5>
   
                               <!-- Multi Columns Form -->
