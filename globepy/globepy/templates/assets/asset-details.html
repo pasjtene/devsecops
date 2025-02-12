@@ -430,7 +430,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                   <label for="description" class="form-label"
                                     >Description</label
                                   >
-                                  <input style="max-width:450px;" size="32"
+                                  <input style="max-width:450px;" size="32" maxlength="50"
                                     type="text"
                                     name="description"
                                     id="description1" value=""
@@ -443,7 +443,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                     class="form-label"
                                     >Give details of actions taken</label
                                   >
-                                  <textarea class="form-control" name="details" id="Textarea1"
+                                  <textarea class="form-control" name="details"
                                   rows="2"
                                 >{{item.details}}</textarea>
                                   
@@ -602,7 +602,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
 
                           <div class="requirement-description" >
                            
-                            <div class="requirement-description-head" style="border-top: 2px solid #F5F5F5; background-color: #F0F8FF" >
+                            <div class="requirement-description-head" style="border-top: 5px solid #FFFFFF; background-color: #F0F8FF" >
                               
                               {{item.description}} <br>
                               Completion status: ({{ item.completion_Status }})
@@ -625,7 +625,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                   <label for="description" class="form-label"
                                     >Description</label
                                   >
-                                  <input style="max-width:450px;" size="32"
+                                  <input style="max-width:450px;" size="32" maxlength="50"
                                     type="text"
                                     name="description"
                                     id="description1" value="{{ item.description }}"
