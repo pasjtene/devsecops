@@ -612,6 +612,10 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                            
                               <h5 class="card-title">
                                 Update Compliance Status for this requirement
+                                <span class="icon edit-compliance-status">
+                                  <i class="bx bxs-edit-alt"></i>
+                                
+                                </span>
                               </h5>
   
                               <!-- Multi Columns Form -->
@@ -623,9 +627,9 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                 {% csrf_token %}
                                 <div >
                                   <label for="description" class="form-label"
-                                    >Description</label
+                                    >Description: <span class="non-editable">{{ item.description }}</span> </label
                                   >
-                                  <input style="max-width:450px;" size="32" maxlength="50"
+                                  <input style="max-width:450px; display:none" size="32" maxlength="50" class="editable"
                                     type="text"
                                     name="description"
                                     id="description1" value="{{ item.description }}"
@@ -636,9 +640,10 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                   <label
                                     for="exampleFormControlTextarea1"
                                     class="form-label"
-                                    >Give details of actions taken</label
+                                    >Give details of actions taken: </label
                                   >
-                                  <textarea class="form-control" name="details" id="Textarea1"
+                                  <span class="non-editable">{{ item.details }}</span> 
+                                  <textarea class="form-control editable" name="details" style="display:none" 
                                   rows="2"
                                 >{{item.details}}</textarea>
                                   

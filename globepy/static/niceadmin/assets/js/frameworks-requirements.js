@@ -26,6 +26,14 @@
             
         });
 
+        $('.edit-compliance-status').click(function(e){
+          
+            $(this).closest('.requirement-details').find(".editable").Toggle( "slow" );
+            
+        });
+
+        
+
     }
    
 
