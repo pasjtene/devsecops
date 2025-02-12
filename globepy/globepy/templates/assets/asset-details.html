@@ -381,7 +381,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
               <div class="tab-pane fade pt-3" id="profile-settings">
                 <!-- Settings Form -->
 
-                <div
+                
                   {% for framework in asset.regulatoryFrameworks.all %}
                   <div class="row mb-3">
                     <label
@@ -392,7 +392,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                     >
 
                     <div class="col-md-8 col-lg-9" class="requirement-description12">
-                      {%for requirement in framework.securityRequirements.all %}
+                      {%for requirement1 in framework.securityRequirements.all %}
                       <div class="form-check" >
                         <input
                           class="form-check-input"
@@ -403,14 +403,14 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
 
 
                         <span class="requirement-description-head11">
-                          {{requirement.short_description}}
+                          {{requirement1.short_description}}
   
                          </span>
 
                          {% for item1 in complianceItems.all %}
 
                          
-                         {% if not item1.requirement_id == requirement.id and item1.asset_id == asset.id and item1.framework_id == framework.id  %}
+                         {% if not item1.requirement_id == requirement1.id and item1.asset_id == asset.id and item1.framework_id == framework.id  %}
 
                         <div class="requirement-description" style="border: 2px solid green;" >
                            
