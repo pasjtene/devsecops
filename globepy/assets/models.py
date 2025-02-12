@@ -57,7 +57,10 @@ class SecurityRequirement(models.Model):
         GDPR8 = ("GDPR8", _("Data protection officer: The requirements for a DPO, including when to appoint one are laid out in Articles 37–39"))
         GDPR9 = ("GDPR9", _("International data transfers- The scope of GDPR is limited to organisations based or operating in the EU. Chapter V (Articles 44–50) restricts international data transfers outside the EEA, unless appropriate safeguards are in place."))
         GDPR10 = ("GDPR10", _("Personal data breach reporting: - the GDPR (Article 33) requires the data controller to report any data breach to its supervisory authority within 72 hours of becoming aware of the breach"))
-        
+        #https://www.simplepractice.com/resource/hipaa-compliance-checklist/
+        HIPAA1 = ("HIPAA1",_("Appoint an individual or individuals within your practice to oversee HIPAA compliance efforts—generally known as a Privacy Officer or Security Officer. Depending on your business structure, you may take this responsibility yourself."))
+        HIPAA2 = ("HIPAA2",_("Create policies and procedures to ensure HIPAA compliance (for example, email procedures, PHI data storage procedures)."))
+    
     name = models.CharField(
         max_length = 15,
         choices = RequirementList.choices,
@@ -325,6 +328,7 @@ class ComplianceStatus(models.Model):
         default=CompletionStatus.InProgress
     )
     implementation_start_date = models.DateTimeField(null=True, blank=True)
+    
     
     expected_completion_date = models.DateTimeField(null=True, blank=True)
     actual_implementation_date = models.DateTimeField(null=True, blank=True)
