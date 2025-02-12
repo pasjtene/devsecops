@@ -405,10 +405,12 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                         <span class="requirement-description-head11">
                           {{requirement.short_description}}
   
-                          Framework_id: {{framework.id}}
-                          Framework_id: {{requirement.id}}
-                          Asset_id {{asset.id}}
                          </span>
+
+                         {% for item in complianceItems.all %}
+
+                         
+                         {% if not (item.requirement_id == requirement.id and item.asset_id == asset.id and item.framework_id == asset.id ) %}
 
                         <div class="requirement-description" style="border: 2px solid green;" >
                            
@@ -598,13 +600,13 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
 
 
 
-
+                  {% endif %}
                           
                           <br />
                           {% for item in complianceItems.all %}
 
                          
-                          {% if item.requirement_id == requirement.id and item.asset_id == asset.id %}
+                          {% if item.requirement_id == requirement.id and item.asset_id == asset.id and item.framework_id == asset.id  %}
 
                           <div class="requirement-description" style="border: 2px solid green;" >
                            
