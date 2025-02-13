@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from .models import Asset, RegulatoryFramework, ComplianceStatus
 from .forms import ComplianceStatusForm
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Create your views here.
 def formeditors2(request):
@@ -81,6 +82,7 @@ def create_compliance_requirement(request,frameworkid, assetid, requirementid):
         complianceItems = ComplianceStatus.objects.all()
         form = ComplianceStatusForm()
         completion_Status_choices = ComplianceStatus.COMPLETION_STATUS_CHOICES
+        now = timezone.now()
     
         return render(request, 'assets/asset-details.html',{
         'asset':asset,
@@ -88,7 +90,8 @@ def create_compliance_requirement(request,frameworkid, assetid, requirementid):
         'complianceItems': complianceItems,
         'form': form,
         'users': users,
-        'completion_status_choices':completion_Status_choices
+        'completion_status_choices':completion_Status_choices,
+         'now':now,
     })
     
     
@@ -115,6 +118,7 @@ def update_compliance_requirement(request, id):
     
         
         complianceItem.save()
+        now = timezone.now()
    
     asset = Asset.objects.get(id=complianceItem.asset_id)
     users = User.objects.all()
@@ -129,7 +133,8 @@ def update_compliance_requirement(request, id):
         'complianceItems': complianceItems,
         'form': form,
         'users': users,
-        'completion_status_choices':completion_Status_choices
+        'completion_status_choices':completion_Status_choices,
+        'now':now,
     })
     
 def assetdetails(request, id):
@@ -139,6 +144,7 @@ def assetdetails(request, id):
     complianceItems = ComplianceStatus.objects.all()
     form = ComplianceStatusForm()
     completion_Status = ComplianceStatus.COMPLETION_STATUS_CHOICES
+    now = timezone.now()
     
     return render(request, 'assets/asset-details.html',{
         'asset':asset,
@@ -146,5 +152,7 @@ def assetdetails(request, id):
         'complianceItems': complianceItems,
         'form': form,
         'users': users,
-        'completion_status_choices':completion_Status
+        'completion_status_choices':completion_Status,
+        'now':now,
+        
     })
