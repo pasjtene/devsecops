@@ -653,8 +653,8 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                 <div class="control-group">
                                   <div class="controls controls-row row-fluid">
                                     <label for="isdate" class="form-label"
-                                      >Start date: <span class="non-editable">
-                                        ({{item.implementation_start_date}}) in {{item.implementation_start_date|timeuntil }}
+                                      ><strong>Start date:</strong> <span class="non-editable">
+                                        {{item.implementation_start_date}}
                                       </span> 
                                       </label
                                     >
@@ -671,7 +671,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                     for="validationCustom022"
                                     class="form-label"
                                     ><strong>Completion date: </strong>
-                                    <span class="non-editable"> ({{item.expected_completion_date}}): {{item.expected_completion_date|timesince}}
+                                    <span class="non-editable"> {{item.expected_completion_date}}: {{item.expected_completion_date|timesince}}
                                     </span>
                                       </label
                                   >
@@ -718,7 +718,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
 
                                 <div class="controls controls-row row-fluid">
                                   <label for="sownerID"
-                                      ><stron>Assigned To:</stron></label>
+                                      ><strong>Assigned To:</strong></label>
                                       <span class="non-editable">{{item.assigned_to.username}}</span>
                                     
                                     <span class="editable" style="display:none">
