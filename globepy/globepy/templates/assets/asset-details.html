@@ -428,7 +428,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                 {% csrf_token %}
                                 <div >
                                   <label for="description" class="form-label"
-                                    >Description</label
+                                    ><strong>Description:</strong></label
                                   >
                                   <input style="max-width:450px;" size="32" maxlength="50"
                                     type="text"
@@ -441,9 +441,9 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                   <label
                                     for="exampleFormControlTextarea1"
                                     class="form-label"
-                                    >Give details of actions taken</label
+                                    ><strong>Details of actions taken:</strong></label
                                   >
-                                  <textarea class="form-control" name="details"
+                                  <textarea class="form-control editable" name="details"
                                   rows="2"
                                 >{{item.details}}</textarea>
                                   
@@ -627,7 +627,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                 {% csrf_token %}
                                 <div >
                                   <label for="description" class="form-label"
-                                    >Description: <span class="non-editable">{{ item.description }}</span> </label
+                                    ><strong>Description:</strong> <span class="non-editable">{{ item.description }}</span> </label
                                   >
                                   <input style="max-width:450px; display:none" size="32" maxlength="50" class="editable"
                                     type="text"
@@ -640,7 +640,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                   <label
                                     for="exampleFormControlTextarea1"
                                     class="form-label"
-                                    >Give details of actions taken: </label
+                                    ><strong>Details of actions taken:</strong> </label
                                   >
                                   <span class="non-editable">{{ item.details }}</span> 
                                   <textarea class="form-control editable" name="details" style="display:none" 
@@ -714,8 +714,10 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
   
                                         {% endfor %}
                                       </select>
-  
-                                      <label for="sownerID"
+                                </div>
+
+                                <div class="controls controls-row row-fluid">
+                                  <label for="sownerID"
                                       ><stron>Assigned To:</stron></label>
                                       <span class="non-editable">{{item.assigned_to.username}}</span>
                                     
@@ -732,8 +734,9 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                         {% endfor %}
                                       </select>
                                     </span>
-  
                                 </div>
+
+
   
                                 <div class="controls controls-row row-fluid">
                                   <label
