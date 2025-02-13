@@ -681,7 +681,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
 
                                   <span class="non-editable"> 
                                     {% if item.actual_implementation_date <= now %}
-                                    {{item.expected_completion_date}}: {{item.expected_completion_date|timesince}} ago
+                                    {{item.expected_completion_date}}: {{item.expected_completion_date|timeuntil}} ago
                                     {% else %}
                                     {{item.expected_completion_date}}: in {{item.expected_completion_date|timesince}}
                                    {% endif %}
@@ -789,7 +789,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                     ><strong>Actual completion date:</strong> 
                                     <span class="non-editable"> 
                                       {% if item.actual_implementation_date <= now %}
-                                      {{item.actual_implementation_date}}: {{item.actual_implementation_date|timesince}} ago
+                                      {{item.actual_implementation_date}}: {{item.actual_implementation_date|timeuntil}} ago
                                       {% else %}
                                       {{item.actual_implementation_date}}: in {{item.actual_implementation_date|timesince}}
                                      {% endif %}
