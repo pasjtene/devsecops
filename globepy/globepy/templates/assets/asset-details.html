@@ -678,7 +678,13 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                   for="validationCustom022"
                                   class="form-label"
                                   ><strong>Completion date: </strong>
-                                  <span class="non-editable"> {{item.expected_completion_date}}: {{item.expected_completion_date|timesince}}
+
+                                  <span class="non-editable"> 
+                                    {% if item.actual_implementation_date <= now %}
+                                    {{item.expected_completion_date}}: {{item.expected_completion_date|timesince}} ago
+                                    {% else %}
+                                    {{item.expected_completion_date}}: in {{item.expected_completion_date|timesince}}
+                                   {% endif %}
                                   </span>
                                     </label
                                 >
@@ -785,7 +791,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                       {% if item.actual_implementation_date <= now %}
                                       {{item.actual_implementation_date}}: {{item.actual_implementation_date|timesince}} ago
                                       {% else %}
-                                     in {{item.actual_implementation_date}}: {{item.actual_implementation_date|timeuntil}} 
+                                      {{item.actual_implementation_date}}: in {{item.actual_implementation_date|timesince}}
                                      {% endif %}
                                     </span>
                                       </label
