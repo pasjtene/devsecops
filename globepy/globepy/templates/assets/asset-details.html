@@ -642,7 +642,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                     class="form-label"
                                     ><strong>Details of actions taken:</strong> </label
                                   >
-                                  <span class="non-editable">{{ item.details }}</span> 
+                                  <div class="non-editable">{{ item.details }}</div> 
                                   <textarea class="form-control editable" name="details" style="display:none" 
                                   rows="2"
                                 >{{item.details}}</textarea>
@@ -789,16 +789,12 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                 </div>
   
   
-                                <div class="control-group">
-                                 
+                                <div class="control-group editable" style="display: none">
+                                  <button type="submit" class="btn btn-primary">
+                                    Submit
+                                  </button>
                                  </div>
      
-                                 
-                                     <button type="submit" class="btn btn-primary">
-                                       Submit
-                                     </button>
-  
-   
                                 </div>
                               
                           
