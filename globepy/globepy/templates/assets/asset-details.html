@@ -691,7 +691,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                   <div class="controls controls-row row-fluid">
   
                                     <label for="ownerID"
-                                      >Owner:
+                                      ><strong>Owner:</strong>
                                       </label
                                     >
                                       <span class="non-editable">
@@ -716,10 +716,11 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                       </select>
   
                                       <label for="sownerID"
-                                      >Assigned To</label
-                                    >
+                                      ><stron>Assigned To:</stron></label>
+                                      <span class="non-editable">{{item.assigned_to.username}}</span>
                                     
-                                      <select style="max-width:150px;" name="assigned_to_id" id="sownerID" class="editable">
+                                    <span class="editable">
+                                      <select style="max-width:150px;" name="assigned_to_id" id="sownerID">
                                         {% for assigneduser in users.all %}
                                         
                                         <span>
@@ -730,6 +731,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
   
                                         {% endfor %}
                                       </select>
+                                    </span>
   
                                 </div>
   
@@ -752,8 +754,9 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                              
                                   <label
                                     for="ipercent"
-                                    >Completion percent</label
+                                    ><strong>Completion percent:</strong></label
                                   >
+                                  <span class="non-editable">{{ item.implementation_percent }}</span>
                                   <input 
                                     type="text" name="implementation_percent" 
                                     class="col-xs-2 editable" maxlength="3" size="4"
@@ -769,7 +772,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                     for="validationCustom02"
                                     class="form-label"
                                     ><strong>Actual completion date:</strong> 
-                                    <span class="non-editable"> ({{item.actual_implementation_date}}): {{item.actual_implementation_date|timesince}} </span>
+                                    <span class="non-editable"> {{item.actual_implementation_date}}: {{item.actual_implementation_date|timesince}} </span>
                                       </label
                                   >
                                   <input
