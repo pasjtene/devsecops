@@ -667,25 +667,31 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                     />
   
   
-                                    <label
-                                    for="validationCustom022"
-                                    class="form-label"
-                                    ><strong>Completion date: </strong>
-                                    <span class="non-editable"> {{item.expected_completion_date}}: {{item.expected_completion_date|timesince}}
-                                    </span>
-                                      </label
-                                  >
-                                  <input
-                                    type="datetime-local" name="expected_completion_date"
-                                    class="span4 editable" style="display:none"
-                                    id="validationCustom022"
-                                    value="{{ item.expected_completion_date|date:'Y-m-d\TH:i' }}"
-                                    required
-                                  />
-  
   
                                   </div>
                                 </div>
+
+                                <div class="controls controls-row row-fluid">
+                                  
+  
+                                  <label
+                                  for="validationCustom022"
+                                  class="form-label"
+                                  ><strong>Completion date: </strong>
+                                  <span class="non-editable"> {{item.expected_completion_date}}: {{item.expected_completion_date|timesince}}
+                                  </span>
+                                    </label
+                                >
+                                <input
+                                  type="datetime-local" name="expected_completion_date"
+                                  class="span4 editable" style="display:none"
+                                  id="validationCustom022"
+                                  value="{{ item.expected_completion_date|date:'Y-m-d\TH:i' }}"
+                                  required
+                                />
+                                </div>
+
+
   
                                 <div class="control-group">
                                   <div class="controls controls-row row-fluid">
