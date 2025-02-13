@@ -670,11 +670,14 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                     <label
                                     for="validationCustom022"
                                     class="form-label"
-                                    >Completion date ({{item.expected_completion_date}}): {{item.expected_completion_date|timesince}}</label
+                                    ><strong>Completion date: </strong>
+                                    <span class="non-editable"> ({{item.expected_completion_date}}): {{item.expected_completion_date|timesince}}
+                                    </span>
+                                      </label
                                   >
                                   <input
                                     type="datetime-local" name="expected_completion_date"
-                                    class="span4"
+                                    class="span4 editable" style="display:none"
                                     id="validationCustom022"
                                     value="{{ item.expected_completion_date|date:'Y-m-d\TH:i' }}"
                                     required
@@ -688,10 +691,14 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                   <div class="controls controls-row row-fluid">
   
                                     <label for="ownerID"
-                                      >Owner</label
+                                      >Owner:
+                                      </label
                                     >
+                                      <span class="non-editable">
+                                        {{ item.owner.username }}
+                                      </span>
                                     
-                                      <select style="max-width:150px;"
+                                      <select style="max-width:150px; display:none" class="editable"
                                       
                                         name="owner_id"
                                         id="ownerID"
@@ -712,7 +719,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                       >Assigned To</label
                                     >
                                     
-                                      <select style="max-width:150px;" name="assigned_to_id" id="sownerID">
+                                      <select style="max-width:150px;" name="assigned_to_id" id="sownerID" class="editable">
                                         {% for assigneduser in users.all %}
                                         
                                         <span>
@@ -733,7 +740,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                     >Completion status ({{ item.completion_Status }})</label
                                   >
   
-                                  <select id="completion_Status" name="completion_status" required>
+                                  <select id="completion_Status" name="completion_status" required class="editable">
                                     {% for value, label in completion_status_choices %}
                                     <option {% if value == item.completion_Status %} selected{% endif %} value="{{ value }}">{{ label }}</option>
                                     {% endfor %}
@@ -748,8 +755,8 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                     >Completion percent</label
                                   >
                                   <input 
-                                    type="text" name="implementation_percent"
-                                    class="col-xs-2" maxlength="3" size="4"
+                                    type="text" name="implementation_percent" 
+                                    class="col-xs-2 editable" maxlength="3" size="4"
                                     id="ipercent" value="{{ item.implementation_percent }}"
                                     required
                                   />
@@ -761,11 +768,13 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                   <label
                                     for="validationCustom02"
                                     class="form-label"
-                                    >Actual completion date ({{item.actual_implementation_date}}): {{item.actual_implementation_date|timesince}}</label
+                                    ><strong>Actual completion date:</strong> 
+                                    <span class="non-editable"> ({{item.actual_implementation_date}}): {{item.actual_implementation_date|timesince}} </span>
+                                      </label
                                   >
                                   <input
                                     type="datetime-local" name="actual_implementation_date"
-                                    class="span4"
+                                    class="span4 editable"
                                     id="validationCustom02"
                                     value="{{ item.actual_implementation_date|date:'Y-m-d\TH:i' }}"
                                     required
@@ -775,7 +784,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
   
   
                                 <div class="control-group">
-                                  here 4
+                                 
                                  </div>
      
                                  
