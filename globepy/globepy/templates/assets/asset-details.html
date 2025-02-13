@@ -683,7 +683,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                     {% if item.actual_implementation_date <= now %}
                                     {{item.expected_completion_date}}: {{item.expected_completion_date|timesince}} ago
                                     {% else %}
-                                    {{item.expected_completion_date}}: in {{item.expected_completion_date|timesince}}
+                                    {{item.expected_completion_date}}: in {{item.expected_completion_date|timeuntil}}
                                    {% endif %}
                                   </span>
                                     </label
@@ -791,7 +791,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                       {% if item.actual_implementation_date <= now %}
                                       {{item.actual_implementation_date}}: {{item.actual_implementation_date|timesince}} ago
                                       {% else %}
-                                      {{item.actual_implementation_date}}: in {{item.actual_implementation_date|timesince}}
+                                      {{item.actual_implementation_date}}: in {{item.actual_implementation_date|timeuntil}}
                                      {% endif %}
                                     </span>
                                       </label
