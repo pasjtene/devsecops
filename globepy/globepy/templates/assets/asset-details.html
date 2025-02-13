@@ -781,7 +781,13 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                     for="validationCustom02"
                                     class="form-label"
                                     ><strong>Actual completion date:</strong> 
-                                    <span class="non-editable"> {{item.actual_implementation_date}}: {{item.actual_implementation_date|timesince}} </span>
+                                    <span class="non-editable"> 
+                                      {% if item.actual_implementation_date <= now %}
+                                      {{item.actual_implementation_date}}: {{item.actual_implementation_date|timesince}} ago
+                                      {% else %}
+                                     in {{item.actual_implementation_date}}: {{item.actual_implementation_date|timeuntil:now }} 
+                                     {% endif %}
+                                    </span>
                                       </label
                                   >
                                   <input style="display:none"
