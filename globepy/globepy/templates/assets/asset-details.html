@@ -739,8 +739,8 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                   <label
                                     for="cst"
                                     
-                                    >Completion status ({{ item.completion_Status }})</label
-                                  >
+                                    ><strong>Completion status:</strong> </label
+                                  > <span class="non-editable">{{ item.completion_Status }}</span>
   
                                   <select id="completion_Status" name="completion_status" required class="editable" style="display:none">
                                     {% for value, label in completion_status_choices %}
@@ -756,7 +756,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                     for="ipercent"
                                     ><strong>Completion percent:</strong></label
                                   >
-                                  <span class="non-editable">{{ item.implementation_percent }}</span>
+                                  <span class="non-editable">{{ item.implementation_percent }}%</span>
                                   <input style="display:none"
                                     type="text" name="implementation_percent" 
                                     class="col-xs-2 editable" maxlength="3" size="4"
