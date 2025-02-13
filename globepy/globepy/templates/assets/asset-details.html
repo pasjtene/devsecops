@@ -653,9 +653,20 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                 <div class="control-group">
                                   <div class="controls controls-row row-fluid">
                                     <label for="isdate" class="form-label"
-                                      ><strong>Start date:</strong> <span class="non-editable">
+                                      ><strong>Start date:</strong> 
+                                      
+                                      <span class="non-editable">
                                         {{item.implementation_start_date}}
                                       </span> 
+
+                                      <span class="non-editable"> 
+                                        {% if item.implementation_start_date <= now %}
+                                        {{item.implementation_start_date}}: {{item.implementation_start_date|timesince}} ago
+                                        {% else %}
+                                        {{item.implementation_start_date}}: in {{item.implementation_start_date|timeuntil}}
+                                       {% endif %}
+                                      </span>
+
                                       </label
                                     >
                                     <input style="display:none" class="editable"
@@ -677,10 +688,10 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                   <label
                                   for="validationCustom022"
                                   class="form-label"
-                                  ><strong>Completion date: </strong>
+                                  ><strong>Expected Completion date: </strong>
 
                                   <span class="non-editable"> 
-                                    {% if item.actual_implementation_date <= now %}
+                                    {% if item.expected_completion_date <= now %}
                                     {{item.expected_completion_date}}: {{item.expected_completion_date|timesince}} ago
                                     {% else %}
                                     {{item.expected_completion_date}}: in {{item.expected_completion_date|timeuntil}}
