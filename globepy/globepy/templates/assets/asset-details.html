@@ -785,7 +785,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                       {% if item.actual_implementation_date <= now %}
                                       {{item.actual_implementation_date}}: {{item.actual_implementation_date|timesince}} ago
                                       {% else %}
-                                     in {{item.actual_implementation_date}}: {{item.actual_implementation_date|timeuntil:now }} 
+                                     in {{item.actual_implementation_date}}: {{item.actual_implementation_date|timeuntil}} 
                                      {% endif %}
                                     </span>
                                       </label
