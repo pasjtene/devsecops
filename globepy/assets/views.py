@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -6,6 +6,8 @@ from .models import Asset, RegulatoryFramework, ComplianceStatus
 from .forms import ComplianceStatusForm
 from django.contrib.auth.models import User
 from django.utils import timezone
+from comments.models import Comment
+from comments.forms import CommentForm
 
 # Create your views here.
 def formeditors2(request):
@@ -156,3 +158,46 @@ def assetdetails(request, id):
         'now':now,
         
     })
+    
+def add_comment(request, assetid, parent_id=None):
+    parent_comment = None
+    asset = Asset.objects.get(id=assetid)
+    
+    if parent_id:
+        parent_comment = get_object_or_404(Comment, id=parent_id)
+    
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(Commit=False)
+            comment.created_by = request.user
+            comment.parent_comment = parent_comment
+            comment.save()
+    else:
+        comment_form = CommentForm()
+        
+    
+    users = User.objects.all()
+    regulatoryFrameworks = RegulatoryFramework.objects.all()
+    complianceItems = ComplianceStatus.objects.all()
+    form = ComplianceStatusForm()
+    completion_Status = ComplianceStatus.COMPLETION_STATUS_CHOICES
+    now = timezone.now()
+    comments = Comment.objects.filter(parent_comment__isnull=True)  # Fetch top-level comments only
+    
+    
+    return render(request, 'assets/asset-details.html',{
+        'asset':asset,
+        'regulatoryFrameworks':regulatoryFrameworks,
+        'complianceItems': complianceItems,
+        'form': form,
+        'users': users,
+        'completion_status_choices':completion_Status,
+        'now':now,
+        'comment_form':comment_form,
+        'parent_comment':parent_comment,
+        'comments':comments
+        
+    })
+        
+    

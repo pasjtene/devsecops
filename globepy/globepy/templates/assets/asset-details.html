@@ -655,10 +655,6 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                     <label for="isdate" class="form-label"
                                       ><strong>Start date:</strong> 
                                       
-                                      <span class="non-editable">
-                                        {{item.implementation_start_date}}
-                                      </span> 
-
                                       <span class="non-editable"> 
                                         {% if item.implementation_start_date <= now %}
                                         {{item.implementation_start_date}}: {{item.implementation_start_date|timesince}} ago
