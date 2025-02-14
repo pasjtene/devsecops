@@ -8,7 +8,8 @@
 
 (function() {
     "use strict";
-    viewRequirementDetails() 
+    viewRequirementDetails();
+    addComment();
     /**
      * Easy selector helper function
      */
@@ -32,6 +33,24 @@
             $(this).closest('.requirement-details').find(".non-editable").toggle();
             
         });
+
+    }
+
+
+    function addComment() {
+       
+    $(document).ready(function() {
+        // Toggle comment form
+        $('#add-comment-btn').click(function() {
+            $('#comment-form').toggle();
+        });
+
+        // Toggle reply form for each comment
+        $('.reply-btn').click(function() {
+            var replyForm = $(this).siblings('.reply-form');
+            replyForm.toggle();
+        });
+    });
 
     }
 

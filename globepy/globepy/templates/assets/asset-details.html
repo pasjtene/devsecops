@@ -934,7 +934,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
     <div id="comment-form" style="display: none;">
         <form method="post" action="{% url 'add_comment' %}">
             {% csrf_token %}
-            {{ form.as_p }}
+            {{ comment_form.as_p }}
             <button type="submit" class="btn btn-success">Submit</button>
         </form>
     </div>
@@ -945,20 +945,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
     </div>
 </div>
 
-<script>
-    $(document).ready(function() {
-        // Toggle comment form
-        $('#add-comment-btn').click(function() {
-            $('#comment-form').toggle();
-        });
 
-        // Toggle reply form for each comment
-        $('.reply-btn').click(function() {
-            var replyForm = $(this).siblings('.reply-form');
-            replyForm.toggle();
-        });
-    });
-</script>
 </main>
 <!-- End #main -->
 {% endblock %}
