@@ -174,6 +174,7 @@ def add_comment(request, assetid, parent_id=None):
             comment = comment_form.save(commit=False)
             comment.created_by = request.user
             comment.parent_comment = parent_comment
+            comment.asset = asset
             comment.save()
     else:
         comment_form = CommentForm()
@@ -185,7 +186,7 @@ def add_comment(request, assetid, parent_id=None):
     form = ComplianceStatusForm()
     completion_Status = ComplianceStatus.COMPLETION_STATUS_CHOICES
     now = timezone.now()
-    comments = Comment.objects.filter(parent_comment__isnull=True)  # Fetch top-level comments only
+    comments = Comment.objects.filter(asset_id=assetid, parent_comment__isnull=True)  # Fetch top-level comments only
     
     
     return render(request, 'assets/asset-details.html',{
