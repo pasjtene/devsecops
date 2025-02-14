@@ -171,7 +171,7 @@ def add_comment(request, assetid, parent_id=None):
     if request.method == 'POST':
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
-            comment = comment_form.save(Commit=False)
+            comment = comment_form.save(commit=False)
             comment.created_by = request.user
             comment.parent_comment = parent_comment
             comment.save()
