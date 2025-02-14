@@ -12,3 +12,5 @@ class Comment(models.Model):
         return f"Comment by {self.created_by.username} on {self.created_date}"
     
     def is_reply(self):
+        return self.parent_comment is not None
+        
