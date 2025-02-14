@@ -85,6 +85,8 @@ def create_compliance_requirement(request,frameworkid, assetid, requirementid):
         form = ComplianceStatusForm()
         completion_Status_choices = ComplianceStatus.COMPLETION_STATUS_CHOICES
         now = timezone.now()
+        comment_form = CommentForm()
+        comments = Comment.objects.filter(asset_id=asset.id, parent_comment__isnull=True)  # Fetch top-level comments only
     
         return render(request, 'assets/asset-details.html',{
         'asset':asset,
@@ -93,7 +95,9 @@ def create_compliance_requirement(request,frameworkid, assetid, requirementid):
         'form': form,
         'users': users,
         'completion_status_choices':completion_Status_choices,
-         'now':now,
+        'now':now,
+        'comment_form':comment_form,
+        'comments':comments
     })
     
     
@@ -117,12 +121,13 @@ def update_compliance_requirement(request, id):
         assigned_to_id = request.POST.get('assigned_to_id')
         complianceItem.assigned_to = User.objects.get(id=assigned_to_id) if assigned_to_id else None
         
-    
-        
         complianceItem.save()
         now = timezone.now()
+        comment_form = CommentForm()
+        
    
     asset = Asset.objects.get(id=complianceItem.asset_id)
+    comments = Comment.objects.filter(asset_id=asset.id, parent_comment__isnull=True)  # Fetch top-level comments only
     users = User.objects.all()
     regulatoryFrameworks = RegulatoryFramework.objects.all()
     complianceItems = ComplianceStatus.objects.all()
@@ -137,6 +142,8 @@ def update_compliance_requirement(request, id):
         'users': users,
         'completion_status_choices':completion_Status_choices,
         'now':now,
+        'comment_form':comment_form,
+        'comments':comments
     })
     
 def assetdetails(request, id):
@@ -148,6 +155,7 @@ def assetdetails(request, id):
     completion_Status = ComplianceStatus.COMPLETION_STATUS_CHOICES
     now = timezone.now()
     comment_form = CommentForm()
+    comments = Comment.objects.filter(asset_id=id, parent_comment__isnull=True)  # Fetch top-level comments only
     
     return render(request, 'assets/asset-details.html',{
         'asset':asset,
@@ -157,7 +165,8 @@ def assetdetails(request, id):
         'users': users,
         'completion_status_choices':completion_Status,
         'now':now,
-        'comment_form':comment_form
+        'comment_form':comment_form,
+        'comments':comments
         
     })
     
