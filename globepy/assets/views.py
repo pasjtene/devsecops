@@ -147,6 +147,7 @@ def assetdetails(request, id):
     form = ComplianceStatusForm()
     completion_Status = ComplianceStatus.COMPLETION_STATUS_CHOICES
     now = timezone.now()
+    comment_form = CommentForm()
     
     return render(request, 'assets/asset-details.html',{
         'asset':asset,
@@ -156,6 +157,7 @@ def assetdetails(request, id):
         'users': users,
         'completion_status_choices':completion_Status,
         'now':now,
+        'comment_form':comment_form
         
     })
     
