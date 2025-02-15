@@ -929,8 +929,8 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
     </div>
   </section>
 
- <!-- Bootstrap Modal for Updating Comments -->
- <div class="modal fade" id="updateCommentModal" tabindex="-1" aria-labelledby="updateCommentModalLabel" aria-hidden="true">
+<!-- Bootstrap Modal for Updating Comments -->
+<div class="modal fade" id="updateCommentModal" tabindex="-1" aria-labelledby="updateCommentModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
@@ -940,9 +940,9 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
           <div class="modal-body">
               <form id="update-comment-form" method="post">
                   {% csrf_token %}
-                  {{ comment_form.as_p }}
-                  <button type="submit" class="btn btn-success">Update</button>
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                  <textarea id="update-comment-text" class="form-control" rows="4"></textarea>
+                  <button type="submit" class="btn btn-success mt-3">Update</button>
+                  <button type="button" class="btn btn-secondary mt-3" data-bs-dismiss="modal">Cancel</button>
               </form>
           </div>
       </div>

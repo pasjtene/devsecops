@@ -51,14 +51,51 @@
             replyForm.toggle();
         });
 
+  
         // Handle update comment modal
         $('.update-btn').click(function(e) {
             e.preventDefault();
             var commentId = $(this).data('comment-id');
             var updateUrl = "{% url 'update_comment' 0 %}".replace("0", commentId);
-            $('#update-comment-form').attr('action', updateUrl);
-            $('#updateCommentModal').modal('show');
+            
+            // Fetch the current comment text
+            $.get(updateUrl, function(data) {
+                $('#update-comment-text').val(data.comment_text);
+                $('#update-comment-form').attr('action', updateUrl);
+                $('#updateCommentModal').modal('show');
+            });
         });
+
+
+            // Handle form submission via AJAX
+            $('#update-comment-form').submit(function(e) {
+                e.preventDefault();
+                var form = $(this);
+                var url = form.attr('action');
+                var commentText = $('#update-comment-text').val();
+
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: {
+                        'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+                        'comment_text': commentText
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            $('#updateCommentModal').modal('hide');
+                            location.reload(); // Reload the page to reflect changes
+                        } else {
+                            alert('Error updating comment.');
+                        }
+                    },
+                    error: function(response) {
+                        alert('Error updating comment.');
+                    }
+                });
+            });
+
+
 
 
     });
