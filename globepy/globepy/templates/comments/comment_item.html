@@ -4,6 +4,9 @@
         <p class="card-text">{{ comment.comment_text }}</p>
         <small class="text-muted">{{ comment.created_date }}</small>
         <button class="btn btn-sm btn-secondary reply-btn">Reply</button>
+        {% if request.user == comment.created_by or request.user.is_superuser %}
+        <a href="{% url 'delete_comment' assetid=asset.id comment_id=comment.id %}" class="btn btn-sm btn-danger">Delete</a>
+        {% endif %}
         <div class="reply-form" style="display: none; margin-top: 10px;">
             <form method="post" action="{% url 'add_reply' assetid=asset.id parent_id=comment.id %}">
                 {% csrf_token %}

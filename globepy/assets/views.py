@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.http import JsonResponse
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .models import Asset, RegulatoryFramework, ComplianceStatus
 from .forms import ComplianceStatusForm
@@ -211,5 +212,45 @@ def add_comment(request, assetid, parent_id=None):
         'comments':comments
         
     })
+    
+
+@login_required
+def delete_comment(request, assetid, comment_id):
+    comment= get_object_or_404(Comment, id=comment_id)
+    
+    # check if the user is the creator of the comment or a super user
+    if request.user == comment.created_by or request.user.is_superuser:
+        comment.delete()
+        messages.success(request, "commnent deleted successfully")
+    else:
+        messages.error(request, "You do not have permission to delete this comment")
+    
+    asset = Asset.objects.get(id=assetid)
+    users = User.objects.all()
+    regulatoryFrameworks = RegulatoryFramework.objects.all()
+    complianceItems = ComplianceStatus.objects.all()
+    form = ComplianceStatusForm()
+    completion_Status = ComplianceStatus.COMPLETION_STATUS_CHOICES
+    now = timezone.now()
+    comments = Comment.objects.filter(asset_id=assetid, parent_comment__isnull=True)  # Fetch top-level comments only
+    comment_form = CommentForm()
+    
+    return render(request, 'assets/asset-details.html',{
+        'asset':asset,
+        'regulatoryFrameworks':regulatoryFrameworks,
+        'complianceItems': complianceItems,
+        'form': form,
+        'users': users,
+        'completion_status_choices':completion_Status,
+        'now':now,
+        'comment_form':comment_form,
+        #'parent_comment':parent_comment,
+        'comments':comments
+        
+    })
+    
+        
+        
+        
         
     
