@@ -57,6 +57,9 @@
             e.preventDefault();
             var commentId = $(this).data('comment-id');
             var updateUrl = "{% url 'update_comment' 0 %}".replace("0", commentId);
+
+                $('#update-comment-form').attr('action', updateUrl);
+                $('#updateCommentModal').modal('show');
             
             // Fetch the current comment text
             $.get(updateUrl, function(data) {
