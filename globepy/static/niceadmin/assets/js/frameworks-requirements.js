@@ -60,6 +60,8 @@
 
                 $('#update-comment-form').attr('action', updateUrl);
                 $('#updateCommentModal').modal('show');
+
+                console.log("The url is ",updateUrl);
             
             // Fetch the current comment text
             $.get(updateUrl, function(data) {
