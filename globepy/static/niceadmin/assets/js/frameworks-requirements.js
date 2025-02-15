@@ -102,6 +102,7 @@
                             console.log(response)
                             //$('#update-comment-text').val(response.comment_text);
                             $(response.comment_id).text(response.comment_text);
+                            console.log("The test area",$(response.comment_id).text() );
                             //location.reload(); // Reload the page to reflect changes
                         } else {
                             alert('Error updating comment.');
