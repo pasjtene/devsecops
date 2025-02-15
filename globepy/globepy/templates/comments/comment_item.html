@@ -5,7 +5,7 @@
         <small class="text-muted">{{ comment.created_date }}</small>
 
             <!-- Reply, Update, and Delete Links -->
-            <a href="#" class="comment-link reply-btn">Reply</a>
+            <span href="#" class="comment-link reply-btn">Reply</span>
             {% if request.user == comment.created_by %}
                 <a href="#" class="comment-link update-btn" data-comment-id="{{ comment.id }}">Update</a>
             {% endif %}
