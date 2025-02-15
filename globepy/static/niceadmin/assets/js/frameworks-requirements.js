@@ -56,9 +56,11 @@
         $('.update-btn').click(function(e) {
             e.preventDefault();
             var commentId = $(this).data('comment-id');
-            var updateUrl = "{% url 'update_comment' 0 %}".replace("0", commentId);
+            var updateUrl = $(this).data('update-url');
+            //var updateUrl = "{% url 'update_comment' 0 %}".replace("0", commentId);
             var updtext = $(this).siblings('.card-text').text();
             $('#update-comment-text').val(updtext);
+
 
                 $('#update-comment-form').attr('action', updateUrl);
                 $('#updateCommentModal').modal('show');
