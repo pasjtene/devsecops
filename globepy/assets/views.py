@@ -259,7 +259,7 @@ def update_comment(request, comment_id):
         form = CommentForm(request.POST, instance=comment)
         if form.is_valid():
             form.save()
-            return JsonResponse({'success': True, 'comment_text': comment.comment_text})
+            return JsonResponse({'success': True, 'comment_text': comment.comment_text, 'comment_id': comment.id})
         else:
             return JsonResponse({'error': 'Invalid form data.'}, status=400)
     else:
