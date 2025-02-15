@@ -87,6 +87,7 @@
                 var form = $(this);
                 var url = form.attr('action');
                 var commentText = $('#update-comment-text').val();
+                $('#updateCommentModal').modal('hide');
 
                 $.ajax({
                     url: url,
@@ -97,7 +98,7 @@
                     },
                     success: function(response) {
                         if (response.success) {
-                            $('#updateCommentModal').modal('hide');
+                            
                             console.log(response)
                             //$('#update-comment-text').val(response.comment_text);
                             $(response.comment_id).text(response.comment_text);
