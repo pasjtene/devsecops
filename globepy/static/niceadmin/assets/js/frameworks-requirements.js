@@ -57,11 +57,14 @@
             e.preventDefault();
             var commentId = $(this).data('comment-id');
             var updateUrl = "{% url 'update_comment' 0 %}".replace("0", commentId);
+            var updtext = $(this).siblings('.card-text').text();
+            $('#update-comment-text').val(updtext);
 
                 $('#update-comment-form').attr('action', updateUrl);
                 $('#updateCommentModal').modal('show');
 
                 console.log("The url is ",updateUrl);
+                console.log("The text is ",updtext);
             
             // Fetch the current comment text
             $.get(updateUrl, function(data) {
