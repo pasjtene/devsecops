@@ -50,6 +50,17 @@
             var replyForm = $(this).siblings('.reply-form');
             replyForm.toggle();
         });
+
+        // Handle update comment modal
+        $('.update-btn').click(function(e) {
+            e.preventDefault();
+            var commentId = $(this).data('comment-id');
+            var updateUrl = "{% url 'update_comment' 0 %}".replace("0", commentId);
+            $('#update-comment-form').attr('action', updateUrl);
+            $('#updateCommentModal').modal('show');
+        });
+
+
     });
 
     }

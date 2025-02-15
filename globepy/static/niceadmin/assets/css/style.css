@@ -1231,3 +1231,15 @@ h6 {
   font-size: 13px;
   color: #012970;
 }
+
+
+/*--------------------------------------------------------------
+# Comment
+--------------------------------------------------------------*/
+.comment-link {
+  color: #f0f8ff;
+  text-decoration: none;
+}
+.comment-link:hover {
+  text-decoration: underline;
+}
