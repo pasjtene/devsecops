@@ -63,15 +63,19 @@
                 $('#update-comment-form').attr('action', updateUrl);
                 $('#updateCommentModal').modal('show');
 
-                console.log("The url is ",updateUrl);
-                console.log("The text is ",updtext);
             
             // Fetch the current comment text
-            $.get(updateUrl, function(data) {
+            /**
+             *  $.get(updateUrl, function(data) {
                 $('#update-comment-text').val(data.comment_text);
                 $('#update-comment-form').attr('action', updateUrl);
                 $('#updateCommentModal').modal('show');
             });
+
+             * 
+             */
+           
+
         });
 
 

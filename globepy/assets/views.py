@@ -248,8 +248,23 @@ def delete_comment(request, assetid, comment_id):
         'comments':comments
         
     })
+
+@login_required
+def update_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+    if request.user != comment.created_by:
+        return JsonResponse({'error': 'You do not have permission to update this comment.'}, status=403)
     
-        
+    if request.method == 'POST':
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            return JsonResponse({'success': True, 'comment_text': comment.comment_text})
+        else:
+            return JsonResponse({'error': 'Invalid form data.'}, status=400)
+    else:
+        form = CommentForm(instance=comment)
+    return JsonResponse({'comment_text': comment.comment_text}) 
         
         
         
