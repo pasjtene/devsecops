@@ -98,7 +98,8 @@
                     success: function(response) {
                         if (response.success) {
                             $('#updateCommentModal').modal('hide');
-                            location.reload(); // Reload the page to reflect changes
+                            console.log(response)
+                            //location.reload(); // Reload the page to reflect changes
                         } else {
                             alert('Error updating comment.');
                         }
