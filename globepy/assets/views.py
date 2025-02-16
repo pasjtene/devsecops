@@ -201,7 +201,7 @@ def add_comment(request, assetid, parent_id=None):
     now = timezone.now()
     comments = Comment.objects.filter(asset_id=assetid, parent_comment__isnull=True)  # Fetch top-level comments only
     
-    return redirect('asset-details',asset_id=assetid)
+    return redirect('asset-details',id=assetid)
     return render(request, 'assets/asset-details.html',{
         'asset':asset,
         'regulatoryFrameworks':regulatoryFrameworks,
