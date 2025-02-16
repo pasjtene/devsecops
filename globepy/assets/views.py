@@ -221,7 +221,7 @@ def delete_comment(request, comment_id):
     if request.user == comment.created_by or request.user.is_superuser:
         comment.delete()
         messages.success(request, "commnent deleted successfully")
-        return JsonResponse({'success': True, 'comment_text': comment.comment_text, 'comment_id': comment.id})
+        return JsonResponse({'success': True, 'comment_text': comment.comment_text, 'comment_id': comment_id})
     else:
         messages.error(request, "You do not have permission to delete this comment")
         return JsonResponse({'error': 'Invalid form data.'}, status=400)
