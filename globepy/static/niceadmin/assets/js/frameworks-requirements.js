@@ -132,7 +132,7 @@
                     success: function(response) {
                         if (response.success) {
                             
-                            $('#'+response.comment_id).text(response.comment_text);
+                            $('#text'+response.comment_id).text(response.comment_text);
                            
                         } else {
                             alert('Error updating comment.');
