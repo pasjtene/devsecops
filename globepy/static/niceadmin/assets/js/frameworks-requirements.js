@@ -100,7 +100,9 @@
                     if (response.success) {
                         
                         $('#'+response.comment_id).remove();
-                        console.log(response);
+                        $('.ajax-alert').show()
+                        $('.alert-dismissible').show()
+                        $('#ajax-alert-message').text("Comment deleted successfuly ");
                         
                        
                     } else {
