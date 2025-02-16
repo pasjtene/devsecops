@@ -133,6 +133,8 @@
                         if (response.success) {
                             
                             $('#text'+response.comment_id).text(response.comment_text);
+                            $('.ajax-alert').show()
+                            $('#ajax-alert-message').text("Comment updated successfuly ");
                            
                         } else {
                             alert('Error updating comment.');

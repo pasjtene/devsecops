@@ -94,6 +94,27 @@
  </div>
  {% endif %}
 
+ <!-- Ajax Alert for error messages -->
+ 
+ <div class="alert-container ajax-alert" style="display:none">
+   
+   <div
+     class="alert alert-success alert-dismissible fade show"
+     role="alert"
+   >
+     
+     <span id="ajax-alert-message"></span>
+     <button
+       type="button"
+       class="btn-close"
+       data-bs-dismiss="alert"
+       aria-label="Close"
+     ></button>
+   </div>
+   
+ </div>
+
+
 
     {% include 'layout/app-header.html' %}
     <hr />
