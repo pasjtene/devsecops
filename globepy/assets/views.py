@@ -32,6 +32,7 @@ def dashboardhome(request):
     response_data["message"] = "Hello world"
     return render(request, "dashboard/index.html", {"vars": response_data, "name":"Pascal JT"})
 
+@login_required
 def list_all_assets(request):
     assets = Asset.objects.all()
     total_price = sum(asset.price * asset.quantity for asset in assets) #cal culate the total price of all assets
@@ -44,7 +45,7 @@ def list_all_assets(request):
         'total_assets':total_assets,
         'total_unique_assets':total_unique_assets
         })
-
+@login_required
 def create_compliance_requirement(request,frameworkid, assetid, requirementid):
      
      if request.method == 'POST':
@@ -101,7 +102,8 @@ def create_compliance_requirement(request,frameworkid, assetid, requirementid):
         'comments':comments
     })
     
- 
+
+@login_required
 def update_compliance_requirement(request, id):
     #asset = Asset.objects.get(id=id)
     
@@ -145,7 +147,8 @@ def update_compliance_requirement(request, id):
         'comment_form':comment_form,
         'comments':comments
     })
-    
+
+@login_required  
 def assetdetails(request, id):
     asset = Asset.objects.get(id=id)
     users = User.objects.all()
@@ -169,7 +172,8 @@ def assetdetails(request, id):
         'comments':comments
         
     })
-    
+ 
+@login_required    
 def add_comment(request, assetid, parent_id=None):
     parent_comment = None
     asset = Asset.objects.get(id=assetid)
