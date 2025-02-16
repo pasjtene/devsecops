@@ -433,7 +433,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                   <input style="max-width:450px;" size="32" maxlength="50"
                                     type="text"
                                     name="description"
-                                    id="description1" value=""
+                                     value=""
                                   />
                                 </div>
   
@@ -458,7 +458,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                     <input
                                     type="datetime-local" name="implementation_start_date"
                                       class="span4"
-                                      id="isdate"
+                                      
                                       value=""
                                       required
                                     />
@@ -491,7 +491,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                       <select style="max-width:150px;"
                                       
                                         name="owner_id"
-                                        id="ownerID"
+                                        
                                       >
                                       
                                         {% for user in users.all %}
@@ -509,7 +509,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                       >Assigned To</label
                                     >
                                     
-                                      <select style="max-width:150px;" name="assigned_to_id" id="sownerID">
+                                      <select style="max-width:150px;" name="assigned_to_id" >
                                         {% for assigneduser in users.all %}
                                         
                                         <span>
@@ -547,7 +547,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                   <input 
                                     type="text" name="implementation_percent"
                                     class="col-xs-2" maxlength="3" size="4"
-                                    id="ipercent" value="{{ item.implementation_percent }}"
+                                     value="{{ item.implementation_percent }}"
                                     required
                                   />
                                   
@@ -632,7 +632,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                   <input style="max-width:450px; display:none" size="32" maxlength="50" class="editable"
                                     type="text"
                                     name="description"
-                                    id="description1" value="{{ item.description }}"
+                                    value="{{ item.description }}"
                                   />
                                 </div>
   
@@ -668,7 +668,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                     <input style="display:none" class="editable"
                                     type="datetime-local" name="implementation_start_date"
                                       class="span4"
-                                      id="isdate"
+                                      
                                       value="{{item.implementation_start_date|date:'Y-m-d\TH:i'}}"
                                       required
                                     />
@@ -720,7 +720,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                       <select style="max-width:150px; display:none" class="editable"
                                       
                                         name="owner_id"
-                                        id="ownerID"
+                                        
                                       >
                                       
                                         {% for user in users.all %}
@@ -741,7 +741,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                       <span class="non-editable">{{item.assigned_to.username}}</span>
                                     
                                     <span class="editable" style="display:none">
-                                      <select style="max-width:150px;" name="assigned_to_id" id="sownerID">
+                                      <select style="max-width:150px;" name="assigned_to_id" >
                                         {% for assigneduser in users.all %}
                                         
                                         <span>
@@ -782,7 +782,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                   <input style="display:none"
                                     type="text" name="implementation_percent" 
                                     class="col-xs-2 editable" maxlength="3" size="4"
-                                    id="ipercent" value="{{ item.implementation_percent }}"
+                                    value="{{ item.implementation_percent }}"
                                     required
                                   />
                                   

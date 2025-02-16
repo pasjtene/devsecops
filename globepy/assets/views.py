@@ -192,29 +192,8 @@ def add_comment(request, assetid, parent_id=None):
     else:
         comment_form = CommentForm()
         
-    
-    users = User.objects.all()
-    regulatoryFrameworks = RegulatoryFramework.objects.all()
-    complianceItems = ComplianceStatus.objects.all()
-    form = ComplianceStatusForm()
-    completion_Status = ComplianceStatus.COMPLETION_STATUS_CHOICES
-    now = timezone.now()
-    comments = Comment.objects.filter(asset_id=assetid, parent_comment__isnull=True)  # Fetch top-level comments only
-    
     return redirect('asset-details',id=assetid)
-    return render(request, 'assets/asset-details.html',{
-        'asset':asset,
-        'regulatoryFrameworks':regulatoryFrameworks,
-        'complianceItems': complianceItems,
-        'form': form,
-        'users': users,
-        'completion_status_choices':completion_Status,
-        'now':now,
-        'comment_form':comment_form,
-        'parent_comment':parent_comment,
-        'comments':comments
-        
-    })
+    
     
 
 @login_required
