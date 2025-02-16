@@ -530,7 +530,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                     >Completion status ({{ item.completion_Status }})</label
                                   >
   
-                                  <select id="completion_Status" name="completion_status" required>
+                                  <select  name="completion_status" required>
                                     {% for value, label in completion_status_choices %}
                                     <option {% if value == item.completion_Status %} selected{% endif %} value="{{ value }}">{{ label }}</option>
                                     {% endfor %}
@@ -764,7 +764,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                     ><strong>Completion status:</strong> </label
                                   > <span class="non-editable">{{ item.completion_Status }}</span>
   
-                                  <select id="completion_Status" name="completion_status" required class="editable" style="display:none">
+                                  <select name="completion_status" required class="editable" style="display:none">
                                     {% for value, label in completion_status_choices %}
                                     <option {% if value == item.completion_Status %} selected{% endif %} value="{{ value }}">{{ label }}</option>
                                     {% endfor %}
@@ -974,11 +974,15 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
     <h1>Comments</h1>
     <button id="add-comment-btn" class="btn btn-primary mb-3">Add Comment</button>
     <div id="comment-form" style="display: none;">
+       
         <form method="post" action="{% url 'add_comment' assetid=asset.id %}">
-            {% csrf_token %}
-            {{ comment_form.as_p }}
-            <button type="submit" class="btn btn-success">Submit</button>
-        </form>
+          {% csrf_token %}
+          <textarea name="comment-text" placeholder="Your repply comment.." required class="form-control" rows="4"></textarea>
+          <button type="submit" class="btn btn-success mt-3">Submit</button>
+          
+      </form>
+
+
     </div>
     <div class="mt-4">
         {% for comment in comments %}
