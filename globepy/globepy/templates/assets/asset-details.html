@@ -472,7 +472,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                   <input
                                     type="datetime-local" name="expected_completion_date"
                                     class="span4"
-                                    id="validationCustom022"
+                                    
                                     value=""
                                     required
                                   />
@@ -682,7 +682,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                   
   
                                   <label
-                                  for="validationCustom022"
+                                  for="validationCustom022{{item.id}}"
                                   class="form-label"
                                   ><strong>Expected Completion date: </strong>
 
@@ -698,7 +698,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                                 <input
                                   type="datetime-local" name="expected_completion_date"
                                   class="span4 editable" style="display:none"
-                                  id="validationCustom022"
+                                  id="validationCustom022{{item.id}}"
                                   value="{{ item.expected_completion_date|date:'Y-m-d\TH:i' }}"
                                   required
                                 />
