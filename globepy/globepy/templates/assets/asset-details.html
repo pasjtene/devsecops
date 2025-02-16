@@ -977,7 +977,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
        
         <form method="post" action="{% url 'add_comment' assetid=asset.id %}">
           {% csrf_token %}
-          <textarea name="comment-text" placeholder="Your repply comment.." required class="form-control" rows="4"></textarea>
+          <textarea name="comment_text" placeholder="Your repply comment.." required class="form-control" rows="4"></textarea>
           <button type="submit" class="btn btn-success mt-3">Submit</button>
           
       </form>
