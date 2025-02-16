@@ -86,7 +86,7 @@
             e.preventDefault();
             var form = $(this);
             var url = form.attr('action');
-            var commentText = $('#update-comment-text').val();
+            var commentText = $('#delete-comment-text').val();
             $('#deleteCommentModal').modal('hide');
 
             $.ajax({
@@ -99,7 +99,8 @@
                 success: function(response) {
                     if (response.success) {
                         
-                        $('#'+response.comment_id).remove();
+                        $('#'+response.comment_id).hide();
+                        console.log(response);
                         
                        
                     } else {
