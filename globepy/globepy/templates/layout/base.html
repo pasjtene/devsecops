@@ -107,7 +107,8 @@
      <button
        type="button"
        class="btn-close"
-       data-bs-dismiss="alert"
+       
+       onclick="$(this).closest('.alert').hide();"
        aria-label="Close"
      ></button>
    </div>
