@@ -99,7 +99,7 @@
                 success: function(response) {
                     if (response.success) {
                         
-                        $('#'+response.comment_id).hide();
+                        $('#'+response.comment_id).remove();
                         console.log(response);
                         
                        
