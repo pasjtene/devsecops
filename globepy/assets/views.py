@@ -191,6 +191,7 @@ def add_comment(request, assetid, parent_id=None):
             comment.save()
     else:
         comment_form = CommentForm()
+        messages.error(request, "The form is not valid")
         
     return redirect('asset-details',id=assetid)
     
