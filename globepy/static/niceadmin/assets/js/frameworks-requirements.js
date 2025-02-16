@@ -134,6 +134,7 @@
                             
                             $('#text'+response.comment_id).text(response.comment_text);
                             $('.ajax-alert').show()
+                            $('.alert-dismissable').show()
                             $('#ajax-alert-message').text("Comment updated successfuly ");
                            
                         } else {
