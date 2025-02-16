@@ -949,6 +949,27 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
   </div>
 </div>
 
+<!-- Bootstrap Modal for Deleting a Comments -->
+<div class="modal fade" id="deleteCommentModal" tabindex="-1" aria-labelledby="updateCommentModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="updateCommentModalLabel">Delete Comment ?</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form id="delete-comment-form" method="post">
+                  {% csrf_token %}
+                  <textarea id="delete-comment-text" class="form-control" rows="4"></textarea>
+                  <button type="submit" class="btn btn-success mt-3">Delete</button>
+                  <button type="button" class="btn btn-secondary mt-3" data-bs-dismiss="modal">Cancel</button>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+
+
   <div class="container mt-5">
     <h1>Comments</h1>
     <button id="add-comment-btn" class="btn btn-primary mb-3">Add Comment</button>

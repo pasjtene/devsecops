@@ -10,7 +10,7 @@ urlpatterns = [
     path('create-compliance-requirement/<int:frameworkid>/<int:assetid>/<int:requirementid>', views.create_compliance_requirement, name='create-compliance-requirement' ),
     path('comments/add/<int:assetid>/', views.add_comment, name='add_comment'),
     path('comments/add/<int:assetid>/<int:parent_id>/', views.add_comment, name='add_reply'),
-    path('comments/delete/<int:assetid>/<int:comment_id>/', views.delete_comment, name='delete_comment'),
+    path('comments/delete/<int:comment_id>/', views.delete_comment, name='delete_comment'),
     path('comments/update/<int:comment_id>/', views.update_comment, name='update_comment')
     
 ]

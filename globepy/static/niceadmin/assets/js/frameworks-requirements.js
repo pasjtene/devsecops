@@ -61,24 +61,27 @@
             var updtext = $(this).siblings('.card-text').text();
             $('#update-comment-text').val(updtext);
 
-
                 $('#update-comment-form').attr('action', updateUrl);
                 $('#updateCommentModal').modal('show');
-
-            
-            // Fetch the current comment text
-            /**
-             *  $.get(updateUrl, function(data) {
-                $('#update-comment-text').val(data.comment_text);
-                $('#update-comment-form').attr('action', updateUrl);
-                $('#updateCommentModal').modal('show');
-            });
-
-             * 
-             */
-           
 
         });
+
+         // Handle delete comment modal
+         $('.delete-btn').click(function(e) {
+            e.preventDefault();
+            var commentId = $(this).data('comment-id');
+            var deleteUrl = $(this).data('delete-url');
+            //var updateUrl = "{% url 'update_comment' 0 %}".replace("0", commentId);
+            var deltext = $(this).siblings('.card-text').text();
+            $('#delete-comment-text').val(deltext);
+
+                $('#delete-comment-form').attr('action', deleteUrl);
+                $('#deleteCommentModal').modal('show');
+
+        });
+
+
+        
 
 
             // Handle form submission via AJAX
@@ -99,11 +102,8 @@
                     success: function(response) {
                         if (response.success) {
                             
-                            console.log(response)
-                            //$('#update-comment-text').val(response.comment_text);
                             $('#'+response.comment_id).text(response.comment_text);
-                            console.log("The test area",$('#'+response.comment_id).text());
-                            //location.reload(); // Reload the page to reflect changes
+                           
                         } else {
                             alert('Error updating comment.');
                         }
@@ -113,9 +113,6 @@
                     }
                 });
             });
-
-
-
 
     });
 
