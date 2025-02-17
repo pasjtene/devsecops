@@ -394,7 +394,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                         <input class="form-check-input" type="checkbox" id="changesMade" checked />
                         <span class="requirement-description-head11">
                           {{requirement.short_description}}
-                          <span >
+                        </span >
                             <span class="icon create-compliance-item">
                               <i class="bx bxs-arrow-from-left"></i>
                             </span>
@@ -777,41 +777,37 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
   
   
                                 <div class="controls controls-row row-fluid">
-                                  <label
-                                    for="validationCustom02{{item.id}}"
-                                    class="form-label"
-                                    ><strong>Actual completion date:</strong> 
-                                    <span class="non-editable"> 
-                                      {% if item.actual_implementation_date <= now %}
-                                      {{item.actual_implementation_date}}: {{item.actual_implementation_date|timesince}} ago
-                                      {% else %}
-                                      {{item.actual_implementation_date}}: in {{item.actual_implementation_date|timeuntil}}
-                                     {% endif %}
-                                    </span>
-                                      </label
-                                  >
-                                  <input style="display:none"
-                                    type="datetime-local" name="actual_implementation_date"
-                                    class="span4 editable"
-                                    
-                                    value="{{ item.actual_implementation_date|date:'Y-m-d\TH:i' }}"
-                                    required
-                                  />
+                                      <label
+                                        for="validationCustom02{{item.id}}"
+                                        class="form-label"
+                                        ><strong>Actual completion date:</strong> 
+                                        <span class="non-editable"> 
+                                          {% if item.actual_implementation_date <= now %}
+                                          {{item.actual_implementation_date}}: {{item.actual_implementation_date|timesince}} ago
+                                          {% else %}
+                                          {{item.actual_implementation_date}}: in {{item.actual_implementation_date|timeuntil}}
+                                        {% endif %}
+                                        </span>
+                                          </label
+                                      >
+                                      <input style="display:none"
+                                        type="datetime-local" name="actual_implementation_date"
+                                        class="span4 editable"
+                                        
+                                        value="{{ item.actual_implementation_date|date:'Y-m-d\TH:i' }}"
+                                        required
+                                      />
                                   
                                 </div>
   
   
-                                <div class="control-group editable" style="display: none">
-                                  <button type="submit" class="btn btn-primary">
-                                    Submit
-                                  </button>
-                                 </div>
+                                    <div class="control-group editable" style="display: none">
+                                      <button type="submit" class="btn btn-primary">
+                                        Submit
+                                      </button>
+                                    </div>
      
-                                </div>
-                              
-                          
-                             
-                                
+                               
                               </form>
                               <!-- End Multi Columns Form -->
                             </div>
@@ -823,13 +819,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                           {% endif %} 
                           
                           {%endfor %}
-
-  <!---  
- </label>
-   -->
-                       
-
-
+                           <!-- End Compliance Frameworks Management -->
                       </div>
 
                       {% endfor %}
@@ -862,7 +852,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                       <input class="form-check-input" type="checkbox" id="changesMade" checked />
                       <span class="requirement-description-head11">
                         {{requirement.short_description}}
-                      <span>
+                      </span>
                       
                   
                           <span class="icon create-compliance-item">
