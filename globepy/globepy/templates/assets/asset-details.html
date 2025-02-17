@@ -392,7 +392,15 @@
                     {{sframework.title}} implementation requirements
                   </label>
 
-                  {% include 'assets/security-management-requirement.html' %}
+                  <div class="col-md-8 col-lg-9" class="requirement-description12">
+                    {%for requirement in sframework.security_management_requirements.all %}
+                    
+                    {% include 'assets/security-management-requirement.html' %}
+                   
+                    {% endfor %}
+                </div> 
+
+                  
                  
             </div>
           {% endfor %}  
