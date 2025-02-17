@@ -383,7 +383,7 @@ class AssetAdmin(admin.ModelAdmin):
     list_display = ('name', 'category', 'price', 'impact_level','risk_status')
     list_filter = ('category',)
     search_fields = ('name', 'description')
-    filter_horizontal = ('regulatoryFrameworks','risks',)
+    filter_horizontal = ('regulatoryFrameworks','risks','SecurityManagementFrameworks')
 
 
 @admin.register(ComplianceStatus)
