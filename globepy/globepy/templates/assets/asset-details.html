@@ -386,7 +386,17 @@
 
               <div class="tab-pane fade pt-3" id="profile-change-password">
                 <!-- Security Management Frameworks-->
-                {% include 'assets/security-management-section.html' %}
+                {% for sframework in asset.SecurityManagementFrameworks.all %}
+                <div class="row mb-3">
+                  <label for="fullName" class="col-md-4 col-lg-3 col-form-label">
+                    {{sframework.title}} implementation requirements
+                  </label>
+
+                  {% include 'assets/security-management-requirement.html' %}
+                 
+            </div>
+          {% endfor %}  
+                
               </div>  
                
               <!-- End Change Password Form -->
