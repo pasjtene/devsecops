@@ -4,65 +4,17 @@
                     {{sframework.title}} implementation requirements
                   </label>
 
-                  <div class="col-md-8 col-lg-9" class="requirement-description12">
-                    {%for requirement in sframework.security_management_requirements.all %}
-                    <div class="form-check" >
-                      <input class="form-check-input" type="checkbox" id="changesMade" checked />
-                      <span class="requirement-description-head11">
-                        {{requirement.short_description}}
-                      
-                          <span class="icon create-compliance-item">
-                            <i class="bx bxs-arrow-from-left"></i> {{ requirement.parent_requirement_id }}
-                          </span>
 
-                           <!-- Create compliance requirement -->
-
-                           <div style="display: none; border: 2px solid #F5F5F5;" class="requirement-details">
-                         
-                            <h5 class="card-title">
-                              Create implementation Status for this requirement <br/>
-                            </h5>
-
-                            <!-- Multi Columns Form -->
-                            <form action="{% url 'create-compliance-requirement' method="post" 
-                              frameworkid=sframework.id assetid=asset.id requirementid=requirement.id  %}"
-                                class="row g-3 needs-validation container-fluid" novalidate >
-                          
-                            
-                                     {% csrf_token %}
-                                    <div >
-                                      <label for="description" class="form-label"
-                                        ><strong>Description:</strong></label
-                                      >
-                                      <input style="max-width:450px;" size="32" maxlength="50"
-                                        type="text"
-                                        name="description"
-                                        value=""
-                                      />
-                                    </div>
-
-                                    <div class="mb-8">
-                                      <label
-                                        for="exampleFormControlTextarea1"
-                                        class="form-label"
-                                        ><strong>Details of actions taken:</strong></label
-                                      >
-                                      <textarea class="form-control editable" name="details" rows="2">
-                                      {{item.details}}
-                                      </textarea>
-                                    </div>
-
-                                    <div class="control-group">
-                                      <button type="submit" class="btn btn-primary">
-                                        Submit
-                                      </button>
-        
-                                    </div>
-                              </form>                        
-                            </div>
-                          </span>
-                       </div>
-                    {% endfor %}
-              </div> 
+                 
             </div>
 {% endfor %}  
+
+
+
+{% if requirement.sub_requirements.all %}
+<div class="mt-3 ms-4">
+    {% for sub_requirement in requirement.sub_requirements.all %}
+        {% include 'assets/security-management-requirement.html' with requirement=sub_requirement %}
+    {% endfor %}
+</div>
+{% endif %}
