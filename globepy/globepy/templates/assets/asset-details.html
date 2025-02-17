@@ -391,19 +391,19 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                     <div class="col-md-8 col-lg-9" class="requirement-description12">
                       {%for requirement in framework.securityRequirements.all %}
                       <div class="form-check" >
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          id="changesMade"
-                          checked
-                        />
-
+                        <input class="form-check-input" type="checkbox" id="changesMade" checked />
                         <span class="requirement-description-head11">
                           {{requirement.short_description}}
                           <span >
                             <span class="icon create-compliance-item">
                               <i class="bx bxs-arrow-from-left"></i>
                             </span>
+                        
+                        
+                        
+                          
+
+                      
                             
 
                             <!----- Create compliance requirement -->
@@ -859,28 +859,19 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                 <!-- Security Management Frameworks-->
                 {% for sframework in asset.SecurityManagementFrameworks.all %}
                 <div class="row mb-3">
-                  <label for="securityManagement" class="col-md-4 col-lg-3 col-form-label">
+                  <label for="fullName" class="col-md-4 col-lg-3 col-form-label">
                     {{sframework.title}} implementation requirements
                   </label>
 
-
-
-
-                <div> 
-                  
                   <div class="col-md-8 col-lg-9" class="requirement-description12">
                     {%for requirement in sframework.security_management_requirements.all %}
                     <div class="form-check" >
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="changesMade"
-                        checked
-                      />
-
+                      <input class="form-check-input" type="checkbox" id="changesMade" checked />
                       <span class="requirement-description-head11">
                         {{requirement.short_description}}
                       <span>
+                      
+                  
                           <span class="icon create-compliance-item">
                             <i class="bx bxs-arrow-from-left"></i>
                           </span>
@@ -934,6 +925,11 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                         </div>
                       </div>
                       {% endfor %}
+
+
+                </div> 
+                  
+                 
 
                {% endfor %}   
                     
