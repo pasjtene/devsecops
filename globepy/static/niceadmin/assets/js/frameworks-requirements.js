@@ -103,8 +103,7 @@
                         $('.ajax-alert').show()
                         $('.alert-dismissible').show()
                         $('#ajax-alert-message').text("Comment deleted successfuly ");
-                        
-                       
+                      
                     } else {
                         alert('Error updating comment.');
                     }

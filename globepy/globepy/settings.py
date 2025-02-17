@@ -57,7 +57,8 @@ INSTALLED_APPS = [
     'dashboard',
     'products',
     'assets',
-    'comments'
+    'comments',
+    'security'
 ]
 
 MIDDLEWARE = [

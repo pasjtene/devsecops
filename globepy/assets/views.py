@@ -204,10 +204,9 @@ def delete_comment(request, comment_id):
     # check if the user is the creator of the comment or a super user
     if request.user == comment.created_by or request.user.is_superuser:
         comment.delete()
-        messages.success(request, "commnent deleted successfully")
-        return JsonResponse({'success': True, 'comment_text': comment.comment_text, 'comment_id': comment_id})
-    else:
-        messages.error(request, "You do not have permission to delete this comment")
+        
+        return JsonResponse({'success': True, 'comment_text': comment.comment_text, 'comment_id': comment_id, 'message':"commnent deleted successfully"})
+    else:       
         return JsonResponse({'error': 'Invalid form data.'}, status=400)
     
 
@@ -221,7 +220,7 @@ def update_comment(request, comment_id):
         form = CommentForm(request.POST, instance=comment)
         if form.is_valid():
             form.save()
-            return JsonResponse({'success': True, 'comment_text': comment.comment_text, 'comment_id': comment.id})
+            return JsonResponse({'success': True, 'comment_text': comment.comment_text, 'comment_id': comment.id,'message':"commnent updated successfully"})
         else:
             return JsonResponse({'error': 'Invalid form data.'}, status=400)
     else:

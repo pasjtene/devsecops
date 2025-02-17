@@ -960,7 +960,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
           <div class="modal-body">
               <form id="delete-comment-form" method="post">
                   {% csrf_token %}
-                  <textarea id="delete-comment-text" class="form-control" rows="4"></textarea>
+                  <textarea id="delete-comment-text" readonly class="form-control" rows="4"></textarea>
                   <button type="submit" class="btn btn-success mt-3">Delete</button>
                   <button type="button" class="btn btn-secondary mt-3" data-bs-dismiss="modal">Cancel</button>
               </form>
