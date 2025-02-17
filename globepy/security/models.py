@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib import admin
 from django.utils import timezone
 from django.contrib.auth.models import User, auth
-from assets.models import Asset
 from django.utils.translation import gettext_lazy as _
 
 class SecurityManagementRequirement(models.Model):
