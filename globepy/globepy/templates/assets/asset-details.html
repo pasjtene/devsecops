@@ -379,7 +379,7 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
               </div>
 
               <div class="tab-pane fade pt-3" id="profile-settings">
-                <!-- Settings Form -->
+                <!-- Compliance Frameworks Management -->
 
                 
                   {% for framework in asset.regulatoryFrameworks.all %}
@@ -863,7 +863,18 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
               </div>
 
               <div class="tab-pane fade pt-3" id="profile-change-password">
-                <!-- Change Password Form -->
+                <!-- Security Management Frameworks-->
+                {% for sframework in asset.SecurityManagementFrameworks.all %}
+                <div class="row mb-3">
+                  <label for="securityManagement" class="col-md-4 col-lg-3 col-form-label">
+                    {{sframework.title}} Security requirements
+                  </label>
+                <div>   
+                  
+                    
+                  
+
+
                 <form>
                   <div class="row mb-3">
                     <label
