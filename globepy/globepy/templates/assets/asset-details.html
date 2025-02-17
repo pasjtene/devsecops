@@ -384,13 +384,10 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                 
                   {% for framework in asset.regulatoryFrameworks.all %}
                   <div class="row mb-3">
-                    <label
-                      for="fullName"
-                      class="col-md-4 col-lg-3 col-form-label"
-                    >
-                      {{framework.title}} Security requirements</label
-                    >
-
+                    <label for="fullName" class="col-md-4 col-lg-3 col-form-label">
+                      {{framework.title}} Security requirements
+                    </label>
+                    
                     <div class="col-md-8 col-lg-9" class="requirement-description12">
                       {%for requirement in framework.securityRequirements.all %}
                       <div class="form-check" >
@@ -586,8 +583,6 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
 
                             <!--- end create compliance requirement -->
 
-
-                            
                           </span>
                          </span>
 
@@ -867,6 +862,10 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
                   <label for="securityManagement" class="col-md-4 col-lg-3 col-form-label">
                     {{sframework.title}} implementation requirements
                   </label>
+
+
+
+
                 <div> 
                   
                   <div class="col-md-8 col-lg-9" class="requirement-description12">
@@ -881,61 +880,64 @@ Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Temp
 
                       <span class="requirement-description-head11">
                         {{requirement.short_description}}
-                      </span>
+                      <span>
                           <span class="icon create-compliance-item">
                             <i class="bx bxs-arrow-from-left"></i>
                           </span>
+
+                           <!----- Create compliance requirement -->
+
+                           <div style="display: none; border: 2px solid #F5F5F5;" class="requirement-details">
+                         
+                            <h5 class="card-title">
+                              Create Compliance Status for this requirement <br/>
+                          
+                            </h5>
+
+                            <!-- Multi Columns Form -->
+                            <form action="{% url 'create-compliance-requirement' frameworkid=framework.id assetid=asset.id requirementid=requirement.id  %}"
+                              method="post"
+                              class="row g-3 needs-validation container-fluid"
+                              novalidate
+                            >
+                              {% csrf_token %}
+                              <div >
+                                <label for="description" class="form-label"
+                                  ><strong>Description:</strong></label
+                                >
+                                <input style="max-width:450px;" size="32" maxlength="50"
+                                  type="text"
+                                  name="description"
+                                   value=""
+                                />
+                              </div>
+
+                              <div class="mb-8">
+                                <label
+                                  for="exampleFormControlTextarea1"
+                                  class="form-label"
+                                  ><strong>Details of actions taken:</strong></label
+                                >
+                                <textarea class="form-control editable" name="details"
+                                rows="2"
+                              >{{item.details}}</textarea>
+                                
+                                  
+                              </div>
+                            </form>
+
+                          </div>
+
+
+
+
                         </div>
                       </div>
                       {% endfor %}
 
-
-
                {% endfor %}   
                     
-                  
-
-
-                <form>
                  
-                  <div class="row mb-3">
-                    <label
-                      for="newPassword"
-                      class="col-md-4 col-lg-3 col-form-label"
-                      >New Password</label
-                    >
-                    <div class="col-md-8 col-lg-9">
-                      <input
-                        name="newpassword"
-                        type="password"
-                        class="form-control"
-                        id="newPassword"
-                      />
-                    </div>
-                  </div>
-
-                  <div class="row mb-3">
-                    <label
-                      for="renewPassword"
-                      class="col-md-4 col-lg-3 col-form-label"
-                      >Re-enter New Password</label
-                    >
-                    <div class="col-md-8 col-lg-9">
-                      <input
-                        name="renewpassword"
-                        type="password"
-                        class="form-control"
-                        id="renewPassword"
-                      />
-                    </div>
-                  </div>
-
-                  <div class="text-center">
-                    <button type="submit" class="btn btn-primary">
-                      Change Password
-                    </button>
-                  </div>
-                </form>
                 <!-- End Change Password Form -->
               </div>
             </div>
