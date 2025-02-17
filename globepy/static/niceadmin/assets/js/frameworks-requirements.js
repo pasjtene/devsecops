@@ -24,6 +24,7 @@
         $('.create-compliance-item').click(function(e){
           
             $(this).closest('.requirement-description-head11').find(".requirement-details").slideToggle( "slow" );
+            console.log("Create compliance item clicked");
             
         });
 
