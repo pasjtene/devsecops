@@ -404,7 +404,9 @@
                         {% for sub_requirement in requirement.sub_requirements.all %}
 
                         {% if sub_requirement.parent_requirement_id == requirement.id %}
+                        <div class="mt-3 ms-4" style="margin-left: 20px;">
                             {% include 'assets/security-management-requirement.html' with requirement=sub_requirement %}
+                        </div>
                         {% endif %}
 
                         {% endfor %}
