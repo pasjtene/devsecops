@@ -1,0 +1,296 @@
+
+              <div class="tab-pane fade pt-3" id="profile-settings" style="border: 2px solid green">
+                <!-- Compliance Frameworks Management -->
+
+                  {% for framework in asset.regulatoryFrameworks.all %}
+                  <div class="row mb-3">
+                    <label for="fullName" class="col-md-4 col-lg-3 col-form-label">
+                      {{framework.title}} Security requirements
+                    </label>
+                    
+                    <div class="col-md-8 col-lg-9" class="requirement-description12">
+                      {%for requirement in framework.securityRequirements.all %}
+                      <div class="form-check" >
+                        <input class="form-check-input" type="checkbox" id="changesMade" checked />
+                        <span class="requirement-description-head11">
+                          {{requirement.short_description}}
+                        
+                            <span class="icon create-compliance-item">
+                              <i class="bx bxs-arrow-from-left"></i>
+                            </span>
+                        
+                      
+                            <!----- Create compliance requirement -->
+
+                            <div style="display: none; border: 2px solid #F5F5F5;" class="requirement-details">
+                         
+                              <h5 class="card-title">
+                                Create Compliance Status for this requirement <br/>
+                            
+                              </h5>
+  
+                              <!-- Multi Columns Form -->
+                              {% include 'assets/create-compliance-req-form.html'%}
+                             
+                              <!-- End Multi Columns Form -->
+                            </div>
+
+                            <!--- end create compliance requirement -->
+
+                          </span>
+                         </span>
+
+                          <br />
+                          {% for item in complianceItems.all %}
+
+                          {% if item.requirement_id == requirement.id and item.asset_id == asset.id and item.framework_id == framework.id  %}
+
+                          <div class="requirement-description" >
+                           
+                            <div class="requirement-description-head" style="border-top: 5px solid #FFFFFF; background-color: #F0F8FF" >
+                              
+                              {{item.description}} <br>
+                              Completion status: ({{ item.completion_Status }})
+                            </div>
+
+                            <div style="display: none; border: 2px solid #F5F5F5;" class="requirement-details">
+                           
+                              <h5 class="card-title">
+                                Update Compliance Status for this requirement
+                                <span class="icon edit-compliance-status">
+                                  <i class="bx bxs-edit-alt"></i>
+                                
+                                </span>
+                              </h5>
+  
+                              <!-- Multi Columns Form -->
+                              <form action="{% url 'update-compliance-requirement'  item.id %}"
+                                method="post"
+                                class="row g-3 needs-validation container-fluid"
+                                novalidate
+                              >
+                                {% csrf_token %}
+                                <div >
+                                  <label for="description" class="form-label"
+                                    ><strong>Description:</strong> <span class="non-editable">{{ item.description }}</span> </label
+                                  >
+                                  <input style="max-width:450px; display:none" size="32" maxlength="50" class="editable"
+                                    type="text"
+                                    name="description"
+                                    value="{{ item.description }}"
+                                  />
+                                </div>
+  
+                                <div class="mb-8">
+                                  <label
+                                    for="exampleFormControlTextarea1"
+                                    class="form-label"
+                                    ><strong>Details of actions taken:</strong> </label
+                                  >
+                                  <div class="non-editable">{{ item.details }}</div> 
+                                  <textarea class="form-control editable" name="details" style="display:none" 
+                                  rows="2"
+                                >{{item.details}}</textarea>
+                                  
+                                    
+                                </div>
+  
+                                <div class="control-group">
+                                  <div class="controls controls-row row-fluid">
+                                    <label for="isdate" class="form-label"
+                                      ><strong>Start date:</strong> 
+                                      
+                                      <span class="non-editable"> 
+                                        {% if item.implementation_start_date <= now %}
+                                        {{item.implementation_start_date}}: {{item.implementation_start_date|timesince}} ago
+                                        {% else %}
+                                        {{item.implementation_start_date}}: in {{item.implementation_start_date|timeuntil}}
+                                       {% endif %}
+                                      </span>
+
+                                      </label
+                                    >
+                                    <input style="display:none" class="editable"
+                                    type="datetime-local" name="implementation_start_date"
+                                      class="span4"
+                                      
+                                      value="{{item.implementation_start_date|date:'Y-m-d\TH:i'}}"
+                                      required
+                                    />
+  
+  
+  
+                                  </div>
+                                </div>
+
+                                <div class="controls controls-row row-fluid">
+                                  
+  
+                                  <label
+                                  for="validationCustom022{{item.id}}"
+                                  class="form-label"
+                                  ><strong>Expected Completion date: </strong>
+
+                                  <span class="non-editable"> 
+                                    {% if item.expected_completion_date <= now %}
+                                    {{item.expected_completion_date}}: {{item.expected_completion_date|timesince}} ago
+                                    {% else %}
+                                    {{item.expected_completion_date}}: in {{item.expected_completion_date|timeuntil}}
+                                   {% endif %}
+                                  </span>
+                                    </label
+                                >
+                                <input
+                                  type="datetime-local" name="expected_completion_date"
+                                  class="span4 editable" style="display:none"
+                                  
+                                  value="{{ item.expected_completion_date|date:'Y-m-d\TH:i' }}"
+                                  required
+                                />
+                                </div>
+
+
+  
+                                <div class="control-group">
+                                  <div class="controls controls-row row-fluid">
+  
+                                    <label for="ownerID"
+                                      ><strong>Owner:</strong>
+                                      </label
+                                    >
+                                      <span class="non-editable">
+                                        {{ item.owner.username }}
+                                      </span>
+                                    
+                                      <select style="max-width:150px; display:none" class="editable"
+                                      
+                                        name="owner_id"
+                                        
+                                      >
+                                      
+                                        {% for user in users.all %}
+                                        
+                                        <span>
+                                          <option {% if  user.id == item.owner_id %} selected{% endif %} value="{{ user.id }}">
+                                            {{ user.username }}
+                                          </option>
+                                        </span>
+  
+                                        {% endfor %}
+                                      </select>
+                                </div>
+
+                                <div class="controls controls-row row-fluid">
+                                  <label for="sownerID"
+                                      ><strong>Assigned To:</strong></label>
+                                      <span class="non-editable">{{item.assigned_to.username}}</span>
+                                    
+                                    <span class="editable" style="display:none">
+                                      <select style="max-width:150px;" name="assigned_to_id" >
+                                        {% for assigneduser in users.all %}
+                                        
+                                        <span>
+                                          <option {% if  assigneduser.id == item.assigned_to_id %} selected{% endif %} value="{{ assigneduser.id }}">
+                                            {{ assigneduser.username }}
+                                          </option>
+                                        </span>
+  
+                                        {% endfor %}
+                                      </select>
+                                    </span>
+                              </div>
+
+
+  
+                                <div class="controls controls-row row-fluid">
+                                  <label
+                                    for="cst"
+                                    
+                                    ><strong>Completion status:</strong> </label
+                                  > <span class="non-editable">{{ item.completion_Status }}</span>
+  
+                                  <select name="completion_status" required class="editable" style="display:none">
+                                    {% for value, label in completion_status_choices %}
+                                    <option {% if value == item.completion_Status %} selected{% endif %} value="{{ value }}">{{ label }}</option>
+                                    {% endfor %}
+                                  </select>
+                                </div>
+  
+                                
+                                <div class="controls controls-row row-fluid">
+                             
+                                  <label
+                                    for="ipercent"
+                                    ><strong>Completion percent:</strong></label
+                                  >
+                                  <span class="non-editable">{{ item.implementation_percent }}%</span>
+                                  <input style="display:none"
+                                    type="text" name="implementation_percent" 
+                                    class="col-xs-2 editable" maxlength="3" size="4"
+                                    value="{{ item.implementation_percent }}"
+                                    required
+                                  />
+                                  
+                                </div>
+  
+  
+                                <div class="controls controls-row row-fluid">
+                                      <label
+                                        for="validationCustom02{{item.id}}"
+                                        class="form-label"
+                                        ><strong>Actual completion date:</strong> 
+                                        <span class="non-editable"> 
+                                          {% if item.actual_implementation_date <= now %}
+                                          {{item.actual_implementation_date}}: {{item.actual_implementation_date|timesince}} ago
+                                          {% else %}
+                                          {{item.actual_implementation_date}}: in {{item.actual_implementation_date|timeuntil}}
+                                        {% endif %}
+                                        </span>
+                                          </label
+                                      >
+                                      <input style="display:none"
+                                        type="datetime-local" name="actual_implementation_date"
+                                        class="span4 editable"
+                                        
+                                        value="{{ item.actual_implementation_date|date:'Y-m-d\TH:i' }}"
+                                        required
+                                      />
+                                  
+                                </div>
+  
+  
+                                    <div class="control-group editable" style="display: none">
+                                      <button type="submit" class="btn btn-primary">
+                                        Submit
+                                      </button>
+                                    </div>
+     
+                               
+                              </form>
+                              <!-- End Multi Columns Form -->
+                            </div>
+
+                          </div>
+                          {% else %} 
+
+                    
+                          {% endif %} 
+                          
+                          {%endfor %}
+                           <!-- End Compliance Frameworks Management -->
+                      </div>
+
+                      {% endfor %}
+                    </div>
+                </div>
+
+                  <hr />
+                  
+                  {% endfor %}
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary">
+                      Save Changes
+                    </button>
+                  </div>
+
+    </div>
