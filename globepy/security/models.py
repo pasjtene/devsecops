@@ -26,7 +26,7 @@ class SecurityManagementRequirement(models.Model):
         ISO27001_311 = ("ISO27001_311", _("3-1-1: List all information assets (e.g., hardware, software, data, personnel)"))
         ISO27001_32 = ("ISO27001_32", _("3-2: Identify Threats and Vulnerabilities)"))
         ISO27001_321 = ("ISO27001_321", _("3-2-1: Determine potential threats (e.g., cyberattacks, natural disasters), conduct threat modeling for detailed identification and management )"))
-        ISO27001_322 = ("ISO27001_321", _("3-2-1: Identify Vulnerabilities (e.g., weak passwords, outdated software), conduct vulnerability assessment, establish a vulnerability management team for larger organizations"))
+        ISO27001_322 = ("ISO27001_322", _("3-2-1: Identify Vulnerabilities (e.g., weak passwords, outdated software), conduct vulnerability assessment, establish a vulnerability management team for larger organizations"))
         
         
     
