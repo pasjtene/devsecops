@@ -17,11 +17,17 @@ class SecurityManagementRequirement(models.Model):
         ISO27001_122 = ("ISO27001_122", _("2-2: Align objectives with business goals and stakeholder expectations."))
         ISO27001_2 = ("ISO27001_2", _("Step 2: Obtain Management Support"))
         ISO27001_21 = ("ISO27001_21", _("2-1: Secure Leadership Commitment"))
-        ISO27001_211 = ("ISO27001_211", _("2-11: Ensure top management understands the importance of the ISMS and provides necessary resources."))
+        ISO27001_211 = ("ISO27001_211", _("2-1-1: Ensure top management understands the importance of the ISMS and provides necessary resources."))
         ISO27001_22 = ("ISO27001_22", _("2-2: Define Roles and Responsibilities"))
-        ISO27001_221 = ("ISO27001_221", _("2-21: Appoint an ISMS Manager or team to oversee implementation."))
-        ISO27001_222 = ("ISO27001_222", _("2-22: Assign roles for risk management, internal audits, and compliance."))
+        ISO27001_221 = ("ISO27001_221", _("2-2-1: Appoint an ISMS Manager or team to oversee implementation."))
+        ISO27001_222 = ("ISO27001_222", _("2-2-2: Assign roles for risk management, internal audits, and compliance."))
         ISO27001_3 = ("ISO27001_3", _("Step 3: Conduct a Risk Assessment"))
+        ISO27001_31 = ("ISO27001_31", _("3-1: Identify Assets"))
+        ISO27001_311 = ("ISO27001_311", _("3-1-1: List all information assets (e.g., hardware, software, data, personnel)"))
+        ISO27001_32 = ("ISO27001_32", _("3-2: Identify Threats and Vulnerabilities)"))
+        ISO27001_321 = ("ISO27001_321", _("3-2-1: Determine potential threats (e.g., cyberattacks, natural disasters), conduct threat modeling for detailed identification and management )"))
+        ISO27001_322 = ("ISO27001_321", _("3-2-1: Identify Vulnerabilities (e.g., weak passwords, outdated software), conduct vulnerability assessment, establish a vulnerability management team for larger organizations"))
+        
         
     
     name = models.CharField(
