@@ -23,10 +23,15 @@ class SecurityManagementRequirement(models.Model):
         ISO27001_222 = ("ISO27001_222", _("2-2-2: Assign roles for risk management, internal audits, and compliance."))
         ISO27001_3 = ("ISO27001_3", _("Step 3: Conduct a Risk Assessment"))
         ISO27001_31 = ("ISO27001_31", _("3-1: Identify Assets"))
-        ISO27001_311 = ("ISO27001_311", _("3-1-1: List all information assets (e.g., hardware, software, data, personnel)"))
-        ISO27001_32 = ("ISO27001_32", _("3-2: Identify Threats and Vulnerabilities)"))
-        ISO27001_321 = ("ISO27001_321", _("3-2-1: Determine potential threats (e.g., cyberattacks, natural disasters), conduct threat modeling for detailed identification and management )"))
+        ISO27001_311 = ("ISO27001_311", _("3-1-1: List all information assets (e.g., hardware, software, data, personnel"))
+        ISO27001_32 = ("ISO27001_32", _("3-2: Identify Threats and Vulnerabilities"))
+        ISO27001_321 = ("ISO27001_321", _("3-2-1: Determine potential threats (e.g., cyberattacks, natural disasters), conduct threat modeling for detailed identification and management "))
         ISO27001_322 = ("ISO27001_322", _("3-2-1: Identify Vulnerabilities (e.g., weak passwords, outdated software), conduct vulnerability assessment, establish a vulnerability management team for larger organizations"))
+        ISO27001_33 = ("ISO27001_33", _("3-3: Assess Risks"))
+        ISO27001_331 = ("ISO27001_331", _("3-3-1: Evaluate the likelihood and impact of each risk."))
+        ISO27001_332 = ("ISO27001_332", _("3-3-2: Use a risk matrix to prioritize risks.")) 
+        ISO27001_4 = ("ISO27001_4", _("Step 4: Implement Risk Treatment Plans."))
+        
         
         
     

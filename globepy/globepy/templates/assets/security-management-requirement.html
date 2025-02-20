@@ -45,6 +45,103 @@
                   </div>
 
                   <div class="control-group">
+                    <div class="controls controls-row row-fluid">
+                      <label for="isdate" class="form-label"
+                        >Start date:</label
+                      >
+                      <input
+                      type="datetime-local" name="implementation_start_date"
+                        class="span4"
+                        
+                        value=""
+                        required
+                      />
+                  
+                  
+                      <label
+                      for="validationCustom022"
+                      class="form-label"
+                      >Completion date:</label
+                    >
+                    <input
+                      type="datetime-local" name="expected_completion_date"
+                      class="span4"
+                      
+                      value=""
+                      required
+                    />
+                    </div>
+                  </div>
+
+                  <div class="control-group">
+                    <div class="controls controls-row row-fluid">
+                  
+                      <label for="ownerID">Owner</label>
+                      <select style="max-width:150px;" name="owner_id">
+                        {% for user in users.all %}
+                        
+                        <span>
+                          <option {% if  user.id == item.owner_id %} selected{% endif %} value="{{ user.id }}">
+                            {{ user.username }}
+                          </option>
+                        </span>
+                  
+                        {% endfor %}
+                      </select>
+                      <label for="sownerID">Assigned To</label>
+                      <select style="max-width:150px;" name="assigned_to_id" >
+                        {% for assigneduser in users.all %}
+                        
+                        <span>
+                          <option {% if  assigneduser.id == item.assigned_to_id %} selected{% endif %} value="{{ assigneduser.id }}">
+                            {{ assigneduser.username }}
+                          </option>
+                        </span>
+                  
+                        {% endfor %}
+                      </select> 
+                      </div>
+                  </div> 
+
+
+                <div class="controls controls-row row-fluid">
+                    <label for="cst">Completion status ({{ item.completion_Status }})</label>
+                    <select  name="completion_status" required>
+                    {% for value, label in completion_status_choices %}
+                    <option {% if value == item.completion_Status %} selected{% endif %} value="{{ value }}">{{ label }}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="controls controls-row row-fluid">
+                    <label
+                    for="ipercent"
+                    >Completion percent</label
+                    >
+                    <input 
+                    type="text" name="implementation_percent"
+                    class="col-xs-2" maxlength="3" size="4"
+                    value="{{ item.implementation_percent }}"
+                    required
+                    />
+                </div>     
+                        
+                <div class="controls controls-row row-fluid">
+                    <label
+                    for="validationCustom02ac{{item.id}}"
+                    class="form-label"
+                    >Actual completion date ({{item.actual_implementation_date}}): {{item.actual_implementation_date|timesince}}</label
+                    >
+                    <input
+                    type="datetime-local" name="actual_implementation_date"
+                    class="span4"
+                    
+                    value=""
+                    required
+                    />
+                </div>  
+
+                  <div class="control-group">
                     <button type="submit" class="btn btn-primary">
                       Submit
                     </button>
