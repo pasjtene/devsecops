@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
-from .models import Asset, RegulatoryFramework, ComplianceStatus, RequirementStatus
+from .models import Asset, RegulatoryFramework, ComplianceStatus
 from .forms import ComplianceStatusForm
 from django.contrib.auth.models import User
 from django.utils import timezone
@@ -83,7 +83,7 @@ def create_security_requirement(request,frameworkid, assetid, requirementid):
         
         owner_id = request.POST.get('owner_id')
         
-        requirement_status = RequirementStatus (
+        requirement_status = ComplianceStatus  (
             framework_id = frameworkid,
             asset_id = assetid,
             requirement_id = requirementid,
