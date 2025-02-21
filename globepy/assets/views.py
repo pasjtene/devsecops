@@ -3,13 +3,13 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
-from .models import Asset, RegulatoryFramework, ComplianceStatus
+from .models import Asset, RegulatoryFramework, ComplianceStatus, RequirementStatus
 from .forms import ComplianceStatusForm
 from django.contrib.auth.models import User
 from django.utils import timezone
 from comments.models import Comment
 from comments.forms import CommentForm
-from security.models import RequirementStatus
+
 
 # Create your views here.
 def formeditors2(request):
@@ -83,7 +83,7 @@ def create_security_requirement(request,frameworkid, assetid, requirementid):
         
         owner_id = request.POST.get('owner_id')
         
-        compliance_status = RequirementStatus (
+        requirement_status = RequirementStatus (
             framework_id = frameworkid,
             asset_id = assetid,
             requirement_id = requirementid,
@@ -99,8 +99,7 @@ def create_security_requirement(request,frameworkid, assetid, requirementid):
             
         )
         
-        
-        compliance_status.save()
+        requirement_status.save()
      return redirect('asset-details',id=assetid)        
     
 

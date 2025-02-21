@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.utils import timezone
 from django.contrib.auth.models import User, auth
 from django.utils.translation import gettext_lazy as _
-from assets.models import Asset, RegulatoryFramework
+
 
 class SecurityManagementRequirement(models.Model):
     class RequirementList(models.TextChoices):
@@ -101,86 +101,6 @@ class SecurityManagementFramework(models.Model):
     def __str__(self):
         return f"{self.title}: {self.short_description}"
     
-
-class RequirementStatus(models.Model):
-    """
-    Represents an item of requirement status created by user for a  given requirement for a security framework assigned to an asset
-    This is expected to create a large table, so may later be hosted as a microservice to serve only this purpose
-    A similar separate entity is created for compliance frameworks in the asset module. The purpose of separation is to reduce table size.
-
-    Attributes:
-        asset: The aset for which this is created. automatically assigned
-        framework: The compliance framework for which this is created
-        requirement: An item of the list of requirements needed to achieve compliance
-        ...
-    """
-    class CompletionStatus(models.TextChoices):
-        Complete = ("Complete", _("Complete"))
-        InProgress = ("InProgress", _("InProgress"))
-        Canceled = ("Canceled", _("Canceled"))
-        Paused = ("Paused", _("Paused"))
-        
-   
-    COMPLETION_STATUS_CHOICES = [
-        ('Complete', 'Complete'),
-        ('InProgress', 'InProgress'),
-        ('Canceled', 'Canceled'),
-        ('Paused','Paused')
-    ]
-    description = models.CharField(max_length=100, default="Give a short description, framework and asset")
-    asset = models.ForeignKey(
-        Asset,
-        on_delete=models.CASCADE,
-        )
-    
-    framework = models.ForeignKey(
-        RegulatoryFramework,
-        on_delete=models.CASCADE
-    )
-    
-    requirement = models.ForeignKey(
-        SecurityManagementRequirement,
-        on_delete=models.CASCADE,
-        #related_name="requirement"
-        )
-    details = models.TextField(max_length=300) #give detail of the current compliance status of the requirement
-    implementation_percent = models.PositiveIntegerField(
-        default=0,
-        null=True, blank=True,
-    )
-    
-    completion_Status = models.CharField(
-        max_length=12,
-        choices=CompletionStatus.choices,
-        default=CompletionStatus.InProgress
-    )
-    implementation_start_date = models.DateTimeField(null=True, blank=True)
-    
-    
-    expected_completion_date = models.DateTimeField(null=True, blank=True)
-    actual_implementation_date = models.DateTimeField(null=True, blank=True)
-    
-    owner = models.ForeignKey(
-        User,
-        on_delete=models.SET_NULL,
-        null=True, blank=True,
-        related_name="compliance_items_owned"
-    )
-    assigned_to = models.ForeignKey(
-        User,
-        on_delete=models.SET_NULL,
-        null=True, blank=True,
-        related_name="compliance_items_assigned"
-    )
-    created_by = models.ForeignKey(
-        User,
-        on_delete=models.SET_NULL,
-        null=True, blank=True,
-        related_name="compliance_items_created"
-    )
-    
-    def __str__(self):
-        return self.description  
 
 @admin.register(SecurityManagementFramework)
 class SecurityManagementFrameworkAdmin(admin.ModelAdmin):
