@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from comments.models import Comment
 from comments.forms import CommentForm
+from security.models import RequirementStatus
 
 # Create your views here.
 def formeditors2(request):
@@ -45,19 +46,14 @@ def list_all_assets(request):
         'total_assets':total_assets,
         'total_unique_assets':total_unique_assets
         })
+
+
 @login_required
 def create_compliance_requirement(request,frameworkid, assetid, requirementid):
      
      if request.method == 'POST':
         
         owner_id = request.POST.get('owner_id')
-        #complianceItem.owner = User.objects.get(id=owner_id) if owner_id else None
-        #complianceItem. actual_implementation_date = request.POST.get('actual_implementation_date')
-        #complianceItem. expected_completion_date = request.POST.get('expected_completion_date')
-        #complianceItem. implementation_start_date = request.POST.get('implementation_start_date')
-        
-        #assigned_to_id = request.POST.get('assigned_to_id')
-        #complianceItem.assigned_to = User.objects.get(id=assigned_to_id) if assigned_to_id else None
         
         compliance_status = ComplianceStatus (
             framework_id = frameworkid,
@@ -75,39 +71,43 @@ def create_compliance_requirement(request,frameworkid, assetid, requirementid):
             
         )
         
-
-        #category = Category.objects.get(id=category_id)
-        #reviewed_by = User.objects.get(id=reviewed_by_id) if reviewed_by_id else None
         
         compliance_status.save()
-        asset = Asset.objects.get(id=assetid)
-        users = User.objects.all()
-        regulatoryFrameworks = RegulatoryFramework.objects.all()
-        complianceItems = ComplianceStatus.objects.all()
-        form = ComplianceStatusForm()
-        completion_Status_choices = ComplianceStatus.COMPLETION_STATUS_CHOICES
-        now = timezone.now()
-        comment_form = CommentForm()
-        comments = Comment.objects.filter(asset_id=asset.id, parent_comment__isnull=True)  # Fetch top-level comments only
+     return redirect('asset-details',id=assetid)
     
-        return render(request, 'assets/asset-details.html',{
-        'asset':asset,
-        'regulatoryFrameworks':regulatoryFrameworks,
-        'complianceItems': complianceItems,
-        'form': form,
-        'users': users,
-        'completion_status_choices':completion_Status_choices,
-        'now':now,
-        'comment_form':comment_form,
-        'comments':comments
-    })
+
+@login_required
+def create_security_requirement(request,frameworkid, assetid, requirementid):
+     
+     if request.method == 'POST':
+        
+        owner_id = request.POST.get('owner_id')
+        
+        compliance_status = RequirementStatus (
+            framework_id = frameworkid,
+            asset_id = assetid,
+            requirement_id = requirementid,
+            details = request.POST.get('details'),
+            description = request.POST.get('description'),
+            implementation_percent = request.POST.get('implementation_percent'),
+            completion_Status = request.POST.get('completion_status'),
+            owner = User.objects.get(id=owner_id) if owner_id else None,
+            actual_implementation_date = request.POST.get('actual_implementation_date'),
+            expected_completion_date = request.POST.get('expected_completion_date'),
+            implementation_start_date = request.POST.get('implementation_start_date'),
+            assigned_to_id = request.POST.get('assigned_to_id'),
+            
+        )
+        
+        
+        compliance_status.save()
+     return redirect('asset-details',id=assetid)        
     
 
 @login_required
 def update_compliance_requirement(request, id):
     #asset = Asset.objects.get(id=id)
-    
-    
+
     if request.method == 'POST':
         complianceItem = ComplianceStatus.objects.get(id=id)
         complianceItem.details = request.POST.get('details')

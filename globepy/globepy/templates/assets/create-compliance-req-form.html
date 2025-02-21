@@ -6,7 +6,7 @@ novalidate
 {% csrf_token %}
 <div >
   <label for="description" class="form-label"><strong>Description:</strong></label>
-  <input style="max-width:450px;" size="32" maxlength="50"
+  <input style="max-width:450px;" size="32" maxlength="100"
   type="text"
   name="description"
    value=""
@@ -23,9 +23,7 @@ novalidate
   >
   <textarea class="form-control editable" name="details"
   rows="2"
->{{item.details}}</textarea>
-  
-    
+>{{item.details}}</textarea> 
 </div>
 
 <div class="control-group">
@@ -98,9 +96,9 @@ novalidate
     <option {% if value == item.completion_Status %} selected{% endif %} value="{{ value }}">{{ label }}</option>
     {% endfor %}
   </select>
-</div>      
-<div class="controls controls-row row-fluid">
+</div>
 
+<div class="controls controls-row row-fluid">
   <label
     for="ipercent"
     >Completion percent</label
@@ -111,7 +109,6 @@ novalidate
      value="{{ item.implementation_percent }}"
     required
   />
-  
 </div>     
       
 <div class="controls controls-row row-fluid">
@@ -127,7 +124,6 @@ novalidate
     value=""
     required
   />
-  
 </div>       
 
 <div class="control-group">

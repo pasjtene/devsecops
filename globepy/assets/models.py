@@ -25,7 +25,6 @@ class AssetCategory(models.Model):
 
 
 
-
 class SecurityRequirement(models.Model):
     class RequirementList(models.TextChoices):
         # FISMA https://security.cms.gov/learn/federal-information-security-modernization-act-fisma
@@ -197,6 +196,18 @@ class Vendor(models.Model):
         return self.name
     
 class Asset(models.Model):
+    """
+    Represents any asset that can be managed. Compliance, Security and Risk framework are assigned to assets.
+    Assets can be of many types, Including people, process, data, hardware, software and more. Assets can also be classified 
+    in categories.
+    
+    Attributes:
+        Type: type of Asset
+        Category: Category of the asset
+        regulatoryFrameworks: The compliance frameworks assigned to the asset. Many frameworks can be assigned to an asset
+        SecurityManagementFrameworks: The security management framework assigned to an asset (e.g: ISO27001, NIST_CSF, NIST_SP 800-53)
+        
+    """
     class Currency(models.TextChoices):
         SWEDISH_CROWN = ("SEK", _("Swedish crown"))
         AMERICAN_DOLLAR = ("USD", _("American Dollar"))
@@ -290,6 +301,17 @@ class Asset(models.Model):
 
 
 class ComplianceStatus(models.Model):
+    """
+    Represents an item of compliance status created by user for a  given requirement for a compliance framework assigned to an asset
+    This is expected to create a large table, so may later be hosted as a microservice to serve only this purpose
+    A similar separate entity is created for security frameworks in the security model. The purpose of separation is to reduce table size.
+
+    Attributes:
+        asset: The aset for which this is created. automatically assigned
+        framework: The compliance framework for which this is created
+        requirement: An item of the list of requirements needed to achieve compliance
+        ...
+    """
     class CompletionStatus(models.TextChoices):
         Complete = ("Complete", _("Complete"))
         InProgress = ("InProgress", _("InProgress"))
@@ -303,7 +325,7 @@ class ComplianceStatus(models.Model):
         ('Canceled', 'Canceled'),
         ('Paused','Paused')
     ]
-    description = models.CharField(max_length=50, default="Give a short description, framework and asset")
+    description = models.CharField(max_length=100, default="Give a short description, framework and asset")
     asset = models.ForeignKey(
         Asset,
         on_delete=models.CASCADE,
