@@ -333,7 +333,7 @@ class RequirementStatus(models.Model):
         )
     
     framework = models.ForeignKey(
-        RegulatoryFramework,
+        SecurityManagementFramework,
         on_delete=models.CASCADE
     )
     
@@ -342,7 +342,7 @@ class RequirementStatus(models.Model):
         on_delete=models.CASCADE,
         #related_name="requirement"
         )
-    details = models.TextField(max_length=300) #give detail of the current compliance status of the requirement
+    details = models.TextField(max_length=500) #give detail of the current compliance status of the requirement
     implementation_percent = models.PositiveIntegerField(
         default=0,
         null=True, blank=True,
