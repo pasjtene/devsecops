@@ -295,6 +295,9 @@ class Asset(models.Model):
     image2_url = models.URLField(blank=True, null=True)
     image3_url = models.URLField(blank=True, null=True)
     image4_url = models.URLField(blank=True, null=True)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.name}, {self.category}, {self.vendor}"
@@ -377,6 +380,8 @@ class RequirementStatus(models.Model):
         null=True, blank=True,
         related_name="compliance_items_created"
     )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
         return self.description  
@@ -457,6 +462,9 @@ class ComplianceStatus(models.Model):
         null=True, blank=True,
         related_name="compliance_items_created"
     )
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
         return self.description
