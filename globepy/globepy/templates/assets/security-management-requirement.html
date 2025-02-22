@@ -387,6 +387,8 @@
     {% endfor %}
 </div>
 
+{% else %}
+<span>Number of sub requirements: {{ requirement.sub_requirements.count }} </span>
 {% endif %}
 
 <!-- End Check if requirement has sub_requirements -->
