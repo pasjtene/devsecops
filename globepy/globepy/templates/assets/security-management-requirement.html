@@ -158,7 +158,7 @@
     <span data-for="Begin compliance requirement items">
         {% for sitem in securityRequirementItems.all %}
 
-        {% if sitem.requirement_id == requirement.id and sitem.asset_id == asset.id and sitem.framework_id == framework.id  %}
+        {% if sitem.requirement_id == requirement.id and sitem.asset_id == asset.id and sitem.framework_id == sframework.id  %}
 
         <div class="requirement-description" >
          
