@@ -156,7 +156,7 @@
 
     
     <!--- check if there are items for this requirement -->
-    {% if sitem  %}
+    
     {% for sitem in securityRequirementItems.all %}
 
     {% if sitem.requirement_id == requirement.id and sitem.asset_id == asset.id and sitem.framework_id == sframework.id  %}
@@ -370,10 +370,6 @@
           <!--- End Start displaying compliance requirement items -->
     </div>
 <!--- End check if there are items for this requirement -->
-{% endif  %}
-{% endfor  %}
-    {% endif  %}
-
 
  <!-- Check if requirement has sub_requirements -->
  {% if requirement.sub_requirements.all %}
@@ -391,6 +387,13 @@
  {% endif %}
 
  <!-- End Check if requirement has sub_requirements -->
+
+{% endif  %}
+{% endfor  %}
+    
+
+
+
 
 
 
