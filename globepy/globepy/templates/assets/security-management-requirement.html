@@ -1,6 +1,6 @@
-<div style="{% if requirement.parent_requirement_id == None %}border: 1px solid gray{% endif %}">
+<div >
     <input class="form-check-input" type="checkbox" id="changesMade" checked />
-    <span class="requirement-description-head11">
+    <div class="requirement-description-head11" style="{% if requirement.parent_requirement_id == None %}border: 1px solid red{% endif %}">
       {{requirement.short_description}}
     
         <span class="icon create-compliance-item">
@@ -149,7 +149,7 @@
                   </div>
             </form>                        
           </div>
-        </span>
+        </div>
 
 
 
