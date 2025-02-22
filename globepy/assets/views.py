@@ -10,7 +10,7 @@ from django.utils import timezone
 from comments.models import Comment
 from comments.forms import CommentForm
 from datetime import datetime
-from security import SecurityManagementRequirement
+from security.models import SecurityManagementRequirement
 
 
 # Create your views here.
@@ -171,7 +171,8 @@ def assetdetails(request, id):
     users = User.objects.all()
     regulatoryFrameworks = RegulatoryFramework.objects.all()
     complianceItems = ComplianceStatus.objects.all()
-    security_requirement_items = RequirementStatus.objects.filter(asset_id=id, parent_requirement_id=None)
+    security_requirement_items = RequirementStatus.objects.filter(asset_id=id)
+    security_requirements =  SecurityManagementRequirement.objects.filter(asset_id=id, parent_comment__isnull=True)
     form = ComplianceStatusForm()
     completion_Status = ComplianceStatus.COMPLETION_STATUS_CHOICES
     now = timezone.now()
@@ -188,7 +189,8 @@ def assetdetails(request, id):
         'now':now,
         'comment_form':comment_form,
         'comments':comments,
-        'securityRequirementItems': security_requirement_items
+        'securityRequirementItems': security_requirement_items,
+        'security_requirements': security_requirements
         
     })
  
