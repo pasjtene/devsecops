@@ -16,9 +16,9 @@
           </h5>
 
           <!-- Multi Columns Form -->
-          <form action="{% url 'create-security-requirement' method="post" 
-            frameworkid=sframework.id assetid=asset.id requirementid=requirement.id  %}"
-              class="row g-3 needs-validation container-fluid" novalidate >
+          <form  action="{% url 'create-security-requirement' frameworkid=sframework.id assetid=asset.id requirementid=requirement.id  %}"
+            
+            method="post"   class="row g-3 needs-validation container-fluid" novalidate>
         
           
                    {% csrf_token %}
