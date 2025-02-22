@@ -373,6 +373,14 @@
 <!--- End check if there are items for this requirement -->
 
  <!-- Check if requirement has sub_requirements -->
+
+
+<!-- End Check if requirement has sub_requirements -->
+
+{% endif  %}
+{% endfor  %}
+    
+
 {% if requirement.sub_requirements.all %}
 <span>Number of sub requirements: {{ requirement.sub_requirements.count }} </span>
 <div  style="{% if requirement.parent_requirement_id == None %}border: 1px solid #E7E7E7{% endif %}">
@@ -390,14 +398,6 @@
 {% else %}
 <span>Number of sub requirements: {{ requirement.sub_requirements.count }} </span>
 {% endif %}
-
-<!-- End Check if requirement has sub_requirements -->
-
-{% endif  %}
-{% endfor  %}
-    
-
-
 
 
 
