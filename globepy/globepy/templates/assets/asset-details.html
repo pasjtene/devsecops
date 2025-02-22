@@ -405,12 +405,6 @@
 
                     {% if sitem.requirement_id == requirement.id and sitem.asset_id == asset.id and sitem.framework_id == sframework.id  %}
                     
-                      {% if requirement.parent_requirement_id == None %}
-                      
-                        {% include 'assets/security-management-requirement.html' %}
-                      
-                      {% endif %}
-
                       <!-- Check if requirement has sub_requirements -->
                       <div class="mt-3" style="margin-left: 20px;">
                         {% include 'assets/security-management-requirement.html' %}
