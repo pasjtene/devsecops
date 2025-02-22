@@ -402,7 +402,7 @@
                       {% endif %}
 
                     {% if requirement.sub_requirements.all %}
-                    <div  style="{% if requirement.parent_requirement_id == None %}border: 1px solid gray{% endif %}">
+                    <div  style="{% if requirement.parent_requirement_id == None %}border: 1px solid red{% endif %}">
                         {% for sub_requirement in requirement.sub_requirements.all %}
 
                         {% if sub_requirement.parent_requirement_id == requirement.id %}
@@ -410,9 +410,6 @@
                             {% include 'assets/security-management-requirement.html' with requirement=sub_requirement %}
                         </div>
                         {% endif %}
-
-
-
                         {% endfor %}
                     </div>
                     {% endif %}
