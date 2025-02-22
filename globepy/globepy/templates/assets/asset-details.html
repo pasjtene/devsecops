@@ -402,7 +402,7 @@
                       {% endif %}
 
                     {% if requirement.sub_requirements.all %}
-                    <div  style="{% if requirement.parent_requirement_id == None %}border: 1px solid red{% endif %}">
+                    <div  style="{% if requirement.parent_requirement_id == None %}border: 1px solid #E7E7E7{% endif %}">
                         {% for sub_requirement in requirement.sub_requirements.all %}
 
                         {% if sub_requirement.parent_requirement_id == requirement.id %}
