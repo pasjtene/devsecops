@@ -1,4 +1,4 @@
-<div class="form-check" style="{% if requirement.parent_requirement_id == None %}border: 1px solid gray{% endif %}">
+<div class="form-check" >
     <input class="form-check-input" type="checkbox" id="changesMade" checked />
     <span class="requirement-description-head11">
       {{requirement.short_description}}
@@ -155,7 +155,7 @@
 
 
     <!--- Start displaying compliance requirement items -->
-    <span data-for="Begin compliance requirement items">
+    <div data-for="Begin compliance requirement items" style="{% if requirement.parent_requirement_id == None %}border: 1px solid gray{% endif %}">
         {% for sitem in securityRequirementItems.all %}
 
         {% if sitem.requirement_id == requirement.id and sitem.asset_id == asset.id and sitem.framework_id == sframework.id  %}
@@ -385,13 +385,7 @@
         {%endfor %}
          <!-- End Compliance Frameworks Management -->
           <!--- End Start displaying compliance requirement items -->
-
-
-
-
-
-
-
+    </div>
      </div>
 
 
