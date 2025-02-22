@@ -154,10 +154,12 @@
 
 
 
+    
+    <!--- check if there are items for this requirement -->
+    {% if sitem  %}
     <!--- Start displaying compliance requirement items -->
     <div data-for="Begin compliance requirement items" style="{% if requirement.parent_requirement_id == None %}border: 1px solid gray{% endif %}">
-       
-
+   
         <div class="requirement-description" >
          
           <div class="requirement-description-head" style="border-top: 5px solid #FFFFFF; background-color: #F0F8FF" >
@@ -188,30 +190,21 @@
                   ><strong>Description:</strong> <span class="non-editable">{{ sitem.description }}</span> </label
                 >
                 <input style="max-width:450px; display:none" size="32" maxlength="50" class="editable"
-                  type="text"
-                  name="description"
-                  value="{{ sitem.description }}"
-                />
+                  type="text" name="description" value="{{ sitem.description }}"/> 
               </div>
 
               <div class="mb-8">
-                <label
-                  for="exampleFormControlTextarea1"
-                  class="form-label"
-                  ><strong>Details of actions taken:</strong> </label
-                >
+                <label for="exampleFormControlTextarea1" class="form-label"><strong>Details of actions taken:</strong> </label>
                 <div class="non-editable">{{ sitem.details }}</div> 
                 <textarea class="form-control editable" name="details" style="display:none" 
                 rows="2"
-              >{{sitem.details}}</textarea>
-                
-                  
+              >{{sitem.details}}</textarea> 
               </div>
 
               <div class="control-group">
                 <div class="controls controls-row row-fluid">
-                  <label for="isdate" class="form-label"
-                    ><strong>Start date:</strong> 
+                  <label for="isdate" class="form-label"><strong>Start date:</strong> 
+                    
                     
                     <span class="non-editable"> 
                       {% if sitem.implementation_start_date <= now %}
@@ -225,14 +218,8 @@
                   >
                   <input style="display:none" class="editable"
                   type="datetime-local" name="implementation_start_date"
-                    class="span4"
-                    
-                    value="{{sitem.implementation_start_date|date:'Y-m-d\TH:i'}}"
-                    required
-                  />
-
-
-
+                    class="span4" value="{{sitem.implementation_start_date|date:'Y-m-d\TH:i'}}" required  />
+   
                 </div>
               </div>
 
@@ -379,6 +366,8 @@
          <!-- End Compliance Frameworks Management -->
           <!--- End Start displaying compliance requirement items -->
     </div>
+<!--- End check if there are items for this requirement -->
+    {% if sitem  %}
 
 
  <!-- Check if requirement has sub_requirements -->
