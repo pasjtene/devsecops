@@ -372,19 +372,13 @@
     </div>
 <!--- End check if there are items for this requirement -->
 
- 
-
-{% endif  %}
-{% endfor  %}
-    
-
-<!-- Check if requirement has sub_requirements -->
-{% if requirement.sub_requirements.all %}
+ <!-- Check if requirement has sub_requirements -->
+{% if sitem.sub_requirements.all %}
 <span>Number of sub requirements: {{ requirement.sub_requirements.count }} </span>
 <div  style="{% if requirement.parent_requirement_id == None %}border: 1px solid #E7E7E7{% endif %}">
-    {% for sub_requirement in requirement.sub_requirements.all %}
+    {% for sub_requirement in sitem.sub_requirements.all %}
 
-    {% if sub_requirement.parent_requirement_id == requirement.id %}
+    {% if sub_requirement.parent_requirement_id == sitem.id %}
     <div class="mt-3" style="margin-left: 20px;">
         {% include 'assets/security-management-requirement.html' with requirement=sub_requirement %}
     </div>
@@ -394,6 +388,12 @@
 {% endif %}
 
 <!-- End Check if requirement has sub_requirements -->
+
+{% endif  %}
+{% endfor  %}
+    
+
+
 
 
 
