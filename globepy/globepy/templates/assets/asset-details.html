@@ -394,6 +394,13 @@
 
                   <div class="col-md-8 col-lg-9" class="requirement-description12">
                     {%for requirement in sframework.security_management_requirements.all %}
+
+                    {% if requirement.parent_requirement_id == None %}
+                      
+                    {% include 'assets/security-management-requirement.html' %}
+                  
+                    {% endif %}
+
                     {% for sitem in securityRequirementItems.all %}
 
                     {% if sitem.requirement_id == requirement.id and sitem.asset_id == asset.id and sitem.framework_id == sframework.id  %}
