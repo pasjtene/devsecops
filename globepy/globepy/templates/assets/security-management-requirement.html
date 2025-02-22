@@ -177,7 +177,7 @@
             </h5>
 
             <!-- Multi Columns Form -->
-            <form action="{% url 'update-compliance-requirement'  sitem.id %}"
+            <form  {% if sitem  %} action="{% url 'update-compliance-requirement'  sitem.id %}{% endif %}"
               method="post"
               class="row g-3 needs-validation container-fluid"
               novalidate
