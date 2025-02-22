@@ -156,9 +156,7 @@
 
     <!--- Start displaying compliance requirement items -->
     <div data-for="Begin compliance requirement items" style="{% if requirement.parent_requirement_id == None %}border: 1px solid gray{% endif %}">
-        {% for sitem in securityRequirementItems.all %}
-
-        {% if sitem.requirement_id == requirement.id and sitem.asset_id == asset.id and sitem.framework_id == sframework.id  %}
+       
 
         <div class="requirement-description" >
          
@@ -377,12 +375,7 @@
           </div>
 
         </div>
-        {% else %} 
-
-  
-        {% endif %} 
         
-        {%endfor %}
          <!-- End Compliance Frameworks Management -->
           <!--- End Start displaying compliance requirement items -->
     </div>
