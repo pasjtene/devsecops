@@ -37,8 +37,8 @@
 
                             <!--- end create compliance requirement -->
 
-                          </span>
-                         </span>
+                          
+                        </span>
 
                           <br />
                           {% for item in complianceItems.all %}
@@ -149,25 +149,16 @@
                                 />
                                 </div>
 
-
   
                                 <div class="control-group">
                                   <div class="controls controls-row row-fluid">
   
-                                    <label for="ownerID"
-                                      ><strong>Owner:</strong>
-                                      </label
-                                    >
+                                    <label for="ownerID"><strong>Owner:</strong></label>
                                       <span class="non-editable">
                                         {{ item.owner.username }}
                                       </span>
                                     
-                                      <select style="max-width:150px; display:none" class="editable"
-                                      
-                                        name="owner_id"
-                                        
-                                      >
-                                      
+                                      <select style="max-width:150px; display:none" class="editable" name="owner_id">
                                         {% for user in users.all %}
                                         
                                         <span>

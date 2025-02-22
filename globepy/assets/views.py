@@ -170,6 +170,7 @@ def assetdetails(request, id):
     users = User.objects.all()
     regulatoryFrameworks = RegulatoryFramework.objects.all()
     complianceItems = ComplianceStatus.objects.all()
+    security_requirement_items = RequirementStatus.objects.all()
     form = ComplianceStatusForm()
     completion_Status = ComplianceStatus.COMPLETION_STATUS_CHOICES
     now = timezone.now()
@@ -185,7 +186,8 @@ def assetdetails(request, id):
         'completion_status_choices':completion_Status,
         'now':now,
         'comment_form':comment_form,
-        'comments':comments
+        'comments':comments,
+        'securityRequirementItems': security_requirement_items
         
     })
  
