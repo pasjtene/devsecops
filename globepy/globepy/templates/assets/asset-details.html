@@ -396,7 +396,10 @@
                     {%for requirement in sframework.security_management_requirements.all %}
                     
                       {% if requirement.parent_requirement_id == None %}
-                            {% include 'assets/security-management-requirement.html' %}
+                      <div style="border: 1px solid gray">
+                        {% include 'assets/security-management-requirement.html' %}
+                      </div>
+
                       {% endif %}
 
                     {% if requirement.sub_requirements.all %}
@@ -409,7 +412,7 @@
                         </div>
                         {% endif %}
 
-                        
+
 
                         {% endfor %}
                     </div>
