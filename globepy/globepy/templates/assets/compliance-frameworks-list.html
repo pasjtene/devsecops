@@ -41,6 +41,9 @@
                         </span>
 
                           <br />
+                          <!--- Start displaying compliance requirement items -->
+                           <!--- Start displaying compliance requirement items -->
+                          <span data-for="Begin compliance requirement items">
                           {% for item in complianceItems.all %}
 
                           {% if item.requirement_id == requirement.id and item.asset_id == asset.id and item.framework_id == framework.id  %}
@@ -269,6 +272,10 @@
                           
                           {%endfor %}
                            <!-- End Compliance Frameworks Management -->
+                            <!--- End Start displaying compliance requirement items -->
+                           <!--- End Start displaying compliance requirement items -->
+                        </span>
+
                       </div>
 
                       {% endfor %}
