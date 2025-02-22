@@ -402,7 +402,7 @@
                       {% endif %}
 
                     {% if requirement.sub_requirements.all %}
-                    <div class="mt-3 ms-4" style="">
+                    <div  style="{% if requirement.parent_requirement_id == None %}border: 1px solid gray{% endif %}">
                         {% for sub_requirement in requirement.sub_requirements.all %}
 
                         {% if sub_requirement.parent_requirement_id == requirement.id %}
@@ -438,9 +438,6 @@
 </section>
                                 
 
-
-
-                      
 
 <!-- Bootstrap Modal for Updating Comments -->
 <div class="modal fade" id="updateCommentModal" tabindex="-1" aria-labelledby="updateCommentModalLabel" aria-hidden="true">
