@@ -396,7 +396,8 @@
                     
                     {%for requirement in sframework.security_management_requirements.all %}
                       <!-- Check if requirement has sub_requirements -->
-                      <div class="mt-3" style="margin-left: 2px;">
+                      <div class="mt-3" 
+                      style="{% if not requirement.parent_requirement_id == None %} margin-left: 20px; {% endif %}"">
                         {% include 'assets/security-management-requirement.html' %}
                       </div>
                     <!--End Check if requirement has sub_requirements -->
