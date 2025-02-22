@@ -1,6 +1,6 @@
 <div class="card mb-3" id="{{comment.id}}">
     <div class="card-body">
-        <h5 class="card-title">{{ comment.created_by.get_full_name() }}</h5>
+        <h5 class="card-title">{{ comment.created_by.full_name }}</h5>
         <p class="card-text" id="text{{comment.id}}">{{ comment.comment_text }}</p>
         <small class="text-muted">{{ comment.created_date }}</small>
 
