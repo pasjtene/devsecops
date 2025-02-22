@@ -87,15 +87,15 @@ def create_security_requirement(request,frameworkid, assetid, requirementid):
         implementation_start_date = request.POST.get('implementation_start_date')
         
         # check if the user has suplied dates for the activity, otherwise, set date to now
-        if not actual_implementation_date:
+        if len(actual_implementation_date) < 3:
             actual_implementation_date = timezone.now()
         
         
-        if not expected_completion_date:
+        if len(expected_completion_date) < 3:
             expected_completion_date = timezone.now()
             
         
-        if not implementation_start_date:
+        if len(implementation_start_date) < 3:
             implementation_start_date = timezone.now()
         
         requirement_status = RequirementStatus (
