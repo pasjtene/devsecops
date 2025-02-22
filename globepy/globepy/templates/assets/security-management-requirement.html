@@ -157,6 +157,9 @@
     
     <!--- check if there are items for this requirement -->
     {% if sitem  %}
+    {% for sitem in securityRequirementItems.all %}
+
+    {% if sitem.requirement_id == requirement.id and sitem.asset_id == asset.id and sitem.framework_id == sframework.id  %}
     <!--- Start displaying compliance requirement items -->
     <div data-for="Begin compliance requirement items" style="{% if requirement.parent_requirement_id == None %}border: 1px solid gray{% endif %}">
    
@@ -367,6 +370,8 @@
           <!--- End Start displaying compliance requirement items -->
     </div>
 <!--- End check if there are items for this requirement -->
+{% endif  %}
+{% endfor  %}
     {% endif  %}
 
 
