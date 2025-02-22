@@ -405,7 +405,7 @@
                     <div  style="{% if requirement.parent_requirement_id == None %}border: 1px solid #E7E7E7{% endif %}">
                         {% for sub_requirement in requirement.sub_requirements.all %}
 
-                        {% if sub_requirement.parent_requirement_id == requirement.id %}
+                        {% if sub_requirement.parent_requirement_id == sub_requirement.id %}
                         <div class="mt-3" style="margin-left: 20px;">
                             {% include 'assets/security-management-requirement.html' with requirement=sub_requirement %}
                         </div>
@@ -416,9 +416,7 @@
                    
                     {% endfor %}
                 </div> 
-
-                  
-                 
+   
             </div>
           {% endfor %}  
                 
