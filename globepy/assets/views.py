@@ -89,16 +89,16 @@ def create_security_requirement(request,frameworkid, assetid, requirementid):
         
         # check if the user has suplied dates for the activity, otherwise, set date to now
         if len(actual_implementation_date) < 3:
-            no_actual_implementation_date = timezone.now()
+            actual_implementation_date = timezone.now()
             #actual_implementation_date = datetime.strptime(actual_implementation_date, "%d/%b/%Y:%X %z").strftime("%Y-%m-%d %X")
         
         
         if len(expected_completion_date) < 3:
-            no_expected_completion_date = timezone.now()
+            expected_completion_date = timezone.now()
             
         
         if len(implementation_start_date) < 3:
-            no_implementation_start_date = timezone.now()
+            implementation_start_date = timezone.now()
         
         requirement_status = RequirementStatus (
             framework_id = frameworkid,
@@ -109,9 +109,9 @@ def create_security_requirement(request,frameworkid, assetid, requirementid):
             implementation_percent = request.POST.get('implementation_percent'),
             completion_Status = request.POST.get('completion_status'),
             owner = User.objects.get(id=owner_id) if owner_id else None,
-            actual_implementation_date = no_actual_implementation_date,
-            expected_completion_date = no_expected_completion_date,
-            implementation_start_date = no_implementation_start_date,
+            actual_implementation_date = actual_implementation_date,
+            expected_completion_date = expected_completion_date,
+            implementation_start_date = implementation_start_date,
             assigned_to_id = request.POST.get('assigned_to_id'),
             
         )
