@@ -213,7 +213,8 @@ def assetdetails(request, id):
     regulatoryFrameworks = RegulatoryFramework.objects.all()
     complianceItems = ComplianceStatus.objects.all()
     security_requirement_items = RequirementStatus.objects.filter(asset_id=id)
-    security_requirements =  SecurityManagementRequirement.objects.filter(parent_requirement__isnull=True).order_by('order').values()
+    #security_requirements =  SecurityManagementRequirement.objects.filter(parent_requirement__isnull=True).order_by('order').values()
+    security_requirements =  SecurityManagementRequirement.objects.filter(parent_requirement__isnull=True)
     form = ComplianceStatusForm()
     completion_Status = ComplianceStatus.COMPLETION_STATUS_CHOICES
     now = timezone.now()
