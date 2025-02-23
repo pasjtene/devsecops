@@ -143,9 +143,8 @@ def update_security_requirement(request, requirementitemid):
         if len(implementation_start_date) < 3:
             implementation_start_date = timezone.now()
             
-        requirement_item = RequirementStatus.objects.get(id=requirementitemid)
+        requirement_item = RequirementStatus.objects.filter(id=requirementitemid)
         requirement_item.update (
-            
             details = request.POST.get('details'),
             description = request.POST.get('description'),
             implementation_percent = request.POST.get('implementation_percent'),
