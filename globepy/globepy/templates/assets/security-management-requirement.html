@@ -8,7 +8,7 @@
           <i class="bx bxs-arrow-from-left"></i> 
         </span>
 
-         <!-- Create compliance requirement -->
+         <!-- Create security framework requirement -->
 
          <div style="display: none; border: 2px solid #F5F5F5;" class="requirement-details">
        
@@ -16,12 +16,11 @@
             Create implementation Status for this requirement <br/>
           </h5>
 
-          <!-- Multi Columns Form -->
+          <!-- Create security management requirement form -->
           <form  action="{% url 'create-security-requirement' frameworkid=sframework.id assetid=asset.id requirementid=requirement.id  %}"
             
             method="post"   class="row g-3 needs-validation container-fluid" novalidate>
-        
-          
+
                    {% csrf_token %}
                   <div >
                     <label for="description" class="form-label"
@@ -48,22 +47,12 @@
                   <div class="control-group">
                     <div class="controls controls-row row-fluid">
                       <label for="isdate" class="form-label"
-                        >Start date:</label
-                      >
-                      <input
-                      type="datetime-local" name="implementation_start_date"
-                        class="span4"
-                        
-                        value=""
-                        
-                      />
-                  
-                  
-                      <label
-                      for="validationCustom022"
-                      class="form-label"
-                      >Completion date:</label
-                    >
+                        >Start date:</label>
+                      
+                      <input type="datetime-local" name="implementation_start_date" class="span4" value="" />
+                      <label for="validationCustom022" class="form-label"
+                      >Completion date:</label>
+                     
                     <input
                       type="datetime-local" name="expected_completion_date"
                       class="span4"
@@ -115,31 +104,16 @@
                 </div>
                 
                 <div class="controls controls-row row-fluid">
-                    <label
-                    for="ipercent"
-                    >Completion percent</label
-                    >
-                    <input 
-                    type="text" name="implementation_percent"
-                    class="col-xs-2" maxlength="3" size="4"
-                    value="{{ item.implementation_percent }}"
-                    required
+                    <label for="ipercent">Completion percent</label>
+                    <input type="text" name="implementation_percent" class="col-xs-2" maxlength="3" size="4"
+                    value="{{ item.implementation_percent }}" required
                     />
                 </div>     
                         
                 <div class="controls controls-row row-fluid">
-                    <label
-                    for="validationCustom02ac{{item.id}}"
-                    class="form-label"
-                    >Actual completion date ({{item.actual_implementation_date}}): {{item.actual_implementation_date|timesince}}</label
-                    >
-                    <input
-                    type="datetime-local" name="actual_implementation_date"
-                    class="span4"
-                    
-                    value=""
-                    
-                    />
+                    <label for="validationCustom02ac{{item.id}}" class="form-label">Actual completion date 
+                    ({{item.actual_implementation_date}}): {{item.actual_implementation_date|timesince}}</label>
+                    <input type="datetime-local" name="actual_implementation_date" class="span4" value=""/>
                 </div>  
 
                   <div class="control-group">
@@ -151,9 +125,6 @@
             </form>                        
           </div>
         </span>
-
-
-
 
     
     <!--- check if there are items for this requirement -->
@@ -175,7 +146,7 @@
           <div style="display: none; border: 2px solid #F5F5F5;" class="requirement-details">
          
             <h5 class="card-title">
-              Update Compliance Status for this requirement
+              Update Implementation Status for this requirement
               <span class="icon edit-compliance-status">
                 <i class="bx bxs-edit-alt"></i>
               
@@ -183,10 +154,8 @@
             </h5>
 
             <!-- Multi Columns Form -->
-            <form  {% if sitem  %} action="{% url 'update-compliance-requirement'  sitem.id %}{% endif %}"
-              method="post"
-              class="row g-3 needs-validation container-fluid"
-              novalidate
+            <form  {% if sitem  %} action="{% url 'update-security-requirement'  requirementitemid=sitem.id %}{% endif %}"
+              method="post" class="row g-3 needs-validation container-fluid" novalidate
             >
               {% csrf_token %}
               <div >
@@ -228,13 +197,8 @@
               </div>
 
               <div class="controls controls-row row-fluid">
-                
-
-                <label
-                for="validationCustom022{{sitem.id}}"
-                class="form-label"
-                ><strong>Expected Completion date: </strong>
-
+                <label  for="validationCustom022{{sitem.id}}" class="form-label"><strong>Expected Completion date: </strong>
+               
                 <span class="non-editable"> 
                   {% if sitem.expected_completion_date <= now %}
                   {{sitem.expected_completion_date}}: {{sitem.expected_completion_date|timesince}} ago
@@ -244,15 +208,12 @@
                 </span>
                   </label
               >
-              <input
-                type="datetime-local" name="expected_completion_date"
-                class="span4 editable" style="display:none"
-                
+              <input type="datetime-local" name="expected_completion_date" class="span4 editable" style="display:none"
+              
                 value="{{ sitem.expected_completion_date|date:'Y-m-d\TH:i' }}"
                 required
               />
               </div>
-
 
               <div class="control-group">
                 <div class="controls controls-row row-fluid">
@@ -295,8 +256,6 @@
                   </span>
             </div>
 
-
-
               <div class="controls controls-row row-fluid">
                 <label
                   for="cst"
@@ -314,13 +273,10 @@
               
               <div class="controls controls-row row-fluid">
            
-                <label
-                  for="ipercent"
-                  ><strong>Completion percent:</strong></label
-                >
+                <label for="ipercent"><strong>Completion percent:</strong></label>  
                 <span class="non-editable">{{ sitem.implementation_percent }}%</span>
-                <input style="display:none"
-                  type="text" name="implementation_percent" 
+                <input style="display:none" type="text" name="implementation_percent" 
+                  
                   class="col-xs-2 editable" maxlength="3" size="4"
                   value="{{ sitem.implementation_percent }}"
                   required
@@ -328,12 +284,8 @@
                 
               </div>
 
-
               <div class="controls controls-row row-fluid">
-                    <label
-                      for="validationCustom02{{sitem.id}}"
-                      class="form-label"
-                      ><strong>Actual completion date:</strong> 
+                    <label for="validationCustom02{{sitem.id}}" class="form-label"><strong>Actual completion date:</strong> 
                       <span class="non-editable"> 
                         {% if sitem.actual_implementation_date <= now %}
                         {{sitem.actual_implementation_date}}: {{sitem.actual_implementation_date|timesince}} ago
@@ -341,26 +293,20 @@
                         {{item.actual_implementation_date}}: in {{sitem.actual_implementation_date|timeuntil}}
                       {% endif %}
                       </span>
-                        </label
-                    >
+                    </label>
+                    
                     <input style="display:none"
                       type="datetime-local" name="actual_implementation_date"
-                      class="span4 editable"
-                      
-                      value="{{ sitem.actual_implementation_date|date:'Y-m-d\TH:i' }}"
+                      class="span4 editable" value="{{ sitem.actual_implementation_date|date:'Y-m-d\TH:i' }}"
                       required
                     />
-                
               </div>
-
 
                   <div class="control-group editable" style="display: none">
                     <button type="submit" class="btn btn-primary">
                       Submit
                     </button>
                   </div>
-
-             
             </form>
             <!-- End Multi Columns Form -->
           </div>
@@ -372,17 +318,13 @@
     </div>
 <!--- End check if there are items for this requirement -->
 
- <!-- Check if requirement has sub_requirements -->
-
-
-<!-- End Check if requirement has sub_requirements -->
 
 {% endif  %}
 {% endfor  %}
     
-
+ <!-- Check if requirement has sub_requirements -->
 {% if requirement.sub_requirements.all %}
-<span>Number of sub requirements: {{ requirement.sub_requirements.count }} </span>
+
 <div  style="{% if requirement.parent_requirement_id == None %}border: 1px solid #E7E7E7{% endif %}">
     {% for sub_requirement in requirement.sub_requirements.all %}
 
@@ -394,15 +336,9 @@
 
     {% endfor %}
 </div>
-
-{% else %}
-<span>Number of sub requirements: {{ requirement.sub_requirements.count }} </span>
 {% endif %}
-
-
-
-
-     </div>
+<!-- End Check if requirement has sub_requirements -->
+</div>
 
      
 

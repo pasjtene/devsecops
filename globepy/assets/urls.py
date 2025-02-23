@@ -9,6 +9,7 @@ urlpatterns = [
     path('updated-compliance-requirement/<int:id>', views.update_compliance_requirement, name='update-compliance-requirement' ),
     path('create-compliance-requirement/<int:frameworkid>/<int:assetid>/<int:requirementid>', views.create_compliance_requirement, name='create-compliance-requirement' ),
     path('create-security-management-requirement/<int:frameworkid>/<int:assetid>/<int:requirementid>', views.create_security_requirement, name='create-security-requirement' ),
+    path('update-security-management-requirement/<int:requirementitemid>', views.update_security_requirement, name='update-security-requirement' ),
     path('comments/add/<int:assetid>/', views.add_comment, name='add_comment'),
     path('comments/add/<int:assetid>/<int:parent_id>/', views.add_comment, name='add_reply'),
     path('comments/delete/<int:comment_id>/', views.delete_comment, name='delete_comment'),
