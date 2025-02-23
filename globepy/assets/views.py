@@ -144,6 +144,7 @@ def update_security_requirement(request, requirementitemid):
             implementation_start_date = timezone.now()
             
         requirement_item = RequirementStatus.objects.filter(id=requirementitemid)
+        
         requirement_item.update (
             details = request.POST.get('details'),
             description = request.POST.get('description'),
@@ -158,7 +159,7 @@ def update_security_requirement(request, requirementitemid):
         )
         
         #requirement_status.save()
-     return redirect('asset-details',id=requirement_item.asset_id)       
+     return redirect('asset-details',id=requirement_item[0].asset_id)       
     
 
 @login_required
