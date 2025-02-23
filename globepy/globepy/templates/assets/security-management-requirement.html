@@ -239,7 +239,7 @@
               <div class="controls controls-row row-fluid">
                 <label for="sownerID"
                     ><strong>Assigned To:</strong></label>
-                    <span class="non-editable">{{item.assigned_to.username}}</span>
+                    <span class="non-editable">{{sitem.assigned_to.get_full_name}}</span>
                   
                   <span class="editable" style="display:none">
                     <select style="max-width:150px;" name="assigned_to_id" >
@@ -261,7 +261,7 @@
                   for="cst"
                   
                   ><strong>Completion status:</strong> </label
-                > <span class="non-editable">{{ item.completion_Status }}</span>
+                > <span class="non-editable">{{ sitem.completion_Status }}</span>
 
                 <select name="completion_status" required class="editable" style="display:none">
                   {% for value, label in completion_status_choices %}
