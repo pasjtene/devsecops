@@ -323,10 +323,10 @@
 {% endfor  %}
     
  <!-- Check if requirement has sub_requirements -->
-{% if requirement.sub_requirements.all|dictsort:"order" %}
+{% if requirement.sub_requirements.all %}
 
 <div  style="{% if requirement.parent_requirement_id == None %}border: 1px solid #E7E7E7{% endif %}">
-    {% for sub_requirement in requirement.sub_requirements.all %}
+    {% for sub_requirement in requirement.sub_requirements.all|dictsort:"order" %}
 
     {% if sub_requirement.parent_requirement_id == requirement.id %}
     <div class="mt-3" style="margin-left: 20px;">
