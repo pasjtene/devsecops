@@ -31,7 +31,9 @@ class SecurityManagementRequirement(models.Model):
         ISO27001_33 = ("ISO27001_33", _("3-3: Assess Risks"))
         ISO27001_331 = ("ISO27001_331", _("3-3-1: Evaluate the likelihood and impact of each risk."))
         ISO27001_332 = ("ISO27001_332", _("3-3-2: Use a risk matrix to prioritize risks.")) 
-        ISO27001_4 = ("ISO27001_4", _("Step 4: Implement Risk Treatment Plans."))
+        ISO27001_4 = ("ISO27001_4", _("Step 4: Implement Risk Treatment Plans."))     
+        ISO27001_41 = ("ISO27001_41", _("4-1: Select Controls"))
+        ISO27001_411 = ("ISO27001_411", _("4-1-1: Choose controls from Annex A of ISO/IEC 27001 to mitigate identified risks. Examples include access control, encryption, and incident management."))
         
         
         
@@ -56,6 +58,7 @@ class SecurityManagementRequirement(models.Model):
         default = secRequirements.get(name)
         ) 
     
+    order = models.PositiveIntegerField(default=1)
     description = models.TextField(null=True, blank=True)
     parent_requirement = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='sub_requirements')
     
