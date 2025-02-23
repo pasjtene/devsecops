@@ -213,7 +213,7 @@ def assetdetails(request, id):
     regulatoryFrameworks = RegulatoryFramework.objects.all()
     complianceItems = ComplianceStatus.objects.all()
     security_requirement_items = RequirementStatus.objects.filter(asset_id=id)
-    security_requirements =  SecurityManagementRequirement.objects.filter(parent_requirement__isnull=True)
+    security_requirements =  SecurityManagementRequirement.objects.filter(parent_requirement__isnull=True).order_by('order').values()
     form = ComplianceStatusForm()
     completion_Status = ComplianceStatus.COMPLETION_STATUS_CHOICES
     now = timezone.now()
@@ -256,7 +256,6 @@ def add_comment(request, assetid, parent_id=None):
         messages.error(request, "The form is not valid")
         
     return redirect('asset-details',id=assetid)
-    
     
 
 @login_required
