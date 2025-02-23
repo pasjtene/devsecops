@@ -63,7 +63,7 @@ class SecurityManagementRequirement(models.Model):
     parent_requirement = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='sub_requirements')
     
     def __str__(self):
-        return f"{self.name}: {self.short_description}"
+        return f"{self.name}: {self.short_description} -> {self.order}"
     
     def sub_requirement(self):
         return self.parent_requirement is not None 
