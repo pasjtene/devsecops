@@ -64,6 +64,21 @@
       }
     </style>
 
+    <style>
+      .left-element {
+        width: 30%; /* Adjust width as needed */
+        transition: width 0.3s ease;
+      }
+      .left-element.closed {
+        width: 0;
+        overflow: hidden;
+      }
+      .right-element {
+        flex-grow: 1;
+        transition: width 0.3s ease;
+      }
+    </style>
+
     <!-- =======================================================
       * Template Name: NiceAdmin
       * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/

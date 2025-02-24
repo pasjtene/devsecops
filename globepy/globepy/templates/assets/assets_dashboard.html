@@ -250,6 +250,41 @@
             </div>
           </div>
 
+              <!-- Left Element (Closable) -->
+              <div class="left-element bg-light p-3 border-end" id="leftElement">
+                <button type="button" class="btn-close float-end" aria-label="Close" onclick="closeLeftElement()"></button>
+                <h4>Left Element</h4>
+                <p>This is some text or an image.</p>
+                <img src="https://via.placeholder.com/150" alt="Placeholder Image" class="img-fluid">
+              </div>
+
+              <!-- Right Element (Tabs) -->
+              <div class="right-element p-3" id="rightElement">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1" type="button" role="tab" aria-controls="tab1" aria-selected="true">Tab 1</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2" type="button" role="tab" aria-controls="tab2" aria-selected="false">Tab 2</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="tab3-tab" data-bs-toggle="tab" data-bs-target="#tab3" type="button" role="tab" aria-controls="tab3" aria-selected="false">Tab 3</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="tab4-tab" data-bs-toggle="tab" data-bs-target="#tab4" type="button" role="tab" aria-controls="tab4" aria-selected="false">Tab 4</button>
+                  </li>
+                </ul>
+                <div class="tab-content mt-3" id="myTabContent">
+                  <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">Content for Tab 1</div>
+                  <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">Content for Tab 2</div>
+                  <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">Content for Tab 3</div>
+                  <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">Content for Tab 4</div>
+                </div>
+              </div>
+
+
+
+
           <!-- Recent Sales -->
           <div class="col-12">
             <div class="card recent-sales overflow-auto">
@@ -710,6 +745,15 @@
                     ],
                   });
               });
+
+              function closeLeftElement() {
+                const leftElement = document.getElementById('leftElement');
+                const rightElement = document.getElementById('rightElement');
+                leftElement.classList.toggle('closed');
+                rightElement.classList.toggle('expanded');
+              }
+
+
             </script>
           </div>
         </div>
