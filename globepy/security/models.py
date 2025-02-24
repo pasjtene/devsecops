@@ -10,10 +10,10 @@ class SecurityManagementRequirement(models.Model):
         # FISMA https://security.cms.gov/learn/federal-information-security-modernization-act-fisma
         # PCIDSS https://pcidssguide.com/pci-dss-requirements/
         ISO27001_1 = ("ISO27001_S1", _("Step 1: Define the Scope and Objectives"))
-        ISO27001_11 = ("ISO27001_11", _("1- Define the Scope"))
+        ISO27001_11 = ("ISO27001_11", _("1-1: Define the Scope"))
         ISO27001_111 = ("ISO27001_111", _("1-1-1: Identify the boundaries of your ISMS (e.g., specific departments, systems, or locations)."))
         ISO27001_112 = ("ISO27001_112", _("1-1-2: Consider legal, regulatory, and contractual requirements."))
-        ISO27001_12 = ("ISO27001_12", _("1-2- Set Objectives"))
+        ISO27001_12 = ("ISO27001_12", _("1-2: Set Objectives"))
         ISO27001_121 = ("ISO27001_121", _("1-2-1: Define the goals of your ISMS (e.g., protecting customer data, ensuring business continuity)."))
         ISO27001_122 = ("ISO27001_122", _("1-2-2: Align objectives with business goals and stakeholder expectations."))
         ISO27001_2 = ("ISO27001_2", _("Step 2: Obtain Management Support"))
