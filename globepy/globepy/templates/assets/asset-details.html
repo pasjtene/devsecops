@@ -404,8 +404,8 @@
 
                   <div class="col-md-8 col-lg-9" class="requirement-description12">
                     <!-- This list only contains top level requirements (with no parent requirement) -->
-                    {%for requirement in security_requirements.all %}
-                      
+                    {%for requirement in sframework.security_management_requirements.all %}
+                    
                       <div class="mt-3">
                         {% include 'assets/security-management-requirement.html' %}
                       </div> 
