@@ -401,29 +401,32 @@
                
                 <hr>
                 
-                  
+                <div class="row text-bg-warning">
+                  Some text
+                  <hr>
+                </div>
                 
                   
 
-                  <div class="requirement-description12 col-sm-8" >
+                  <div class="requirement-description12 col-sm-12" >
                     <span class="text-bg-info col-sm-4" style="border: 1px solid green">
                       {{sframework.title}} implementation requirements
                     </span>
+                    <div class="col-sm-8">
+                      {%for requirement in sframework.security_management_requirements.all|dictsort:"order" %}
+                      {% if requirement.parent_requirement_id == None %}
+                        
+                          {% include 'assets/security-management-requirement.html' %}
+                        
+                        {% endif %} 
+                      {% endfor %}  
+                    </div>
                     <!-- This list only contains top level requirements (with no parent requirement) -->
-                    {%for requirement in sframework.security_management_requirements.all|dictsort:"order" %}
-                    {% if requirement.parent_requirement_id == None %}
-                      
-                        {% include 'assets/security-management-requirement.html' %}
-                      
-                      {% endif %} 
-                    {% endfor %}  
+                    
                     
                   </div> 
 
-                  <div class="row text-bg-warning">
-                    Some text
-                    <hr>
-                  </div>
+                  
 
                 
                 
