@@ -404,9 +404,17 @@
                 <div class="row text-bg-warning">
                   <div class="col-sm-4">
                     Some text left 4
+                    {{sframework.title}} implementation requirements
                   </div>
                       <div class="col-sm-8">
                         Some text right 8
+                        {%for requirement in sframework.security_management_requirements.all|dictsort:"order" %}
+                      {% if requirement.parent_requirement_id == None %}
+                        
+                          {% include 'assets/security-management-requirement.html' %}
+                        
+                        {% endif %} 
+                      {% endfor %} 
                       </div>
                   
                   <hr>
