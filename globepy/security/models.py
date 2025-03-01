@@ -34,7 +34,8 @@ class SecurityManagementRequirement(models.Model):
         ISO27001_4 = ("ISO27001_4", _("Step 4: Implement Risk Treatment Plans."))     
         ISO27001_41 = ("ISO27001_41", _("4-1: Select Controls"))
         ISO27001_411 = ("ISO27001_411", _("4-1-1: Choose controls from Annex A of ISO/IEC 27001 to mitigate identified risks. Examples include access control, encryption, and incident management."))
-        
+        SOC2_S1 = ("SOC2_S1", _("Step1: Review Key Characteristics of SOC 2"))
+        SOC2_S11 = ("SOC2_S1", _("1-1: Focus on Controls: SOC 2 is all about demonstrating that you have the right controls in place to protect data."))
         
         
     
