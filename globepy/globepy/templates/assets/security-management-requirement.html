@@ -329,7 +329,7 @@
     {% for sub_requirement in requirement.sub_requirements.all|dictsort:"order" %}
 
     {% if sub_requirement.parent_requirement_id == requirement.id %}
-    <div class="mt-3" style="margin-left: 20px;">
+    <div class="mt-3" >
         {% include 'assets/security-management-requirement.html' with requirement=sub_requirement %}
     </div>
     {% endif %}
