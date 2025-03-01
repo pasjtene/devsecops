@@ -399,7 +399,7 @@
                 <div class="row mb-3" style="border: 1px solid blue">
                 {% for sframework in asset.SecurityManagementFrameworks.all %}
                
-                
+                <hr>
                 
                   <span class="text-bg-info col-sm-4" style="border: 1px solid green">
                     {{sframework.title}} implementation requirements
@@ -418,6 +418,11 @@
                     {% endfor %}  
                     
                   </div> 
+
+                  <div class="row text-bg-warning">
+                    Some text
+                    <hr>
+                  </div>
 
                 
                 
