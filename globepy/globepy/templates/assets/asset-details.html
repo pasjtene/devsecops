@@ -401,13 +401,14 @@
                
                 <hr>
                 
-                  <span class="text-bg-info col-sm-4" style="border: 1px solid green">
-                    {{sframework.title}} implementation requirements
-                  </span>
+                  
                 
                   
 
                   <div class="requirement-description12 col-sm-8" >
+                    <span class="text-bg-info col-sm-4" style="border: 1px solid green">
+                      {{sframework.title}} implementation requirements
+                    </span>
                     <!-- This list only contains top level requirements (with no parent requirement) -->
                     {%for requirement in sframework.security_management_requirements.all|dictsort:"order" %}
                     {% if requirement.parent_requirement_id == None %}
