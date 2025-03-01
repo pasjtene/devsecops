@@ -412,7 +412,7 @@
                     <span class="text-bg-info col-sm-4" style="border: 1px solid green">
                       {{sframework.title}} implementation requirements
                     </span>
-                    <div class="col-sm-8">
+                    <div class="row">
                       {%for requirement in sframework.security_management_requirements.all|dictsort:"order" %}
                       {% if requirement.parent_requirement_id == None %}
                         
