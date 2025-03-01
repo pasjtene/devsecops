@@ -398,10 +398,11 @@
                 <!-- Security Management Frameworks-->
 
                 {% for sframework in asset.SecurityManagementFrameworks.all %}
+                <label for="fullName" class="col-md-4 col-lg-3 col-form-label">
+                  {{sframework.title}} implementation requirements
+                </label>
                 <div class="row mb-3" style="border: 1px solid blue">
-                  <label for="fullName" class="col-md-4 col-lg-3 col-form-label">
-                    {{sframework.title}} implementation requirements
-                  </label>
+                 
 
                   <div class="col-md-8 col-lg-9" class="requirement-description12">
                     <!-- This list only contains top level requirements (with no parent requirement) -->
