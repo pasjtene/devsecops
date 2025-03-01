@@ -403,17 +403,18 @@
                     {{sframework.title}} implementation requirements
                   </label>
 
-                  <label> class="col-md-8 col-lg-9" class="requirement-description12">
+                  <div> class="col-md-8 col-lg-9" class="requirement-description12">
                     <!-- This list only contains top level requirements (with no parent requirement) -->
                     {%for requirement in sframework.security_management_requirements.all|dictsort:"order" %}
                     {% if requirement.parent_requirement_id == None %}
                       <div class="mt-3">
                         {% include 'assets/security-management-requirement.html' %}
-                    </div> 
+                      </div> 
                       {% endif %} 
                     {% endfor %}  
                     
-                  </label> 
+                  </div> 
+                </div>
                 {% endfor %}  
             </div>
                
