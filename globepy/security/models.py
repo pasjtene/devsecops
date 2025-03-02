@@ -38,7 +38,7 @@ class SecurityManagementRequirement(models.Model):
         SOC2_S11 = ("SOC2_11", _("1-1: Focus on Controls: SOC 2 is all about demonstrating that you have the right controls in place to protect data."))
         SOC2_S12 = ("SOC2_12", _("1-2: Consider the Report Type to be produced: There are two types of SOC 2 reports "))
         SOC2_S121 = ("SOC2_121", _("1-2-1: Type 1: A snapshot in time. It reports on the design of controls at a specific point in time"))
-        SOC2_S121 = ("SOC2_122", _("1-2-2: Type 2: Over a period of time. It reports on the design and operating effectiveness of controls over a specified period (e.g., 6 months). This is generally considered more valuable."))
+        SOC2_S122 = ("SOC2_122", _("1-2-2: Type 2: Over a period of time. It reports on the design and operating effectiveness of controls over a specified period (e.g., 6 months). This is generally considered more valuable."))
         
     
     name = models.CharField(
