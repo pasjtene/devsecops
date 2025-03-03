@@ -28,7 +28,7 @@ FRAMEWORKS = {
 
 
 # JSON data
-iso27001_data = {
+iso27001_data_save = {
     "framework": "ISO27001",
     "requirements": [
         {"requirement": "Establish the context of the organization", "codename": "A.4.1"},
@@ -43,6 +43,75 @@ iso27001_data = {
         {"requirement": "Continuously improve the ISMS", "codename": "A.10.1"}
     ]
 }
+
+
+iso27001_data = {
+  "framework": "ISO27001",
+  "requirements": [
+    {
+      "id": 1,
+      "requirement": "Establish the context of the organization",
+      "codename": "A.4.1",
+      "order": 1
+    },
+    {
+      "id": 2,
+      "requirement": "Define the ISMS scope",
+      "codename": "A.4.3",
+      "order": 2
+    },
+    {
+      "id": 3,
+      "requirement": "Perform a risk assessment",
+      "codename": "A.6.1.2",
+      "order": 3
+    },
+    {
+      "id": 4,
+      "requirement": "Implement risk treatment plans",
+      "codename": "A.6.1.3",
+      "order": 4
+    },
+    {
+      "id": 5,
+      "requirement": "Develop a Statement of Applicability",
+      "codename": "A.6.1.3.d",
+      "order": 5
+    },
+    {
+      "id": 6,
+      "requirement": "Implement access control policies",
+      "codename": "A.9.1.1",
+      "order": 6
+    },
+    {
+      "id": 7,
+      "requirement": "Monitor and review the ISMS",
+      "codename": "A.9.3",
+      "order": 7
+    },
+    {
+      "id": 8,
+      "requirement": "Conduct internal audits",
+      "codename": "A.9.2",
+      "order": 8
+    },
+    {
+      "id": 9,
+      "requirement": "Perform management reviews",
+      "codename": "A.9.3",
+      "order": 9
+    },
+    {
+      "id": 10,
+      "requirement": "Continuously improve the ISMS",
+      "codename": "A.10.1",
+      "order": 10
+    }
+  ]
+}
+
+
 
 # Convert the JSON object to a string
 json_data = json.dumps(iso27001_data)
