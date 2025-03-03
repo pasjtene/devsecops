@@ -64,6 +64,7 @@ class SecurityManagementRequirement(models.Model):
     order = models.PositiveIntegerField(default=1)
     description = models.TextField(null=True, blank=True)
     parent_requirement = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='sub_requirements')
+
     
     def __str__(self):
         return f"{self.name}: {self.short_description} -> {self.order}"
