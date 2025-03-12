@@ -14,6 +14,7 @@ from security.models import SecurityManagementRequirement
 from security.models import ISMSFramework
 import json
 from pprint import pprint
+from django.http import JsonResponse
 
 
 
@@ -31,7 +32,8 @@ def iso27001_requirements(request, assetid):
         'framework_data': json.dumps(framework_data.requirements),
         'asset': asset
     }
-    return render(request, 'assets/framework_requirements.html', context)
+    #return render(request, 'assets/framework_requirements.html', context)
+    return JsonResponse(context)
 
 @login_required
 def formeditors(request):
