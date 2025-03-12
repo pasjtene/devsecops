@@ -21,9 +21,10 @@ def formeditors2(request):
 def iso27001_requirements(request, assetid):
     # Fetch all requirements from the database
     requirements = ISMSFramework.objects.all()
+    asset = Asset.objects.get(id=assetid)
     context = {
         'requirements': requirements,
-        'assetid': assetid
+        'asset': asset
     }
     return render(request, 'assets/framework_requirements.html', context)
 
