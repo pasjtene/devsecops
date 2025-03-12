@@ -30,7 +30,7 @@ def iso27001_requirements(request, assetid):
     asset = Asset.objects.get(id=assetid)
     context = {
         #'framework_data': json.dumps(framework_data.requirements),
-        'framework_data': json.dumps(framework_data.requirements['requirements']),
+        'framework_data': framework_data.requirements['requirements'],
         'asset': asset
     }
     return render(request, 'assets/framework_requirements.html', context)
