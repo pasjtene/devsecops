@@ -403,8 +403,8 @@
 
 
               <div class="row mb-3" style="border: 1px solid blue">
-                {% for req in framework_data %}
-               Req: {{req.framework_name}} {{req.id}} {{req.requirements}}
+                {% for req in framework_data.requirements.requirements%}
+               Req: {{req.codename}} {{req.id}} {{req.requirement}}
                 <hr>
                 
                     <div class="row">
