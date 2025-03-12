@@ -24,7 +24,7 @@ def iso27001_requirements(request):
     context = {
         'requirements': requirements
     }
-    return render(request, 'iso27001/requirements.html', context)
+    return render(request, 'assets/framework_requirements.html', context)
 
 @login_required
 def formeditors(request):
