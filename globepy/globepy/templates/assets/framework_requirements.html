@@ -404,9 +404,9 @@
 
               <div class="row mb-3" style="border: 1px solid blue">
                 {% for req in framework_data %}
-               1Req: {{req.codename}} {{req.id}} {{req.requirements}} {{req}}
+               1Req:  {{req.id}} {{req.requirements}} {{req}}
                 <hr>
-                2Req: {{req.requirements.requirement}} {{req.requirements.codename}}}
+                2Req:  {{req.framework}}
                 
                     <div class="row">
                         <div class="col-sm-4" style="background-color: #F0F8FF; border: 5px solid #FFFFFF">
@@ -417,6 +417,10 @@
                         </div>
                         <hr>
                     </div>
+
+                    {% for req2 in req.requirements %}
+                    3requ: {{req2.requirement}}
+                    {% endfor %}
 
                 <div class="requirement-description12 col-sm-12" >
                             <span class="text-bg-info col-sm-4" style="border: 1px solid green">
