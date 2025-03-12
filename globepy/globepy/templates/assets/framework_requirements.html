@@ -406,11 +406,11 @@
                 {% for req in framework_data %}
                1Req:  {{req.id}} {{req.requirement}} 
                 <hr>
-                2Req:  {{req.framework}}
+                
                 
                     <div class="row">
                         <div class="col-sm-4" style="background-color: #F0F8FF; border: 5px solid #FFFFFF">
-                            <a href="{% url 'iso27001_requirements' assetid=asset.id %}">{{req.id}}</a>  Description
+                            <a href="{% url 'iso27001_requirements' assetid=asset.id %}">{{req.id}}</a> 
                         </div>
                         <div class="col-sm-8" style="background-color: #F0F8FF; border: 5px solid #FFFFFF">
                             {{req.requirement}}
@@ -421,9 +421,7 @@
             
 
                 <div class="requirement-description12 col-sm-12" >
-                            <span class="text-bg-info col-sm-4" style="border: 1px solid green">
-                            order:    {{req.order}} codename:   {{req.codename}}
-                            </span>
+                            
                         <div class="row">
                             
                         </div>
