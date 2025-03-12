@@ -11,11 +11,20 @@ from comments.models import Comment
 from comments.forms import CommentForm
 from datetime import datetime
 from security.models import SecurityManagementRequirement
+from security.models import ISMSFramework
 
 
 # Create your views here.
 def formeditors2(request):
     return HttpResponse('LMS --- Hello world...!!! <br/> Another hello world <br> link <a href="/lms/hello2">go to hello2 </a>')
+
+def iso27001_requirements(request):
+    # Fetch all requirements from the database
+    requirements = ISMSFramework.objects.all()
+    context = {
+        'requirements': requirements
+    }
+    return render(request, 'iso27001/requirements.html', context)
 
 @login_required
 def formeditors(request):
