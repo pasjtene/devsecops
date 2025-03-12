@@ -10,7 +10,8 @@ class ISMSFramework(models.Model):
     requirements = models.JSONField()
 
     def __str__(self):
-        return f"{self.framework_name} - {self.requirement['codename']}"
+        return f"{self.framework_name} - {self.id}"
+        #return f"{self.framework_name} - {self.requirement['codename']}"
 
 class SecurityManagementRequirement(models.Model):
     class RequirementList(models.TextChoices):
