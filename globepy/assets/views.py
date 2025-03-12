@@ -13,6 +13,8 @@ from datetime import datetime
 from security.models import SecurityManagementRequirement
 from security.models import ISMSFramework
 import json
+from pprint import pprint
+
 
 
 # Create your views here.
@@ -23,6 +25,7 @@ def iso27001_requirements(request, assetid):
     # Fetch all requirements from the database
     #framework_data = ISMSFramework.objects.all()
     framework_data = ISMSFramework.objects.get(id=1)
+    pprint(dir(framework_data))
     asset = Asset.objects.get(id=assetid)
     context = {
         'framework_data': json.dumps(framework_data.requirements),
