@@ -5,6 +5,13 @@ from django.contrib.auth.models import User, auth
 from django.utils.translation import gettext_lazy as _
 
 
+class ISMSFramework(models.Model):
+    framework_name = models.CharField(max_length=50)
+    requirement = models.JSONField()
+
+    def __str__(self):
+        return f"{self.framework_name} - {self.requirement['codename']}"
+
 class SecurityManagementRequirement(models.Model):
     class RequirementList(models.TextChoices):
         # FISMA https://security.cms.gov/learn/federal-information-security-modernization-act-fisma
