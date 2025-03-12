@@ -29,11 +29,12 @@ def iso27001_requirements(request, assetid):
     pprint(dir(framework_data))
     asset = Asset.objects.get(id=assetid)
     context = {
-        'framework_data': json.dumps(framework_data.requirements),
+        #'framework_data': json.dumps(framework_data.requirements),
+        'framework_data': json.dumps(framework_data.requirements['requirements']),
         'asset': asset
     }
-    #return render(request, 'assets/framework_requirements.html', context)
-    return JsonResponse(framework_data.requirements['requirements'], safe=False)
+    return render(request, 'assets/framework_requirements.html', context)
+    #return JsonResponse(framework_data.requirements['requirements'], safe=False)
 
 @login_required
 def formeditors(request):
