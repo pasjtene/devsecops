@@ -18,11 +18,12 @@ from security.models import ISMSFramework
 def formeditors2(request):
     return HttpResponse('LMS --- Hello world...!!! <br/> Another hello world <br> link <a href="/lms/hello2">go to hello2 </a>')
 
-def iso27001_requirements(request):
+def iso27001_requirements(request, assetid):
     # Fetch all requirements from the database
     requirements = ISMSFramework.objects.all()
     context = {
-        'requirements': requirements
+        'requirements': requirements,
+        'assetid': assetid
     }
     return render(request, 'assets/framework_requirements.html', context)
 
