@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 
 class ISMSFramework(models.Model):
     framework_name = models.CharField(max_length=50)
-    requirement = models.JSONField()
+    requirements = models.JSONField()
 
     def __str__(self):
         return f"{self.framework_name} - {self.requirement['codename']}"
