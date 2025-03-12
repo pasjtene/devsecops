@@ -33,7 +33,7 @@ def iso27001_requirements(request, assetid):
         'asset': asset
     }
     #return render(request, 'assets/framework_requirements.html', context)
-    return JsonResponse(json.dumps(framework_data.requirements))
+    return JsonResponse(json.dumps(framework_data.requirements),safe=False)
 
 @login_required
 def formeditors(request):
