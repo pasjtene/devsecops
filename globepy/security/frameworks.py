@@ -406,7 +406,7 @@ try:
 
 # Insert the JSON data into the table
     insert_query = """
-    INSERT INTO isms_framework (framework_name, requirements)
+    INSERT INTO security_ismsframework (framework_name, requirements)
     VALUES (%s, %s);
     """
     cursor.execute(insert_query, (iso27001_data["framework"], json_data))
