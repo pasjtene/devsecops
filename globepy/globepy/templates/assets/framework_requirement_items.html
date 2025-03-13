@@ -97,6 +97,7 @@
                     <label for="cst">Completion status ({{ item.completion_Status }})</label>
                     <select  name="completion_status" required>
                     {% for value, label in completion_status_choices %}
+                    <option value="{{ value }}">{{ label }}</option>
                     <option {% if value == item.completion_Status %} selected{% endif %} value="{{ value }}">{{ label }}</option>
                     {% endfor %}
                     </select>
