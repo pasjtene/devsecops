@@ -362,19 +362,19 @@ class RequirementAction(models.Model):
         User,
         on_delete=models.SET_NULL,
         null=True, blank=True,
-        related_name="security_requirement_items_owned"
+        related_name="requirement_actions_owned"
     )
     assigned_to = models.ForeignKey(
         User,
         on_delete=models.SET_NULL,
         null=True, blank=True,
-        related_name="security_requirement_items_assigned"
+        related_name="requirement_actions_assigned"
     )
     created_by = models.ForeignKey(
         User,
         on_delete=models.SET_NULL,
         null=True, blank=True,
-        related_name="security_requirement_items_created"
+        related_name="requirement_actions_created"
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
