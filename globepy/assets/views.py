@@ -25,6 +25,13 @@ def formeditors2(request):
 def iso27001_requirements(request, assetid):
     # Fetch all requirements from the database
     #framework_data = ISMSFramework.objects.all()
+    STATUS_CHOICES = [
+        ('Complete', 'Complete'),
+        ('InProgress', 'InProgress'),
+        ('Canceled', 'Canceled'),
+        ('Paused','Paused')
+    ]
+    
     framework_data = ISMSFramework.objects.get(id=1)
     #pprint(dir(framework_data))
     asset = Asset.objects.get(id=assetid)
@@ -42,7 +49,8 @@ def iso27001_requirements(request, assetid):
         'completion_Status_choices': completion_Status_choices,
         'security_requirement_items': security_requirement_items,
         'comments': comments,
-        'complianceItems': complianceItems
+        'complianceItems': complianceItems,
+        'STATUS_CHOICES': STATUS_CHOICES
     }
     return render(request, 'assets/framework_requirements.html', context)
     #return JsonResponse(framework_data.requirements['requirements'], safe=False)

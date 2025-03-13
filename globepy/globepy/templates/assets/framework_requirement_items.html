@@ -102,6 +102,16 @@
                     {% endfor %}
                     </select>
                 </div>
+
+                <div class="controls controls-row row-fluid">
+                    <label for="cst">Completion status 2 </label>
+                    <select  name="completion_status" required>
+                    {% for value, label in STATUS_CHOICES %}
+                    <option value="{{ value }}">{{ label }}</option>
+                    
+                    {% endfor %}
+                    </select>
+                </div>
                 
                 <div class="controls controls-row row-fluid">
                     <label for="ipercent">Completion percent</label>
