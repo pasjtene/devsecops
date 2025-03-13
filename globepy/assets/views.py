@@ -35,7 +35,7 @@ def iso27001_requirements(request, assetid):
         'framework_data': framework_data.requirements['requirements'],
         'asset': asset,
         'users': users,
-        'completion_Status_choices':completion_Status_choices
+        'completion_Status_choices': completion_Status_choices
     }
     return render(request, 'assets/framework_requirements.html', context)
     #return JsonResponse(framework_data.requirements['requirements'], safe=False)
