@@ -30,7 +30,7 @@ def iso27001_requirements(request, assetid):
     asset = Asset.objects.get(id=assetid)
     users = User.objects.all()
     completion_Status_choices = ComplianceStatus.COMPLETION_STATUS_CHOICES
-    security_requirement_items = RequirementStatus.objects.filter(asset_id=id)
+    security_requirement_items = RequirementStatus.objects.filter(asset_id=assetid)
     comments = Comment.objects.filter(asset_id=asset.id, parent_comment__isnull=True)
     
     context = {
