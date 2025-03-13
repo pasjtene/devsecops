@@ -48,7 +48,7 @@ iso27001_data_save = {
 
 
 iso27001_data = {
-  "framework": "ISO27001",
+  "framework_name": "ISO27001",
   "framework_id": 1,
   "description": "ISO/IEC 27001 is  An international standard for information security management systems (ISMS).\
     It provides a systematic approach to managing sensitive company information, ensuring confidentiality, integrity, and availability." ,
@@ -414,9 +414,9 @@ try:
 # Insert the JSON data into the table
     insert_query = """
     INSERT INTO security_ismsframework (framework_name, framework_id, description, recommendations, requirements)
-    VALUES (%s, %s, %s, %s);
+    VALUES (%s, %s);
     """
-    cursor.execute(insert_query, (iso27001_data["framework"], json_data))
+    cursor.execute(insert_query, (iso27001_data["framework_name"], iso27001_data["framework_id"], iso27001_data["description"], iso27001_data["recommendations"], json_data))
     conn.commit()
 
     print("Data inserted successfully!")
