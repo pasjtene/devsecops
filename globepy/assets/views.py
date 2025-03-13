@@ -30,12 +30,17 @@ def iso27001_requirements(request, assetid):
     asset = Asset.objects.get(id=assetid)
     users = User.objects.all()
     completion_Status_choices = ComplianceStatus.COMPLETION_STATUS_CHOICES
+    security_requirement_items = RequirementStatus.objects.filter(asset_id=id)
+    comments = Comment.objects.filter(asset_id=asset.id, parent_comment__isnull=True)
+    
     context = {
         #'framework_data': json.dumps(framework_data.requirements),
         'framework_data': framework_data.requirements['requirements'],
         'asset': asset,
         'users': users,
-        'completion_Status_choices': completion_Status_choices
+        'completion_Status_choices': completion_Status_choices,
+        'security_requirement_items': security_requirement_items,
+        'comments': comments
     }
     return render(request, 'assets/framework_requirements.html', context)
     #return JsonResponse(framework_data.requirements['requirements'], safe=False)
