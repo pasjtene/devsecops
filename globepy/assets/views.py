@@ -26,12 +26,14 @@ def iso27001_requirements(request, assetid):
     # Fetch all requirements from the database
     #framework_data = ISMSFramework.objects.all()
     framework_data = ISMSFramework.objects.get(id=1)
-    pprint(dir(framework_data))
+    #pprint(dir(framework_data))
     asset = Asset.objects.get(id=assetid)
+    users = User.objects.all()
     context = {
         #'framework_data': json.dumps(framework_data.requirements),
         'framework_data': framework_data.requirements['requirements'],
-        'asset': asset
+        'asset': asset,
+        'users': users
     }
     return render(request, 'assets/framework_requirements.html', context)
     #return JsonResponse(framework_data.requirements['requirements'], safe=False)
