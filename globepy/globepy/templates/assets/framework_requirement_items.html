@@ -1,0 +1,344 @@
+<div>
+    <input class="form-check-input" type="checkbox" id="changesMade" checked />
+    <span class="requirement-description-head11">
+      {{requirement.requirement}}
+    
+        <span class="icon create-compliance-item">
+          <i class="bx bxs-arrow-from-left"></i> 
+        </span>
+
+         <!-- Create security framework requirement -->
+
+        <div style="display: none; border: 2px solid #F5F5F5;" class="requirement-details">
+       
+          <h5 class="card-title">
+            Create implementation Status for this requirement <br/>
+          </h5>
+
+          <!-- Create security management requirement form -->
+          <form  action="{% url 'create-security-requirement' frameworkid=requirement.id assetid=asset.id requirementid=requirement.id  %}"
+            
+            method="post"   class="row g-3 needs-validation container-fluid" novalidate>
+
+                   {% csrf_token %}
+                  <div >
+                    <label for="description" class="form-label"
+                      ><strong>Description:</strong></label
+                    >
+                    <input style="max-width:450px;" size="32" maxlength="50"
+                      type="text"
+                      name="description"
+                      value=""
+                    />
+                  </div>
+
+                  <div class="mb-8">
+                    <label
+                      for="exampleFormControlTextarea1"
+                      class="form-label"
+                      ><strong>Details of actions taken:</strong></label
+                    >
+                    <textarea class="form-control editable" name="details" rows="2">
+                    {{item.details}}
+                    </textarea>
+                  </div>
+
+                  <div class="control-group">
+                    <div class="controls controls-row row-fluid">
+                      <label for="isdate" class="form-label"
+                        >Start date:</label>
+                      
+                      <input type="datetime-local" name="implementation_start_date" class="span4" value="" />
+                      <label for="validationCustom022" class="form-label"
+                      >Completion date:</label>
+                     
+                    <input
+                      type="datetime-local" name="expected_completion_date"
+                      class="span4"
+                      
+                      value=""
+                      
+                    />
+                    </div>
+                  </div>
+
+                  <div class="control-group">
+                    <div class="controls controls-row row-fluid">
+                  
+                      <label for="ownerID">Owner</label>
+                      <select style="max-width:150px;" name="owner_id">
+                        {% for user in users.all %}
+                        
+                        <span>
+                          <option {% if  user.id == item.owner_id %} selected{% endif %} value="{{ user.id }}">
+                            {{ user.username }}
+                          </option>
+                        </span>
+                  
+                        {% endfor %}
+                      </select>
+                      <label for="sownerID">Assigned To</label>
+                      <select style="max-width:150px;" name="assigned_to_id" >
+                        {% for assigneduser in users.all %}
+                        
+                        <span>
+                          <option {% if  assigneduser.id == item.assigned_to_id %} selected{% endif %} value="{{ assigneduser.id }}">
+                            {{ assigneduser.username }}
+                          </option>
+                        </span>
+                  
+                        {% endfor %}
+                      </select> 
+                      </div>
+                  </div> 
+
+
+                <div class="controls controls-row row-fluid">
+                    <label for="cst">Completion status ({{ item.completion_Status }})</label>
+                    <select  name="completion_status" required>
+                    {% for value, label in completion_status_choices %}
+                    <option {% if value == item.completion_Status %} selected{% endif %} value="{{ value }}">{{ label }}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="controls controls-row row-fluid">
+                    <label for="ipercent">Completion percent</label>
+                    <input type="text" name="implementation_percent" class="col-xs-2" maxlength="3" size="4"
+                    value="{{ item.implementation_percent }}" required
+                    />
+                </div>     
+                        
+                <div class="controls controls-row row-fluid">
+                    <label for="validationCustom02ac{{item.id}}" class="form-label">Actual completion date 
+                    ({{item.actual_implementation_date}}): {{item.actual_implementation_date|timesince}}</label>
+                    <input type="datetime-local" name="actual_implementation_date" class="span4" value=""/>
+                </div>  
+
+                  <div class="control-group">
+                    <button type="submit" class="btn btn-primary">
+                      Submit
+                    </button>
+
+                  </div>
+            </form>                        
+          </div>
+        </span>
+
+    
+    <!--- check if there are items for this requirement -->
+    
+    {% for sitem in securityRequirementItems.all %}
+
+    {% if sitem.requirement_id == requirement.id and sitem.asset_id == asset.id and sitem.framework_id == sframework.id  %}
+    <!--- Start displaying compliance requirement items -->
+    <div data-for="Begin compliance requirement items" style="{% if requirement.parent_requirement_id == None %}border: 1px solid gray{% endif %}">
+   
+        <div class="requirement-description" >
+         
+          <div class="requirement-description-head" style="border-top: 5px solid #FFFFFF; background-color: #F0F8FF" >
+            
+            {{sitem.description}} <br>
+            Completion status: ({{ sitem.completion_Status }})
+          </div>
+
+          <div style="display: none; border: 2px solid #F5F5F5;" class="requirement-details">
+         
+            <h5 class="card-title">
+              Update Implementation Status for this requirement
+              <span class="icon edit-compliance-status">
+                <i class="bx bxs-edit-alt"></i>
+              
+              </span>
+            </h5>
+
+            <!-- Multi Columns Form -->
+            <form  {% if sitem  %} action="{% url 'update-security-requirement'  requirementitemid=sitem.id %}{% endif %}"
+              method="post" class="row g-3 needs-validation container-fluid" novalidate
+            >
+              {% csrf_token %}
+              <div >
+                <label for="description" class="form-label"
+                  ><strong>Description:</strong> <span class="non-editable">{{ sitem.description }}</span> </label
+                >
+                <input style="max-width:450px; display:none" size="32" maxlength="50" class="editable"
+                  type="text" name="description" value="{{ sitem.description }}"/> 
+              </div>
+
+              <div class="mb-8">
+                <label for="exampleFormControlTextarea1" class="form-label"><strong>Details of actions taken:</strong> </label>
+                <div class="non-editable">{{ sitem.details }}</div> 
+                <textarea class="form-control editable" name="details" style="display:none" 
+                rows="2"
+              >{{sitem.details}}</textarea> 
+              </div>
+
+              <div class="control-group">
+                <div class="controls controls-row row-fluid">
+                  <label for="isdate" class="form-label"><strong>Start date:</strong> 
+                    
+                    
+                    <span class="non-editable"> 
+                      {% if sitem.implementation_start_date <= now %}
+                      {{sitem.implementation_start_date}}: {{sitem.implementation_start_date|timesince}} ago
+                      {% else %}
+                      {{sitem.implementation_start_date}}: in {{sitem.implementation_start_date|timeuntil}}
+                     {% endif %}
+                    </span>
+
+                    </label
+                  >
+                  <input style="display:none" class="editable"
+                  type="datetime-local" name="implementation_start_date"
+                    class="span4" value="{{sitem.implementation_start_date|date:'Y-m-d\TH:i'}}" required  />
+   
+                </div>
+              </div>
+
+              <div class="controls controls-row row-fluid">
+                <label  for="validationCustom022{{sitem.id}}" class="form-label"><strong>Expected Completion date: </strong>
+               
+                <span class="non-editable"> 
+                  {% if sitem.expected_completion_date <= now %}
+                  {{sitem.expected_completion_date}}: {{sitem.expected_completion_date|timesince}} ago
+                  {% else %}
+                  {{sitem.expected_completion_date}}: in {{sitem.expected_completion_date|timeuntil}}
+                 {% endif %}
+                </span>
+                  </label
+              >
+              <input type="datetime-local" name="expected_completion_date" class="span4 editable" style="display:none"
+              
+                value="{{ sitem.expected_completion_date|date:'Y-m-d\TH:i' }}"
+                required
+              />
+              </div>
+
+              <div class="control-group">
+                <div class="controls controls-row row-fluid">
+
+                  <label for="ownerID"><strong>Owner:</strong></label>
+                    <span class="non-editable">
+                      {{ sitem.owner.username }}
+                    </span>
+                  
+                    <select style="max-width:150px; display:none" class="editable" name="owner_id">
+                      {% for user in users.all %}
+                      
+                      <span>
+                        <option {% if  user.id == sitem.owner_id %} selected{% endif %} value="{{ user.id }}">
+                          {{ user.username }}
+                        </option>
+                      </span>
+
+                      {% endfor %}
+                    </select>
+              </div>
+
+              <div class="controls controls-row row-fluid">
+                <label for="sownerID"
+                    ><strong>Assigned To:</strong></label>
+                    <span class="non-editable">{{sitem.assigned_to.get_full_name}}</span>
+                  
+                  <span class="editable" style="display:none">
+                    <select style="max-width:150px;" name="assigned_to_id" >
+                      {% for assigneduser in users.all %}
+                      
+                      <span>
+                        <option {% if  assigneduser.id == sitem.assigned_to_id %} selected{% endif %} value="{{ assigneduser.id }}">
+                          {{ assigneduser.username }}
+                        </option>
+                      </span>
+
+                      {% endfor %}
+                    </select>
+                  </span>
+            </div>
+
+              <div class="controls controls-row row-fluid">
+                <label
+                  for="cst"
+                  
+                  ><strong>Completion status:</strong> </label
+                > <span class="non-editable">{{ sitem.completion_Status }}</span>
+
+                <select name="completion_status" required class="editable" style="display:none">
+                  {% for value, label in completion_status_choices %}
+                  <option {% if value == sitem.completion_Status %} selected{% endif %} value="{{ value }}">{{ label }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+
+              
+              <div class="controls controls-row row-fluid">
+           
+                <label for="ipercent"><strong>Completion percent:</strong></label>  
+                <span class="non-editable">{{ sitem.implementation_percent }}%</span>
+                <input style="display:none" type="text" name="implementation_percent" 
+                  
+                  class="col-xs-2 editable" maxlength="3" size="4"
+                  value="{{ sitem.implementation_percent }}"
+                  required
+                />
+                
+              </div>
+
+              <div class="controls controls-row row-fluid">
+                    <label for="validationCustom02{{sitem.id}}" class="form-label"><strong>Actual completion date:</strong> 
+                      <span class="non-editable"> 
+                        {% if sitem.actual_implementation_date <= now %}
+                        {{sitem.actual_implementation_date}}: {{sitem.actual_implementation_date|timesince}} ago
+                        {% else %}
+                        {{item.actual_implementation_date}}: in {{sitem.actual_implementation_date|timeuntil}}
+                      {% endif %}
+                      </span>
+                    </label>
+                    
+                    <input style="display:none"
+                      type="datetime-local" name="actual_implementation_date"
+                      class="span4 editable" value="{{ sitem.actual_implementation_date|date:'Y-m-d\TH:i' }}"
+                      required
+                    />
+              </div>
+
+                  <div class="control-group editable" style="display: none">
+                    <button type="submit" class="btn btn-primary">
+                      Submit
+                    </button>
+                  </div>
+            </form>
+            <!-- End Multi Columns Form -->
+          </div>
+
+        </div>
+        
+         <!-- End Compliance Frameworks Management -->
+          <!--- End Start displaying compliance requirement items -->
+    </div>
+<!--- End check if there are items for this requirement -->
+
+
+{% endif  %}
+{% endfor  %}
+    
+ <!-- Check if requirement has sub_requirements -->
+{% if requirement.sub_requirements.all %}
+
+<div  style="{% if requirement.parent_requirement_id == None %}border: 1px solid #E7E7E7{% endif %}">
+    {% for sub_requirement in requirement.sub_requirements.all|dictsort:"order" %}
+
+    {% if sub_requirement.parent_requirement_id == requirement.id %}
+    <div class="mt-3" >
+        {% include 'assets/security-management-requirement.html' with requirement=sub_requirement %}
+    </div>
+    {% endif %}
+
+    {% endfor %}
+</div>
+{% endif %}
+<!-- End Check if requirement has sub_requirements -->
+
+</div>
+     
+
+

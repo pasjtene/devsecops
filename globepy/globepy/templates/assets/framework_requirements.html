@@ -433,6 +433,24 @@
               </div>
 
 
+              <div class="requirement-description12 col-sm-12" >
+                <span class="text-bg-info col-sm-4" style="border: 1px solid green">
+                 <a href="{{sframework.title}}">{{sframework.title}}</a>  implementation requirements
+                </span>
+                <div class="row">
+                  {%for requirement in framework_data %}
+                  
+                    
+                      {% include 'assets/framework_requirement_items.html' %}
+                   
+                  {% endfor %}  
+                </div>
+                <!-- This list only contains top level requirements (with no parent requirement) -->
+                
+                
+              </div> 
+
+
 
 
 
