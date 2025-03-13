@@ -414,7 +414,7 @@ try:
 # Insert the JSON data into the table
     insert_query = """
     INSERT INTO security_ismsframework (framework_name, framework_id, description, recommendations, requirements)
-    VALUES (%s, %s);
+    VALUES (%s, %s, %s, %s);
     """
     cursor.execute(insert_query, (iso27001_data["framework"], json_data))
     conn.commit()
