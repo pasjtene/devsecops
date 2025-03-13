@@ -7,6 +7,9 @@ from django.utils.translation import gettext_lazy as _
 
 class ISMSFramework(models.Model):
     framework_name = models.CharField(max_length=50)
+    framework_id = models.PositiveIntegerField()
+    description = models.CharField(max_length=500)
+    recommendations = models.CharField(max_length=500)
     requirements = models.JSONField()
 
     def __str__(self):

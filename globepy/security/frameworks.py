@@ -30,6 +30,7 @@ FRAMEWORKS = {
 # JSON data
 iso27001_data_save = {
     "framework": "ISO27001",
+    "framework_id": 1,
     "requirements": [
         {"requirement": "Establish the context of the organization", "codename": "A.4.1"},
         {"requirement": "Define the ISMS scope", "codename": "A.4.3"},
@@ -48,6 +49,10 @@ iso27001_data_save = {
 
 iso27001_data = {
   "framework": "ISO27001",
+  "framework_id": 1,
+  "description": "ISO/IEC 27001 is  An international standard for information security management systems (ISMS).\
+    It provides a systematic approach to managing sensitive company information, ensuring confidentiality, integrity, and availability." ,
+  "recommendations": "Take action for each recommended step, provide details of what actions you have taken. This will guide you through a systematic approach to a successful ISMS implementation.",
   "requirements": [
     {
       "id": 1,
@@ -373,7 +378,6 @@ iso27001_data_2 = {
 }
 
 
-
 # Convert the JSON object to a string
 json_data = json.dumps(iso27001_data)
 
@@ -395,9 +399,12 @@ try:
 
     # Create a table if it doesn't exist
     create_table_query = """
-    CREATE TABLE IF NOT EXISTS isms_framework (
+    CREATE TABLE IF NOT EXISTS security_ismsframework (
         id SERIAL PRIMARY KEY,
         framework_name VARCHAR(50) NOT NULL,
+        framework_id INT NOT NULL,
+        description VARCHAR(500) NOT NULL,
+        recommendations VARCHAR(500) NOT NULL,
         requirements JSONB NOT NULL
     );
     """
@@ -406,8 +413,8 @@ try:
 
 # Insert the JSON data into the table
     insert_query = """
-    INSERT INTO security_ismsframework (framework_name, requirements)
-    VALUES (%s, %s);
+    INSERT INTO security_ismsframework (framework_name, framework_id, description, recommendations, requirements)
+    VALUES (%s, %s, %s, %s, %s);
     """
     cursor.execute(insert_query, (iso27001_data["framework"], json_data))
     conn.commit()
