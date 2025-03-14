@@ -40,7 +40,7 @@ def iso27001_requirements(request, assetid):
     security_requirement_items = RequirementStatus.objects.filter(asset_id=assetid)
     comments = Comment.objects.filter(asset_id=asset.id, parent_comment__isnull=True)
     complianceItems = ComplianceStatus.objects.all()
-    fr
+    
     
     context = {
         #'framework_data': json.dumps(framework_data.requirements),
