@@ -44,7 +44,11 @@ def iso27001_requirements(request, assetid):
     
     context = {
         #'framework_data': json.dumps(framework_data.requirements),
-        'framework_data': framework_data.requirements,
+        'framework_requirements': framework_data.requirements['requirements'],
+        'framework_name': framework_data.requirements['framework_name'],
+        'framework_description': framework_data.description,
+        'framework_id': framework_data.id,
+        'framework_recommendations': framework_data.recommendations,
         'asset': asset,
         'users': users,
         'completion_Status_choices': completion_Status_choices,
