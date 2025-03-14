@@ -122,7 +122,7 @@ def create_compliance_requirement(request,frameworkid, assetid, requirementid):
     
 
 @login_required
-def create_requirement_action(request,frameworkid, assetid, requirementid):
+def create_requirement_action(request,frameworkid,framework_name, assetid, requirementid):
      
      if request.method == 'POST':
         
@@ -145,8 +145,11 @@ def create_requirement_action(request,frameworkid, assetid, requirementid):
             implementation_start_date = timezone.now()
         
         
+        
         requirement_action = RequirementAction (
             framework_id = frameworkid,
+            framework_name = framework_name,
+            requirement_codename = "1_2",
             asset_id = assetid,
             requirement_id = requirementid,
             details = request.POST.get('details'),
