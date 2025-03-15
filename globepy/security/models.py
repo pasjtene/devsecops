@@ -23,7 +23,7 @@ class Framework(models.Model):
     requirements = models.JSONField()
 
     def __str__(self):
-        return f"{self.framework_name} - {self.id}"   
+        return f"{self.framework_name} - {self.id} - {self.requirements}"   
 
 class SecurityManagementRequirement(models.Model):
     class RequirementList(models.TextChoices):
