@@ -164,7 +164,7 @@
             </h5>
 
             <!-- Multi Columns Form -->
-            <form  {% if sitem  %} action="{% url 'update-security-requirement'  requirementitemid=sitem.id %}{% endif %}"
+            <form  {% if sitem  %} action="{% url 'update-requirement-action'  requirementitemid=sitem.id %}{% endif %}"
               method="post" class="row g-3 needs-validation container-fluid" novalidate
             >
               {% csrf_token %}
