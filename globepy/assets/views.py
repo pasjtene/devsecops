@@ -22,7 +22,7 @@ from django.http import JsonResponse
 def formeditors2(request):
     return HttpResponse('LMS --- Hello world...!!! <br/> Another hello world <br> link <a href="/lms/hello2">go to hello2 </a>')
 
-def iso27001_requirements(request, assetid):
+def iso27001_requirements(request, assetid,frameworkid,frameworkname):
     # Fetch all requirements from the database
     #framework_data = ISMSFramework.objects.all()
     STATUS_CHOICES = [
@@ -32,7 +32,7 @@ def iso27001_requirements(request, assetid):
         ('Paused','Paused')
     ]
     
-    framework_data = ISMSFramework.objects.get(id=1)
+    framework_data = ISMSFramework.objects.get(id=frameworkid)
     framework_requirement_actions = RequirementAction.objects.filter(asset_id=assetid)
     #pprint(dir(framework_data))
     asset = Asset.objects.get(id=assetid)
@@ -46,7 +46,7 @@ def iso27001_requirements(request, assetid):
     context = {
         #'framework_data': json.dumps(framework_data.requirements),
         'framework_requirements': framework_data.requirements['requirements'],
-        'framework_name': framework_data.framework_name,
+        'framework_name': frameworkname,
         'framework_description': framework_data.description,
         'framework_id': framework_data.id,
         'framework_recommendations': framework_data.recommendations,
