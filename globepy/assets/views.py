@@ -38,7 +38,7 @@ def framework_requirements(request, assetid,frameworkid,frameworkname):
     asset = Asset.objects.get(id=assetid)
     users = User.objects.all()
     completion_Status_choices = ComplianceStatus.COMPLETION_STATUS_CHOICES
-    security_requirement_items = RequirementStatus.objects.filter(asset_id=assetid)
+    #security_requirement_items = RequirementStatus.objects.filter(asset_id=assetid)
     comments = Comment.objects.filter(asset_id=asset.id, parent_comment__isnull=True)
     #complianceItems = ComplianceStatus.objects.all()
     
@@ -53,7 +53,7 @@ def framework_requirements(request, assetid,frameworkid,frameworkname):
         'asset': asset,
         'users': users,
         'completion_Status_choices': completion_Status_choices,
-        'security_requirement_items': security_requirement_items,
+        #'security_requirement_items': security_requirement_items,
         'comments': comments,
         #'complianceItems': complianceItems,
         'STATUS_CHOICES': STATUS_CHOICES,
@@ -303,7 +303,7 @@ def assetdetails(request, id):
     users = User.objects.all()
     regulatoryFrameworks = RegulatoryFramework.objects.all()
     complianceItems = ComplianceStatus.objects.all()
-    security_requirement_items = RequirementStatus.objects.filter(asset_id=id)
+    #security_requirement_items = RequirementStatus.objects.filter(asset_id=id)
     framework_requirement_actions = RequirementAction.objects.filter(asset_id=id)
     #security_requirements =  SecurityManagementRequirement.objects.filter(parent_requirement__isnull=True).order_by('order').values()
     security_requirements =  SecurityManagementRequirement.objects.filter(parent_requirement__isnull=True)
@@ -323,7 +323,7 @@ def assetdetails(request, id):
         'now':now,
         'comment_form':comment_form,
         'comments':comments,
-        'securityRequirementItems': security_requirement_items,
+        #'securityRequirementItems': security_requirement_items,
         'security_requirements': security_requirements,
         'framework_requirement_actions': framework_requirement_actions
         
