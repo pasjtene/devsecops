@@ -386,14 +386,10 @@ class RequirementAction(models.Model):
 
 class RequirementStatus(models.Model):
     """
-    Represents an item of requirement status created by user for a  given requirement for a security framework assigned to an asset
-    This is expected to create a large table, so may later be hosted as a microservice to serve only this purpose
-    A similar separate entity is created for compliance frameworks in the asset module. The purpose of separation is to reduce table size.
+    Represents an item of requirement status created by user for a  given 
 
     Attributes:
-        asset: The aset for which this is created. automatically assigned
-        framework: The compliance framework for which this is created
-        requirement: An item of the list of requirements needed to achieve compliance
+        asset: The aset for which this is created.
         ...
     """
     class CompletionStatus(models.TextChoices):
@@ -410,73 +406,16 @@ class RequirementStatus(models.Model):
         ('Paused','Paused')
     ]
     description = models.CharField(max_length=100, default="Give a short description, framework and asset")
-    asset = models.ForeignKey(
-        Asset,
-        on_delete=models.CASCADE,
-        )
-    
-    framework = models.ForeignKey(
-        SecurityManagementFramework,
-        on_delete=models.CASCADE
-    )
-    
-    
-    requirement = models.ForeignKey(
-        SecurityManagementRequirement,
-        on_delete=models.CASCADE,
-        #related_name="requirement"
-        )
-    details = models.TextField(max_length=500) #give detail of the current compliance status of the requirement
-    implementation_percent = models.PositiveIntegerField(
-        default=0,
-        null=True, blank=True,
-    )
-    
-    completion_Status = models.CharField(
-        max_length=12,
-        choices=CompletionStatus.choices,
-        default=CompletionStatus.InProgress
-    )
-    implementation_start_date = models.DateTimeField(null=True, blank=True)
-    
-    
-    expected_completion_date = models.DateTimeField(null=True, blank=True)
-    actual_implementation_date = models.DateTimeField(null=True, blank=True)
-    
-    owner = models.ForeignKey(
-        User,
-        on_delete=models.SET_NULL,
-        null=True, blank=True,
-        related_name="security_requirement_items_owned"
-    )
-    assigned_to = models.ForeignKey(
-        User,
-        on_delete=models.SET_NULL,
-        null=True, blank=True,
-        related_name="security_requirement_items_assigned"
-    )
-    created_by = models.ForeignKey(
-        User,
-        on_delete=models.SET_NULL,
-        null=True, blank=True,
-        related_name="security_requirement_items_created"
-    )
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    
+   
     def __str__(self):
         return self.description  
 
 class ComplianceStatus(models.Model):
     """
-    Represents an item of compliance status created by user for a  given requirement for a compliance framework assigned to an asset
-    This is expected to create a large table, so may later be hosted as a microservice to serve only this purpose
-    A similar separate entity is created for security frameworks in the security model. The purpose of separation is to reduce table size.
+    Represents an item of compliance status created by user for a  given requirement 
 
     Attributes:
-        asset: The aset for which this is created. automatically assigned
-        framework: The compliance framework for which this is created
-        requirement: An item of the list of requirements needed to achieve compliance
+        asset: The aset for which this is created. 
         ...
     """
     class CompletionStatus(models.TextChoices):
@@ -493,51 +432,7 @@ class ComplianceStatus(models.Model):
         ('Paused','Paused')
     ]
     description = models.CharField(max_length=100, default="Give a short description, framework and asset")
-    asset = models.ForeignKey(
-        Asset,
-        on_delete=models.CASCADE,
-        )
-    
-    framework = models.ForeignKey(
-        RegulatoryFramework,
-        on_delete=models.CASCADE
-    )
-    
-    requirement = models.ForeignKey(
-        SecurityRequirement,
-        on_delete=models.CASCADE,
-        #related_name="requirement"
-        )
-    details = models.TextField(max_length=300) #give detail of the current compliance status of the requirement
-    implementation_percent = models.PositiveIntegerField(
-        default=0,
-        null=True, blank=True,
-    )
-    
-    completion_Status = models.CharField(
-        max_length=12,
-        choices=CompletionStatus.choices,
-        default=CompletionStatus.InProgress
-    )
-  
-    owner = models.ForeignKey(
-        User,
-        on_delete=models.SET_NULL,
-        null=True, blank=True,
-        related_name="compliance_items_owned"
-    )
-    assigned_to = models.ForeignKey(
-        User,
-        on_delete=models.SET_NULL,
-        null=True, blank=True,
-        related_name="compliance_items_assigned"
-    )
-    created_by = models.ForeignKey(
-        User,
-        on_delete=models.SET_NULL,
-        null=True, blank=True,
-        related_name="compliance_items_created"
-    )
+ 
 
     
     def __str__(self):
