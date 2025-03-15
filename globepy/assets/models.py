@@ -570,7 +570,7 @@ class RegulatoryFrameworkAdmin(admin.ModelAdmin):
 
 @admin.register(Framework)
 class FrameworkAdmin(admin.ModelAdmin):
-    list_display = ('id','framework_name')
+    list_display = ('id','framework_name','description','requirements')
     #list_filter = ('title')
     #filter_horizontal = ('securityRequirements',)
 
