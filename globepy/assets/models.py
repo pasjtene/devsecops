@@ -383,32 +383,7 @@ class RequirementAction(models.Model):
     def __str__(self):
         return self.description  
 
-
-class RequirementStatus(models.Model):
-    """
-    Represents an item of requirement status created by user for a  given 
-
-    Attributes:
-        asset: The aset for which this is created.
-        ...
-    """
-    class CompletionStatus(models.TextChoices):
-        Complete = ("Complete", _("Complete"))
-        InProgress = ("InProgress", _("InProgress"))
-        Canceled = ("Canceled", _("Canceled"))
-        Paused = ("Paused", _("Paused"))
-        
-   
-    COMPLETION_STATUS_CHOICES = [
-        ('Complete', 'Complete'),
-        ('InProgress', 'InProgress'),
-        ('Canceled', 'Canceled'),
-        ('Paused','Paused')
-    ]
-    description = models.CharField(max_length=100, default="Give a short description, framework and asset")
-   
-    def __str__(self):
-        return self.description  
+ 
 
 class ComplianceStatus(models.Model):
     """

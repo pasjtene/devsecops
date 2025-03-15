@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
-from .models import Asset, RegulatoryFramework, ComplianceStatus, RequirementStatus, RequirementAction
+from .models import Asset, RegulatoryFramework, ComplianceStatus, RequirementAction
 #from .forms import ComplianceStatusForm
 from django.contrib.auth.models import User
 from django.utils import timezone
@@ -168,52 +168,10 @@ def create_requirement_action(request,frameworkid, assetid, requirementid):
         
         requirement_action.save()
      return redirect('asset-details',id=assetid)   
-
-@login_required
-def create_security_requirement(request,frameworkid, assetid, requirementid):
-     
-     if request.method == 'POST':
-        
-        owner_id = request.POST.get('owner_id')
-        actual_implementation_date = request.POST.get('actual_implementation_date')
-        expected_completion_date = request.POST.get('expected_completion_date')
-        implementation_start_date = request.POST.get('implementation_start_date')
-        
-        # check if the user has suplied dates for the activity, otherwise, set date to now
-        if len(actual_implementation_date) < 3:
-            actual_implementation_date = timezone.now()
-            #actual_implementation_date = datetime.strptime(actual_implementation_date, "%d/%b/%Y:%X %z").strftime("%Y-%m-%d %X")
-        
-        
-        if len(expected_completion_date) < 3:
-            expected_completion_date = timezone.now()
-            
-        
-        if len(implementation_start_date) < 3:
-            implementation_start_date = timezone.now()
-        
-        
-        requirement_status = RequirementStatus (
-            framework_id = frameworkid,
-            asset_id = assetid,
-            requirement_id = requirementid,
-            details = request.POST.get('details'),
-            description = request.POST.get('description'),
-            implementation_percent = request.POST.get('implementation_percent'),
-            completion_Status = request.POST.get('completion_status'),
-            owner = User.objects.get(id=owner_id) if owner_id else None,
-            actual_implementation_date = actual_implementation_date,
-            expected_completion_date = expected_completion_date,
-            implementation_start_date = implementation_start_date,
-            assigned_to_id = request.POST.get('assigned_to_id'),
-            
-        )
-        
-        requirement_status.save()
-     return redirect('asset-details',id=assetid)        
+      
   
 @login_required
-def update_security_requirement(request, requirementitemid):
+def update_requirement_action(request, requirementitemid):
      
      if request.method == 'POST':
         
@@ -234,7 +192,7 @@ def update_security_requirement(request, requirementitemid):
         if len(implementation_start_date) < 3:
             implementation_start_date = timezone.now()
             
-        requirement_item = RequirementStatus.objects.filter(id=requirementitemid)
+        requirement_item = RequirementAction.objects.filter(id=requirementitemid)
         
         requirement_item.update (
             details = request.POST.get('details'),
