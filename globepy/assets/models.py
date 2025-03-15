@@ -519,12 +519,7 @@ class ComplianceStatus(models.Model):
         choices=CompletionStatus.choices,
         default=CompletionStatus.InProgress
     )
-    implementation_start_date = models.DateTimeField(null=True, blank=True)
-    
-    
-    expected_completion_date = models.DateTimeField(null=True, blank=True)
-    actual_implementation_date = models.DateTimeField(null=True, blank=True)
-    
+  
     owner = models.ForeignKey(
         User,
         on_delete=models.SET_NULL,
@@ -543,9 +538,7 @@ class ComplianceStatus(models.Model):
         null=True, blank=True,
         related_name="compliance_items_created"
     )
-    
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+
     
     def __str__(self):
         return self.description
