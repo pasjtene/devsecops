@@ -141,7 +141,7 @@
     
     {% for sitem in framework_requirement_actions.all %}
 
-    {% if sitem.requirement_id == requirement.id and sitem.asset_id == asset.id %}
+    {% if sitem.requirement_id == requirement.id and sitem.asset_id == asset.id and sitem.framework_id == framework_id %}
     <!--- Start displaying compliance requirement items -->
     <div data-for="Begin compliance requirement items" style="{% if requirement.parent_requirement_id == None %}border: 1px solid gray{% endif %}">
    
@@ -150,7 +150,7 @@
           <div class="requirement-description-head" style="border-top: 5px solid #FFFFFF; background-color: #F0F8FF" >
             
             {{sitem.description}} <br>
-            Completion status: ({{ sitem.completion_Status }}) -> Framework ID: {{requirement.framework_id }} FWID: {{framework_id}} -> Framework Name: {{requirement.framework_name }}
+            Completion status: ({{ sitem.completion_Status }}) -> Framework ID: {{sitem.framework_id }} FWID: {{framework_id}} -> Framework Name: {{sitem.framework_name }}
           </div>
 
           <div style="display: none; border: 2px solid #F5F5F5;" class="requirement-details">
