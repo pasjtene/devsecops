@@ -313,10 +313,10 @@ soc2_data= {
 }
 
 # Convert the JSON object to a string
-json_data = json.dumps(soc2_data)
+json_data = json.dumps(iso27001_data)
 
 framework_data_json = json_data
-framework_data = soc2_data
+framework_data = iso27001_data
 
 # Database connection details
 db_config = {
@@ -350,7 +350,7 @@ try:
 
 # Insert the JSON data into the table
     insert_query = """
-    INSERT INTO security_ismsframework (framework_name, framework_id, description, recommendations, requirements)
+    INSERT INTO asset_framework (framework_name, framework_id, description, recommendations, requirements)
     VALUES (%s, %s, %s, %s, %s);
     """
     cursor.execute(insert_query, (framework_data["framework_name"], framework_data["framework_id"], framework_data["description"], framework_data["recommendations"], framework_data_json))
