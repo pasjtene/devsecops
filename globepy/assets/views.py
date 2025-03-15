@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .models import Asset, RegulatoryFramework, ComplianceStatus, RequirementStatus, RequirementAction
-from .forms import ComplianceStatusForm
+#from .forms import ComplianceStatusForm
 from django.contrib.auth.models import User
 from django.utils import timezone
 from comments.models import Comment
@@ -40,7 +40,7 @@ def framework_requirements(request, assetid,frameworkid,frameworkname):
     completion_Status_choices = ComplianceStatus.COMPLETION_STATUS_CHOICES
     security_requirement_items = RequirementStatus.objects.filter(asset_id=assetid)
     comments = Comment.objects.filter(asset_id=asset.id, parent_comment__isnull=True)
-    complianceItems = ComplianceStatus.objects.all()
+    #complianceItems = ComplianceStatus.objects.all()
     
     
     context = {
@@ -55,7 +55,7 @@ def framework_requirements(request, assetid,frameworkid,frameworkname):
         'completion_Status_choices': completion_Status_choices,
         'security_requirement_items': security_requirement_items,
         'comments': comments,
-        'complianceItems': complianceItems,
+        #'complianceItems': complianceItems,
         'STATUS_CHOICES': STATUS_CHOICES,
         'framework_requirement_actions': framework_requirement_actions
     }
@@ -282,14 +282,14 @@ def update_compliance_requirement(request, id):
     users = User.objects.all()
     regulatoryFrameworks = RegulatoryFramework.objects.all()
     complianceItems = ComplianceStatus.objects.all()
-    form = ComplianceStatusForm()
+    #form = ComplianceStatusForm()
     completion_Status_choices = ComplianceStatus.COMPLETION_STATUS_CHOICES
     
     return render(request, 'assets/asset-details.html',{
         'asset':asset,
         'regulatoryFrameworks':regulatoryFrameworks,
         'complianceItems': complianceItems,
-        'form': form,
+        #'form': form,
         'users': users,
         'completion_status_choices':completion_Status_choices,
         'now':now,
@@ -307,7 +307,7 @@ def assetdetails(request, id):
     framework_requirement_actions = RequirementAction.objects.filter(asset_id=id)
     #security_requirements =  SecurityManagementRequirement.objects.filter(parent_requirement__isnull=True).order_by('order').values()
     security_requirements =  SecurityManagementRequirement.objects.filter(parent_requirement__isnull=True)
-    form = ComplianceStatusForm()
+    #form = ComplianceStatusForm()
     completion_Status = ComplianceStatus.COMPLETION_STATUS_CHOICES
     now = timezone.now()
     comment_form = CommentForm()
@@ -317,7 +317,7 @@ def assetdetails(request, id):
         'asset':asset,
         'regulatoryFrameworks':regulatoryFrameworks,
         'complianceItems': complianceItems,
-        'form': form,
+        #'form': form,
         'users': users,
         'completion_status_choices':completion_Status,
         'now':now,
