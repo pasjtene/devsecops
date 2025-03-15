@@ -397,13 +397,13 @@
               <div class="tab-pane fade pt-3" id="profile-change-password">
                 <!-- Security Management Frameworks-->
                 <div class="row mb-3" style="border: 1px solid blue">
-                {% for sframework in asset.SecurityManagementFrameworks.all %}
+                {% for sframework in asset.frameworks.all %}
                
                 <hr>
                 
                 <div class="row">
                   <div class="col-sm-4" style="background-color: #F0F8FF; border: 5px solid #FFFFFF">
-                    <a href="{% url 'iso27001_requirements' assetid=asset.id frameworkid=sframework.id frameworkname=sframework.title %}">{{sframework.title}}</a>  Description
+                    <a href="{% url 'iso27001_requirements' assetid=asset.id frameworkid=sframework.id frameworkname=sframework.framework_name %}">{{sframework.framework_name}}</a>  Description
                     
                     
                   </div>
