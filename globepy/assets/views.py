@@ -302,6 +302,7 @@ def assetdetails(request, id):
     regulatoryFrameworks = RegulatoryFramework.objects.all()
     complianceItems = ComplianceStatus.objects.all()
     security_requirement_items = RequirementStatus.objects.filter(asset_id=id)
+    framework_requirement_actions = RequirementAction.objects.filter(asset_id=id)
     #security_requirements =  SecurityManagementRequirement.objects.filter(parent_requirement__isnull=True).order_by('order').values()
     security_requirements =  SecurityManagementRequirement.objects.filter(parent_requirement__isnull=True)
     form = ComplianceStatusForm()
@@ -321,7 +322,8 @@ def assetdetails(request, id):
         'comment_form':comment_form,
         'comments':comments,
         'securityRequirementItems': security_requirement_items,
-        'security_requirements': security_requirements
+        'security_requirements': security_requirements,
+        'framework_requirement_actions': framework_requirement_actions
         
     })
  

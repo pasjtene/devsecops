@@ -139,7 +139,7 @@
     
     <!--- check if there are items for this requirement -->
     
-    {% for sitem in securityRequirementItems.all %}
+    {% for sitem in framework_requirement_actions.all %}
 
     {% if sitem.requirement_id == requirement.id and sitem.asset_id == asset.id and sitem.framework_id == sframework.id  %}
     <!--- Start displaying compliance requirement items -->
