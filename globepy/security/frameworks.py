@@ -235,72 +235,75 @@ iso27001_data = {
 }
 
 soc2_data= {
-  "framework": "SOC2",
+  "framework_name": "SOC2",
+  "framework_id": 2,
+  "description": "SOC 2, or Service Organization Control 2, is a cybersecurity framework and auditing standard developed by the American Institute of CPAs (AICPA). It is specifically designed to assess and validate the controls and processes of service organizations (e.g., cloud providers, SaaS companies, data centers) that handle customer data. SOC 2 reports are widely used to demonstrate an organization's commitment to data security, privacy, and compliance." ,
+  "recommendations": "Take action for each recommended step, provide details of what actions you have taken. This will guide you through a systematic approach to a successful ISMS implementation.",
   "requirements": [
     {
-      "id": 1,
+      "id": 21,
       "requirement": "Step 1: Review Key Characteristics of SOC 2",
       "codename": "Step 1",
       "order": 1,
       "parent_requirement_id": "None"
     },
     {
-      "id": 2,
+      "id": 22,
       "requirement": "1-1: Focus on Controls: SOC 2 is all about demonstrating that you have the right controls in place to protect data.",
       "codename": "1-1",
       "order": 2,
       "parent_requirement_id": 1
     },
     {
-      "id": 3,
+      "id": 23,
       "requirement": "1-2: Consider the Report Type to be produced: There are two types of SOC 2 reports ",
       "codename": "1-2",
       "order": 3,
       "parent_requirement_id": 1
     },
     {
-      "id": 4,
+      "id": 24,
       "requirement": "1-2-1: Type 1: A snapshot in time. It reports on the design of controls at a specific point in time",
       "codename": "1-2-1",
       "order": 4,
       "parent_requirement_id": 3
     },
     {
-      "id": 5,
+      "id": 25,
       "requirement": "1-2-2: Type 2: Over a period of time. It reports on the design and operating effectiveness of controls over a specified period (e.g., 6 months). This is generally considered more valuable.",
       "codename": "1-2-2",
       "order": 5,
       "parent_requirement_id": 3
     },
     {
-      "id": 6,
+      "id": 26,
       "requirement": "Step 3: Verify Criteria (Trust Services Criteria): SOC 2 reports are based on one or more of the following Trust Services Criteria:",
       "codename": "Step 3",
       "parent_requirement_id": "None"
     },
     {
-      "id": 7,
+      "id": 27,
       "requirement": "3-1: Security: Protection of information and systems against unauthorized access, use, disclosure, disruption, modification, or destruction.",
       "codename": "3-1",
       "order": 7,
       "parent_requirement_id": 6
     },
     {
-      "id": 8,
+      "id": 28,
       "requirement": "3-2: Processing Integrity: Ensuring that system processing is complete, accurate, timely, and authorized.",
       "codename": "3-2",
       "order": 8,
       "parent_requirement_id": 6
     },
     {
-      "id": 9,
+      "id": 29,
       "requirement": "3-3: Confidentiality: Protecting sensitive information from unauthorized disclosure.",
       "codename": "3-3",
       "order": 9,
       "parent_requirement_id": 6
     },
     {
-      "id": 10,
+      "id": 210,
       "requirement": "3-3: Privacy: Protecting personal information in accordance with applicable privacy principles.",
       "codename": "3-3",
       "order": 10,
@@ -309,77 +312,11 @@ soc2_data= {
   ]
 }
 
-
-iso27001_data_2 = {
-  "framework": "ISO27001",
-  "requirements": [
-    {
-      "id": 1,
-      "requirement": "Establish the context of the organization",
-      "codename": "A.4.1",
-      "order": 1,
-      "parent_requirement_id": "None"
-    },
-    {
-      "id": 2,
-      "requirement": "Define the ISMS scope",
-      "codename": "A.4.3",
-      "order": 2
-    },
-    {
-      "id": 3,
-      "requirement": "Perform a risk assessment",
-      "codename": "A.6.1.2",
-      "order": 3
-    },
-    {
-      "id": 4,
-      "requirement": "Implement risk treatment plans",
-      "codename": "A.6.1.3",
-      "order": 4
-    },
-    {
-      "id": 5,
-      "requirement": "Develop a Statement of Applicability",
-      "codename": "A.6.1.3.d",
-      "order": 5
-    },
-    {
-      "id": 6,
-      "requirement": "Implement access control policies",
-      "codename": "A.9.1.1",
-      "order": 6
-    },
-    {
-      "id": 7,
-      "requirement": "Monitor and review the ISMS",
-      "codename": "A.9.3",
-      "order": 7
-    },
-    {
-      "id": 8,
-      "requirement": "Conduct internal audits",
-      "codename": "A.9.2",
-      "order": 8
-    },
-    {
-      "id": 9,
-      "requirement": "Perform management reviews",
-      "codename": "A.9.3",
-      "order": 9
-    },
-    {
-      "id": 10,
-      "requirement": "Continuously improve the ISMS",
-      "codename": "A.10.1",
-      "order": 10
-    }
-  ]
-}
-
-
 # Convert the JSON object to a string
-json_data = json.dumps(iso27001_data)
+json_data = json.dumps(soc2_data)
+
+framework_data_json = json_data
+framework_data = soc2_data
 
 # Database connection details
 db_config = {
@@ -416,7 +353,7 @@ try:
     INSERT INTO security_ismsframework (framework_name, framework_id, description, recommendations, requirements)
     VALUES (%s, %s, %s, %s, %s);
     """
-    cursor.execute(insert_query, (iso27001_data["framework_name"], iso27001_data["framework_id"], iso27001_data["description"], iso27001_data["recommendations"], json_data))
+    cursor.execute(insert_query, (framework_data["framework_name"], framework_data["framework_id"], framework_data["description"], framework_data["recommendations"], framework_data_json))
     conn.commit()
 
     print("Data inserted successfully!")
