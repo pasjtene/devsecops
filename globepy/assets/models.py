@@ -271,7 +271,7 @@ class Asset(models.Model):
     
     regulatoryFrameworks = models.ManyToManyField(RegulatoryFramework, related_name="assets", blank=True)
     SecurityManagementFrameworks = models.ManyToManyField(SecurityManagementFramework, related_name="assets", blank=True)
-    framworks = models.ManyToManyField(Framework, related_name="assets", blank=True)
+    frameworks = models.ManyToManyField(Framework, related_name="assets", blank=True)
     
     risks = models.ManyToManyField(Risk, related_name="assets", blank=True)
     
@@ -568,6 +568,11 @@ class RegulatoryFrameworkAdmin(admin.ModelAdmin):
     #list_filter = ('title')
     filter_horizontal = ('securityRequirements',)
 
+@admin.register(Framework)
+class FrameworkAdmin(admin.ModelAdmin):
+    list_display = ('id','framework_name')
+    #list_filter = ('title')
+    #filter_horizontal = ('securityRequirements',)
 
 @admin.register(Asset)
 class AssetAdmin(admin.ModelAdmin):
