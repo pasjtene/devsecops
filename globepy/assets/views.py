@@ -33,7 +33,7 @@ def iso27001_requirements(request, assetid):
     ]
     
     framework_data = ISMSFramework.objects.get(id=1)
-    framework_requirement_actions = RequirementAction.objects.filter(asset_id=id)
+    framework_requirement_actions = RequirementAction.objects.filter(asset_id=assetid)
     #pprint(dir(framework_data))
     asset = Asset.objects.get(id=assetid)
     users = User.objects.all()
