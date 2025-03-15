@@ -11,7 +11,7 @@ from comments.models import Comment
 from comments.forms import CommentForm
 from datetime import datetime
 from security.models import SecurityManagementRequirement
-from security.models import ISMSFramework
+from security.models import ISMSFramework, Framework
 import json
 from pprint import pprint
 from django.http import JsonResponse
@@ -22,7 +22,7 @@ from django.http import JsonResponse
 def formeditors2(request):
     return HttpResponse('LMS --- Hello world...!!! <br/> Another hello world <br> link <a href="/lms/hello2">go to hello2 </a>')
 
-def iso27001_requirements(request, assetid,frameworkid,frameworkname):
+def framework_requirements(request, assetid,frameworkid,frameworkname):
     # Fetch all requirements from the database
     #framework_data = ISMSFramework.objects.all()
     STATUS_CHOICES = [
@@ -32,7 +32,7 @@ def iso27001_requirements(request, assetid,frameworkid,frameworkname):
         ('Paused','Paused')
     ]
     
-    framework_data = ISMSFramework.objects.get(id=frameworkid)
+    framework_data = Framework.objects.get(id=frameworkid)
     framework_requirement_actions = RequirementAction.objects.filter(asset_id=assetid)
     #pprint(dir(framework_data))
     asset = Asset.objects.get(id=assetid)
@@ -146,7 +146,7 @@ def create_requirement_action(request,frameworkid, assetid, requirementid):
         if len(implementation_start_date) < 3:
             implementation_start_date = timezone.now()
         
-        framework_data = ISMSFramework.objects.get(id=1)
+        framework_data = Framework.objects.get(id=frameworkid)
         
         requirement_action = RequirementAction (
             framework_id = frameworkid,

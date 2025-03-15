@@ -313,10 +313,10 @@ soc2_data= {
 }
 
 # Convert the JSON object to a string
-json_data = json.dumps(iso27001_data)
+json_data = json.dumps(soc2_data)
 
 framework_data_json = json_data
-framework_data = iso27001_data
+framework_data = soc2_data
 
 # Database connection details
 db_config = {
