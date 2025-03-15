@@ -33,6 +33,7 @@ def iso27001_requirements(request, assetid):
     ]
     
     framework_data = ISMSFramework.objects.get(id=1)
+    framework_requirement_actions = RequirementAction.objects.filter(asset_id=id)
     #pprint(dir(framework_data))
     asset = Asset.objects.get(id=assetid)
     users = User.objects.all()
@@ -55,7 +56,8 @@ def iso27001_requirements(request, assetid):
         'security_requirement_items': security_requirement_items,
         'comments': comments,
         'complianceItems': complianceItems,
-        'STATUS_CHOICES': STATUS_CHOICES
+        'STATUS_CHOICES': STATUS_CHOICES,
+        'framework_requirement_actions': framework_requirement_actions
     }
     return render(request, 'assets/framework_requirements.html', context)
     #return JsonResponse(framework_data.requirements['requirements'], safe=False)
