@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
-from .models import Asset, RegulatoryFramework, ComplianceStatus, RequirementAction
+from .models import Asset, RegulatoryFramework, RequirementAction
 #from .forms import ComplianceStatusForm
 from django.contrib.auth.models import User
 from django.utils import timezone
@@ -37,10 +37,8 @@ def framework_requirements(request, assetid,frameworkid,frameworkname):
     #pprint(dir(framework_data))
     asset = Asset.objects.get(id=assetid)
     users = User.objects.all()
-    completion_Status_choices = ComplianceStatus.COMPLETION_STATUS_CHOICES
-    #security_requirement_items = RequirementStatus.objects.filter(asset_id=assetid)
     comments = Comment.objects.filter(asset_id=asset.id, parent_comment__isnull=True)
-    #complianceItems = ComplianceStatus.objects.all()
+    
     
     
     context = {
@@ -52,7 +50,7 @@ def framework_requirements(request, assetid,frameworkid,frameworkname):
         'framework_recommendations': framework_data.recommendations,
         'asset': asset,
         'users': users,
-        'completion_Status_choices': completion_Status_choices,
+        #'completion_Status_choices': completion_Status_choices,
         #'security_requirement_items': security_requirement_items,
         'comments': comments,
         #'complianceItems': complianceItems,
@@ -94,34 +92,6 @@ def list_all_assets(request):
         'total_unique_assets':total_unique_assets
         })
 
-
-@login_required
-def create_compliance_requirement(request,frameworkid, assetid, requirementid):
-     
-     if request.method == 'POST':
-        
-        owner_id = request.POST.get('owner_id')
-        
-        compliance_status = ComplianceStatus (
-            framework_id = frameworkid,
-            asset_id = assetid,
-            requirement_id = requirementid,
-            details = request.POST.get('details'),
-            description = request.POST.get('description'),
-            implementation_percent = request.POST.get('implementation_percent'),
-            completion_Status = request.POST.get('completion_status'),
-            owner = User.objects.get(id=owner_id) if owner_id else None,
-            actual_implementation_date = request.POST.get('actual_implementation_date'),
-            expected_completion_date = request.POST.get('expected_completion_date'),
-            implementation_start_date = request.POST.get('implementation_start_date'),
-            assigned_to_id = request.POST.get('assigned_to_id'),
-            
-        )
-        
-        
-        compliance_status.save()
-     return redirect('asset-details',id=assetid)
-    
 
 @login_required
 def create_requirement_action(request,frameworkid, assetid, requirementid):
@@ -211,73 +181,35 @@ def update_requirement_action(request, requirementitemid):
      return redirect('asset-details',id=requirement_item[0].asset_id)       
     
 
-@login_required
-def update_compliance_requirement(request, id):
-    #asset = Asset.objects.get(id=id)
-
-    if request.method == 'POST':
-        complianceItem = ComplianceStatus.objects.get(id=id)
-        complianceItem.details = request.POST.get('details')
-        complianceItem.description = request.POST.get('description')
-        complianceItem.implementation_percent = request.POST.get('implementation_percent')
-        complianceItem.completion_Status = request.POST.get('completion_status')
-        owner_id = request.POST.get('owner_id')
-        complianceItem.owner = User.objects.get(id=owner_id) if owner_id else None
-        complianceItem. actual_implementation_date = request.POST.get('actual_implementation_date')
-        complianceItem. expected_completion_date = request.POST.get('expected_completion_date')
-        complianceItem. implementation_start_date = request.POST.get('implementation_start_date')
-        
-        assigned_to_id = request.POST.get('assigned_to_id')
-        complianceItem.assigned_to = User.objects.get(id=assigned_to_id) if assigned_to_id else None
-        
-        complianceItem.save()
-        now = timezone.now()
-        comment_form = CommentForm()
-        
-   
-    asset = Asset.objects.get(id=complianceItem.asset_id)
-    comments = Comment.objects.filter(asset_id=asset.id, parent_comment__isnull=True)  # Fetch top-level comments only
-    users = User.objects.all()
-    regulatoryFrameworks = RegulatoryFramework.objects.all()
-    complianceItems = ComplianceStatus.objects.all()
-    #form = ComplianceStatusForm()
-    completion_Status_choices = ComplianceStatus.COMPLETION_STATUS_CHOICES
-    
-    return render(request, 'assets/asset-details.html',{
-        'asset':asset,
-        'regulatoryFrameworks':regulatoryFrameworks,
-        'complianceItems': complianceItems,
-        #'form': form,
-        'users': users,
-        'completion_status_choices':completion_Status_choices,
-        'now':now,
-        'comment_form':comment_form,
-        'comments':comments
-    })
-
 @login_required  
 def assetdetails(request, id):
     asset = Asset.objects.get(id=id)
     users = User.objects.all()
     regulatoryFrameworks = RegulatoryFramework.objects.all()
-    complianceItems = ComplianceStatus.objects.all()
+    #complianceItems = ComplianceStatus.objects.all()
     #security_requirement_items = RequirementStatus.objects.filter(asset_id=id)
     framework_requirement_actions = RequirementAction.objects.filter(asset_id=id)
     #security_requirements =  SecurityManagementRequirement.objects.filter(parent_requirement__isnull=True).order_by('order').values()
     security_requirements =  SecurityManagementRequirement.objects.filter(parent_requirement__isnull=True)
     #form = ComplianceStatusForm()
-    completion_Status = ComplianceStatus.COMPLETION_STATUS_CHOICES
+    #completion_Status = ComplianceStatus.COMPLETION_STATUS_CHOICES
     now = timezone.now()
     comment_form = CommentForm()
     comments = Comment.objects.filter(asset_id=id, parent_comment__isnull=True)  # Fetch top-level comments only
+    STATUS_CHOICES = [
+        ('Complete', 'Complete'),
+        ('InProgress', 'InProgress'),
+        ('Canceled', 'Canceled'),
+        ('Paused','Paused')
+    ]
     
     return render(request, 'assets/asset-details.html',{
         'asset':asset,
         'regulatoryFrameworks':regulatoryFrameworks,
-        'complianceItems': complianceItems,
+        #'complianceItems': complianceItems,
         #'form': form,
         'users': users,
-        'completion_status_choices':completion_Status,
+        'completion_status_choices':STATUS_CHOICES,
         'now':now,
         'comment_form':comment_form,
         'comments':comments,
