@@ -568,11 +568,6 @@ class RegulatoryFrameworkAdmin(admin.ModelAdmin):
     #list_filter = ('title')
     filter_horizontal = ('securityRequirements',)
 
-@admin.register(Framework)
-class FrameworkAdmin(admin.ModelAdmin):
-    list_display = ('id','framework_name')
-    #list_filter = ('title')
-    #filter_horizontal = ('securityRequirements',)
 
 @admin.register(Asset)
 class AssetAdmin(admin.ModelAdmin):
