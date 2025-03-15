@@ -16,7 +16,7 @@
           </h5>
 
           <!-- Create security management requirement form -->
-          <form  action="{% url 'create_requirement_action' frameworkid=framework_id frameworkname=framework_name assetid=asset.id requirementid=requirement.id  %}"
+          <form  action="{% url 'create_requirement_action' frameworkid=framework_id assetid=asset.id requirementid=requirement.id  %}"
             
             method="post"   class="row g-3 needs-validation container-fluid" novalidate>
 

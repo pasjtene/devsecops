@@ -122,7 +122,7 @@ def create_compliance_requirement(request,frameworkid, assetid, requirementid):
     
 
 @login_required
-def create_requirement_action(request,frameworkid,framework_name, assetid, requirementid):
+def create_requirement_action(request,frameworkid, assetid, requirementid):
      
      if request.method == 'POST':
         
@@ -144,11 +144,11 @@ def create_requirement_action(request,frameworkid,framework_name, assetid, requi
         if len(implementation_start_date) < 3:
             implementation_start_date = timezone.now()
         
-        
+        framework_data = ISMSFramework.objects.get(id=1)
         
         requirement_action = RequirementAction (
             framework_id = frameworkid,
-            framework_name = framework_name,
+            framework_name = framework_data.framework_name,
             requirement_codename = "1_2",
             asset_id = assetid,
             requirement_id = requirementid,

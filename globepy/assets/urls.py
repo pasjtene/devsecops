@@ -15,7 +15,7 @@ urlpatterns = [
     path('comments/delete/<int:comment_id>/', views.delete_comment, name='delete_comment'),
     path('comments/update/<int:comment_id>/', views.update_comment, name='update_comment'),
     path('ISO27001/<int:assetid>/', views.iso27001_requirements, name='iso27001_requirements'), 
-    path('create_requirement_action/<int:frameworkid>/<string:frameworkname>/<int:assetid>/<int:requirementid>/', views.create_requirement_action, name='create_requirement_action')
+    path('create_requirement_action/<int:frameworkid>/<int:assetid>/<int:requirementid>/', views.create_requirement_action, name='create_requirement_action')
     
 ]
 
