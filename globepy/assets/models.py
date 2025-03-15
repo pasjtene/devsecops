@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 from django.contrib.postgres import fields as PostgresFields
 from django.contrib.auth.models import User, auth
-from security.models import SecurityManagementFramework, SecurityManagementRequirement
+from security.models import SecurityManagementFramework, SecurityManagementRequirement, Framework
 
 class AssetCategory(models.Model):
     name = models.CharField(max_length=256)
@@ -271,6 +271,7 @@ class Asset(models.Model):
     
     regulatoryFrameworks = models.ManyToManyField(RegulatoryFramework, related_name="assets", blank=True)
     SecurityManagementFrameworks = models.ManyToManyField(SecurityManagementFramework, related_name="assets", blank=True)
+    framworks = models.ManyToManyField(Framework, related_name="assets", blank=True)
     
     risks = models.ManyToManyField(Risk, related_name="assets", blank=True)
     
@@ -567,7 +568,11 @@ class RegulatoryFrameworkAdmin(admin.ModelAdmin):
     #list_filter = ('title')
     filter_horizontal = ('securityRequirements',)
 
-
+@admin.register(Framework)
+class FrameworkAdmin(admin.ModelAdmin):
+    list_display = ('id','framework_name')
+    #list_filter = ('title')
+    #filter_horizontal = ('securityRequirements',)
 
 @admin.register(Asset)
 class AssetAdmin(admin.ModelAdmin):

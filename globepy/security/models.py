@@ -14,7 +14,16 @@ class ISMSFramework(models.Model):
 
     def __str__(self):
         return f"{self.framework_name} - {self.id}"
-        #return f"{self.framework_name} - {self.requirement['codename']}"
+
+class Framework(models.Model):
+    framework_name = models.CharField(max_length=50)
+    framework_id = models.PositiveIntegerField()
+    description = models.CharField(max_length=500)
+    recommendations = models.CharField(max_length=500)
+    requirements = models.JSONField()
+
+    def __str__(self):
+        return f"{self.framework_name} - {self.id}"   
 
 class SecurityManagementRequirement(models.Model):
     class RequirementList(models.TextChoices):
