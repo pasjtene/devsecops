@@ -38,6 +38,7 @@
 
     commentsList.innerHTML =  comentItem + commentsList.innerHTML;
     updateComment();
+    $('#text'+comment.comment_id).text(" ");
    }
 
    function updateComment(){
