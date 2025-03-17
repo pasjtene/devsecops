@@ -18,10 +18,10 @@
    function addComments(comment) {
     const commentsList = document.getElementById('commentsList');
     const comentItem = `
-    <div class="card mb-3" id="{{ ${comment.comment_id} }}">
+    <div class="card mb-3" id=" ${comment.comment_id} ">
         <div class="card-body">
             <h5 class="card-title">{{ comment.created_by.get_full_name }}</h5>
-            <p class="card-text" id="text{{comment.id}}">{{ ${comment.comment_text} }}</p>
+            <p class="card-text" id="text{{comment.id}}"> ${comment.comment_text}</p>
             <small class="text-muted">{{ comment.created_date }}</small>
 
             <!-- Reply, Update, and Delete Links -->
@@ -53,7 +53,7 @@
         </div>
     </div>`;
 
-    commentsList.innerHTML += comentItem;
+    commentsList.innerHTML =  comentItem + commentsList.innerHTML;
    }
 
     function addCommentJson() {
