@@ -60,46 +60,6 @@
           });
       
       
-         
-      
-          
-          
-         
-      
-      
-               // Handle delete comment via AJAX
-               $('#delete-comment-form').submit(function(e) {
-                  e.preventDefault();
-                  var form = $(this);
-                  var url = form.attr('action');
-                  var commentText = $('#delete-comment-text').val();
-                  $('#deleteCommentModal').modal('hide');
-      
-                  $.ajax({
-                      url: url,
-                      type: 'POST',
-                      data: {
-                          'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
-                          'comment_text': commentText
-                      },
-                      success: function(response) {
-                          if (response.success) {
-                              
-                              $('#'+response.comment_id).remove();
-                              $('.ajax-alert').show()
-                              $('.alert-dismissible').show()
-                              $('#ajax-alert-message').text("Comment deleted successfuly ");
-                            
-                          } else {
-                              alert('Error updating comment.');
-                          }
-                      },
-                      error: function(response) {
-                          alert('Error updating comment.');
-                      }
-                  });
-              });
-      
               // Handle form submission via AJAX
               $('#update-comment-form').submit(function(e) {
                   e.preventDefault();

@@ -94,11 +94,13 @@
                     $('#ajax-alert-message').text("Comment deleted successfuly ");
                   
                 } else {
-                    alert('Error Deleting comment.');
+                    console.log('Error Deleting comment.');
+                    //alert('Error Deleting comment.');
                 }
             },
             error: function(response) {
-                alert('Error deleting comment.');
+                //alert('Error deleting comment.');
+                console.log('Error Deleting comment.');
             }
         });
     });
