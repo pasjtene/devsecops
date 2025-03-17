@@ -240,7 +240,31 @@ def add_comment(request, assetid, parent_id=None):
         messages.error(request, "The form is not valid")
         
     return redirect('asset-details',id=assetid)
+
+@login_required    
+def add_comment_json(request, assetid, parent_id=None):
+    parent_comment = None
+    asset = Asset.objects.get(id=assetid)
     
+    if parent_id:
+        parent_comment = get_object_or_404(Comment, id=parent_id)
+    
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.created_by = request.user
+            comment.parent_comment = parent_comment
+            comment.asset = asset
+            comment.save()
+            return JsonResponse({'success': True,'comment_text': comment.comment_text, 'comment_id': comment.id, 'message':"commnent deleted successfully"})
+    else:
+        comment_form = CommentForm()
+        messages.error(request, "The form is not valid")
+        
+    return JsonResponse({'error': 'Invalid form data.'}, status=400)
+
+
 
 @login_required
 def delete_comment(request, comment_id):
@@ -250,7 +274,7 @@ def delete_comment(request, comment_id):
     if request.user == comment.created_by or request.user.is_superuser:
         comment.delete()
         
-        return JsonResponse({'success': True, 'comment_text': comment.comment_text, 'comment_id': comment_id, 'message':"commnent deleted successfully"})
+        return JsonResponse({'success': True,'comment_text': comment.comment_text, 'comment_id': comment_id, 'message':"commnent deleted successfully"})
     else:       
         return JsonResponse({'error': 'Invalid form data.'}, status=400)
     

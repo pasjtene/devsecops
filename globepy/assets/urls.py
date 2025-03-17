@@ -8,6 +8,8 @@ urlpatterns = [
     path('create-page/', views.create_page, name='create-new-page'),
     path('update-requirement-action/<int:requirementitemid>', views.update_requirement_action, name='update-requirement-action' ),
     path('comments/add/<int:assetid>/', views.add_comment, name='add_comment'),
+    path('comments/add-json/<int:assetid>/', views.add_comment_json, name='add_comment_json'),
+    
     path('comments/add/<int:assetid>/<int:parent_id>/', views.add_comment, name='add_reply'),
     path('comments/delete/<int:comment_id>/', views.delete_comment, name='delete_comment'),
     path('comments/update/<int:comment_id>/', views.update_comment, name='update_comment'),

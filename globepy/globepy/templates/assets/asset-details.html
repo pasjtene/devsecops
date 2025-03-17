@@ -506,11 +506,18 @@
           {% csrf_token %}
           <textarea name="comment_text" placeholder="Your repply comment.." required class="form-control" rows="4"></textarea>
           <button type="submit" class="btn btn-success mt-3">Submit</button>
-          
-      </form>
+        </form>
 
+        <form method="post" action="{% url 'add_comment_json' assetid=asset.id %}" id="comment-form-form">
+          {% csrf_token %}
+          <textarea name="comment_text" placeholder="Your repply comment.." required class="form-control" rows="4"></textarea>
+          <button id="submitjson" class="btn btn-success mt-3">Submit json</button>
+        </form>
+
+      
     </div>
-    <div class="mt-4">
+
+    <div class="mt-4" id="commentsList">
         {% for comment in comments %}
             {% include 'comments/comment_item.html' with comment=comment %}
         {% endfor %}
