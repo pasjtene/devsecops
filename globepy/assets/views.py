@@ -263,7 +263,7 @@ def add_comment_json(request, assetid, parent_id=None):
                 'comment_id': comment.id,
                 'message':"commnent created successfully",
                 'created_date': comment.created_date,
-                'created_by': comment.created_by.get_full_name
+                'created_by': request.user.get_full_name()
                 })
     else:
         comment_form = CommentForm()
