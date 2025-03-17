@@ -510,8 +510,8 @@
 
         <form method="post" action="{% url 'add_comment_json' assetid=asset.id %}" id="comment-form-form">
           {% csrf_token %}
-          <textarea name="comment_text" placeholder="Your repply comment.." required class="form-control" rows="4"></textarea>
-          <button id="submitjson" class="btn btn-success mt-3">Submit json</button>
+          <textarea id="comment-text" name="comment_text" placeholder="Your repply comment.." required class="form-control" rows="4"></textarea>
+          <button type="submit" id="submitjson" class="btn btn-success mt-3">Submit json</button>
         </form>
 
       

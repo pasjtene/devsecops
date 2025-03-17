@@ -57,6 +57,37 @@
         </div>`;
 
 
+        // Submit a new comment
+        document.getElementById('comment-form-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const commentText = document.getElementById('comment-text').value;
+            //const createdBy = document.getElementById('createdBy').value;
+            const url = $('#comment-form-form').attr('action');
+
+            console.log("The url: ",url)
+
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    comment_text: commentText,
+                    //created_by: createdBy,
+                }),
+            });
+
+            if (response.ok) {
+                //document.getElementById('commentText').value = '';
+                //document.getElementById('createdBy').value = '';
+
+                console.log(response)
+                //fetchComments(); // Refresh the comments list
+            }
+        });
+
+
     });
 
     }
