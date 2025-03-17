@@ -40,11 +40,6 @@
     //updateComment();
    }
 
- 
-
-
-
-
     function addCommentJson() {
        
         // Submit a new comment
