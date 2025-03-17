@@ -15,20 +15,20 @@
      * Easy selector helper function
      */
    
-   function addComments(comment) {
+   function addComments(comment,deleteURL, updateURL) {
     const commentsList = document.getElementById('commentsList');
     const comentItem = `
     <div class="card mb-3" id=" ${comment.comment_id} ">
         <div class="card-body">
             <h5 class="card-title">${comment.created_by}</h5>
-            <p class="card-text" id="text{{comment.id}}"> ${comment.comment_text}</p>
-            <small class="text-muted">${comment.created_date} </small>
+            <p class="card-text" id="text${comment.comment_id}"> ${comment.comment_text}</p>
+            <small class="text-muted">${comment.created_date} | ${new Date(comment.created_date).toLocaleString()} </small>
 
             <!-- Reply, Update, and Delete Links -->
             <span href="#" class="comment-link reply-btn">Reply</span>
             
-                <a href="#" class="comment-link update-btn" data-comment-id="{{ ${comment.comment_id} }}" data-update-url="{% url 'update_comment' comment_id=comment.id %}">Update</a>
-                <a href="#" data-delete-url="{% url 'delete_comment' comment_id=comment.id %}" class="comment-link delete-btn">Delete</a>
+                <a href="#" class="comment-link update-btn" data-comment-id="${comment.comment_id}" data-update-url="${updateURL}">Update</a>
+                <a href="#" data-delete-url="${deleteURL}" class="comment-link delete-btn">Delete</a>
         </div>
     </div>`;
 
@@ -44,6 +44,9 @@
             e.preventDefault();
             var form = $(this);
             var url = form.attr('action');
+            var deleteURL = $(this).data('delete-url');
+            var updateURL = $(this).data('update-url');
+
             var commentText = $('#comment-text').val();
             //$('#deleteCommentModal').modal('hide');
 
@@ -62,7 +65,7 @@
                         //$('.alert-dismissible').show()
                         $('#ajax-alert-message').text("Comment added successfuly ");
                         console.log(response)
-                        addComments(response); // Refresh the comments list
+                        addComments(response,deleteURL,updateURL); // Refresh the comments list
                       
                     } else {
                         alert('Error updating comment.');
