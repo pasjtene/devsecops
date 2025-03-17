@@ -27,13 +27,12 @@
         <div class="card-body">
             <h5 class="card-title">${comment.created_by}</h5>
             <p class="card-text" id="text${comment.comment_id}"> ${comment.comment_text}</p>
-            <small class="text-muted">${comment.created_date} | ${new Date(comment.created_date).toLocaleString()} </small>
+            <small class="text-muted">${new Date(comment.created_date).toLocaleString()} </small>
 
-            <!-- Reply, Update, and Delete Links -->
-            <span href="#" class="comment-link reply-btn">Reply</span>
-            
-                <span class="comment-link update-btn" data-comment-id="${comment.comment_id}" data-update-url="${uUrl}">Update</span>
-                <a href="#" data-delete-url="${dUrl}" class="comment-link delete-btn">Delete</a>
+            <!-- Update, and Delete Links -->
+                <span class="comment-link update-btn" 
+                data-comment-id="${comment.comment_id}" data-update-url="${uUrl}">Update</span>
+                <span data-delete-url="${dUrl}" class="comment-link delete-btn">Delete</span>
         </div>
     </div>`;
 
@@ -55,6 +54,22 @@
             $('#updateCommentModal').modal('show');
 
     });
+
+     // Handle delete comment modal
+     $('.delete-btn').click(function(e) {
+        e.preventDefault();
+        var commentId = $(this).data('comment-id');
+        var deleteUrl = $(this).data('delete-url');
+        //var updateUrl = "{% url 'update_comment' 0 %}".replace("0", commentId);
+        var deltext = $(this).siblings('.card-text').text();
+        $('#delete-comment-text').val(deltext);
+
+            $('#delete-comment-form').attr('action', deleteUrl);
+            $('#deleteCommentModal').modal('show');
+
+    });
+
+
    }
 
     function addCommentJson() {

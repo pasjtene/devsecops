@@ -62,19 +62,7 @@
       
          
       
-           // Handle delete comment modal
-           $('.delete-btn').click(function(e) {
-              e.preventDefault();
-              var commentId = $(this).data('comment-id');
-              var deleteUrl = $(this).data('delete-url');
-              //var updateUrl = "{% url 'update_comment' 0 %}".replace("0", commentId);
-              var deltext = $(this).siblings('.card-text').text();
-              $('#delete-comment-text').val(deltext);
-      
-                  $('#delete-comment-form').attr('action', deleteUrl);
-                  $('#deleteCommentModal').modal('show');
-      
-          });
+          
           
          
       
