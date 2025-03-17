@@ -93,11 +93,11 @@
                     $('#ajax-alert-message').text("Comment deleted successfuly ");
                   
                 } else {
-                    alert('Error updating comment.');
+                    alert('Error Deleting comment.');
                 }
             },
             error: function(response) {
-                alert('Error updating comment.');
+                alert('Error deleting comment.');
             }
         });
     });

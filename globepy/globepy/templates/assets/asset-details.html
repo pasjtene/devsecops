@@ -501,12 +501,6 @@
     <h1>Comments</h1>
     <button id="add-comment-btn" class="btn btn-primary mb-3">Add Comment</button>
     <div id="comment-form" style="display: none;">
-       
-        <form method="post" action="{% url 'add_comment' assetid=asset.id %}">
-          {% csrf_token %}
-          <textarea name="comment_text" placeholder="Your repply comment.." required class="form-control" rows="4"></textarea>
-          <button type="submit" class="btn btn-success mt-3">Submit</button>
-        </form>
 
         <form method="post" action="{% url 'add_comment_json' assetid=asset.id %}" id="comment-form-form" 
         data-delete-url="{% url 'delete_comment' comment_id=0 %}"
@@ -517,7 +511,6 @@
           <button type="submit" id="submitjson" class="btn btn-success mt-3">Submit json</button>
         </form>
 
-      
     </div>
 
     <div class="mt-4" id="commentsList">
