@@ -8,7 +8,7 @@
 
 (function() {
     "use strict";
-    viewRequirementDetails();
+    //viewRequirementDetails();
     addCommentJson();
     /**
      * Easy selector helper function
