@@ -73,12 +73,12 @@
     $('#delete-comment-form').submit(function(e) {
         e.preventDefault();
         var form = $(this);
-        var url = form.attr('action');
+        var durl = form.attr('action');
         var commentText = $('#delete-comment-text').val();
         $('#deleteCommentModal').modal('hide');
 
         $.ajax({
-            url: url,
+            url: durl,
             type: 'POST',
             data: {
                 'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
@@ -86,6 +86,7 @@
             },
             success: function(response) {
                 if (response.success) {
+                    console.log(response);
                     
                     $('#'+response.comment_id).remove();
                     $('.ajax-alert').show()
