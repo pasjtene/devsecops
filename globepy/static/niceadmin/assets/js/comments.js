@@ -11,6 +11,7 @@
     $(document).ready(function() {
     //viewRequirementDetails();
     addCommentJson();
+    updateComment();
     //updateComment();
     /**
      * Easy selector helper function
@@ -31,13 +32,29 @@
             <!-- Reply, Update, and Delete Links -->
             <span href="#" class="comment-link reply-btn">Reply</span>
             
-                <a href="#" class="comment-link update-btn" data-comment-id="${comment.comment_id}" data-update-url="${uUrl}">Update</a>
+                <span class="comment-link update-btn" data-comment-id="${comment.comment_id}" data-update-url="${uUrl}">Update</span>
                 <a href="#" data-delete-url="${dUrl}" class="comment-link delete-btn">Delete</a>
         </div>
     </div>`;
 
     commentsList.innerHTML =  comentItem + commentsList.innerHTML;
-    //updateComment();
+    updateComment();
+   }
+
+   function updateComment(){
+     // Handle update comment modal
+     $('.update-btn').click(function(e) {
+        e.preventDefault();
+        var commentId = $(this).data('comment-id');
+        var updateUrl = $(this).data('update-url');
+        //var updateUrl = "{% url 'update_comment' 0 %}".replace("0", commentId);
+        var updtext = $(this).siblings('.card-text').text();
+        $('#update-comment-text').val(updtext);
+
+            $('#update-comment-form').attr('action', updateUrl);
+            $('#updateCommentModal').modal('show');
+
+    });
    }
 
     function addCommentJson() {
