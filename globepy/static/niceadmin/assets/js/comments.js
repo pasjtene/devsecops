@@ -71,6 +71,7 @@
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
+                    'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
                     comment_text: commentText,
                     //created_by: createdBy,
                 }),
