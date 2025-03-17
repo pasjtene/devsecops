@@ -17,7 +17,7 @@
        
 
         viewRequirementDetails();
-        updateComment();
+        Comment();
         //addComment();
         /**
          * Easy selector helper function
@@ -47,7 +47,7 @@
         }
 
 
-        function updateComment() {
+        function Comment() {
             // Toggle comment form
             $('#add-comment-btn').click(function() {
               $('#comment-form').toggle();
@@ -76,19 +76,7 @@
       
           });
           
-          // Handle update comment modal
-           $('.update-btn').click(function(e) {
-              e.preventDefault();
-              var commentId = $(this).data('comment-id');
-              var updateUrl = $(this).data('update-url');
-              //var updateUrl = "{% url 'update_comment' 0 %}".replace("0", commentId);
-              var updtext = $(this).siblings('.card-text').text();
-              $('#update-comment-text').val(updtext);
-      
-                  $('#update-comment-form').attr('action', updateUrl);
-                  $('#updateCommentModal').modal('show');
-      
-          });
+         
       
       
                // Handle delete comment via AJAX
