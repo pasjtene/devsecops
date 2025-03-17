@@ -11,12 +11,16 @@
     $(document).ready(function() {
     //viewRequirementDetails();
     addCommentJson();
+    updateComment();
     /**
      * Easy selector helper function
      */
    
-   function addComments(comment,deleteURL, updateURL) {
+   function addNewComments(comment,deleteURL, updateURL) {
     const commentsList = document.getElementById('commentsList');
+    var uUrl = updateURL.replace("0",comment.comment_id);
+    var dUrl = deleteURL.replace("0",comment.comment_id);
+
     const comentItem = `
     <div class="card mb-3" id=" ${comment.comment_id} ">
         <div class="card-body">
@@ -27,13 +31,130 @@
             <!-- Reply, Update, and Delete Links -->
             <span href="#" class="comment-link reply-btn">Reply</span>
             
-                <a href="#" class="comment-link update-btn" data-comment-id="${comment.comment_id}" data-update-url="${updateURL}">Update</a>
-                <a href="#" data-delete-url="${deleteURL}" class="comment-link delete-btn">Delete</a>
+                <a href="#" class="comment-link update-btn" data-comment-id="${comment.comment_id}" data-update-url="${uUrl}">Update</a>
+                <a href="#" data-delete-url="${dUrl}" class="comment-link delete-btn">Delete</a>
         </div>
     </div>`;
 
     commentsList.innerHTML =  comentItem + commentsList.innerHTML;
+    updateComment();
    }
+
+   function updateComment() {
+      // Toggle comment form
+      $('#add-comment-btn').click(function() {
+        $('#comment-form').toggle();
+    });
+
+    // Toggle reply form for each comment
+    $('.reply-btn').click(function() {
+        var replyForm = $(this).siblings('.reply-form');
+        replyForm.toggle();
+    });
+
+
+   
+
+     // Handle delete comment modal
+     $('.delete-btn').click(function(e) {
+        e.preventDefault();
+        var commentId = $(this).data('comment-id');
+        var deleteUrl = $(this).data('delete-url');
+        //var updateUrl = "{% url 'update_comment' 0 %}".replace("0", commentId);
+        var deltext = $(this).siblings('.card-text').text();
+        $('#delete-comment-text').val(deltext);
+
+            $('#delete-comment-form').attr('action', deleteUrl);
+            $('#deleteCommentModal').modal('show');
+
+    });
+    
+    // Handle update comment modal
+     $('.update-btn').click(function(e) {
+        e.preventDefault();
+        var commentId = $(this).data('comment-id');
+        var updateUrl = $(this).data('update-url');
+        //var updateUrl = "{% url 'update_comment' 0 %}".replace("0", commentId);
+        var updtext = $(this).siblings('.card-text').text();
+        $('#update-comment-text').val(updtext);
+
+            $('#update-comment-form').attr('action', updateUrl);
+            $('#updateCommentModal').modal('show');
+
+    });
+
+
+         // Handle delete comment via AJAX
+         $('#delete-comment-form').submit(function(e) {
+            e.preventDefault();
+            var form = $(this);
+            var url = form.attr('action');
+            var commentText = $('#delete-comment-text').val();
+            $('#deleteCommentModal').modal('hide');
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: {
+                    'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+                    'comment_text': commentText
+                },
+                success: function(response) {
+                    if (response.success) {
+                        
+                        $('#'+response.comment_id).remove();
+                        $('.ajax-alert').show()
+                        $('.alert-dismissible').show()
+                        $('#ajax-alert-message').text("Comment deleted successfuly ");
+                      
+                    } else {
+                        alert('Error updating comment.');
+                    }
+                },
+                error: function(response) {
+                    alert('Error updating comment.');
+                }
+            });
+        });
+
+        // Handle form submission via AJAX
+        $('#update-comment-form').submit(function(e) {
+            e.preventDefault();
+            var form = $(this);
+            var url = form.attr('action');
+            var commentText = $('#update-comment-text').val();
+            $('#updateCommentModal').modal('hide');
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: {
+                    'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+                    'comment_text': commentText
+                },
+                success: function(response) {
+                    if (response.success) {
+                        
+                        $('#text'+response.comment_id).text(response.comment_text);
+                        $('.ajax-alert').show()
+                        $('.alert-dismissible').show()
+                        $('#ajax-alert-message').text("Comment updated successfuly ");
+                       
+                    } else {
+                        alert('Error updating comment.');
+                    }
+                },
+                error: function(response) {
+                    alert('Error updating comment.');
+                }
+            });
+        });
+
+
+   }
+
+
+
 
     function addCommentJson() {
        
@@ -65,7 +186,7 @@
                         //$('.alert-dismissible').show()
                         $('#ajax-alert-message').text("Comment added successfuly ");
                         console.log(response)
-                        addComments(response,deleteURL,updateURL); // Refresh the comments list
+                        addNewComments(response,deleteURL,updateURL); // Refresh the comments list
                       
                     } else {
                         alert('Error updating comment.');
