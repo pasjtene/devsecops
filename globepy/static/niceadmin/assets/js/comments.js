@@ -56,7 +56,47 @@
     function addCommentJson() {
        
         // Submit a new comment
-        document.getElementById('comment-form-form').addEventListener('submit', async (e) => {
+        
+        
+        $('#comment-form-form').submit(function(e) {
+            e.preventDefault();
+            var form = $(this);
+            var url = form.attr('action');
+            var commentText = $('#comment-text').val();
+            //$('#deleteCommentModal').modal('hide');
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: {
+                    'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+                    'comment_text': commentText
+                },
+                success: function(response) {
+                    if (response.success) {
+                        
+                       // $('#'+response.comment_id).remove();
+                        //$('.ajax-alert').show()
+                        //$('.alert-dismissible').show()
+                        $('#ajax-alert-message').text("Comment added successfuly ");
+                        console.log(response)
+                        addComments(response); // Refresh the comments list
+                      
+                    } else {
+                        alert('Error updating comment.');
+                    }
+                },
+                error: function(response) {
+                    alert('Error updating comment.');
+                }
+            });
+        });
+        
+        
+        
+        
+        
+        document.getElementById('comment-form-form1').addEventListener('submit', async (e) => {
             e.preventDefault();
 
             const commentText = document.getElementById('comment-text').value;
