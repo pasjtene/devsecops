@@ -195,7 +195,7 @@ def assetdetails(request, id):
     #completion_Status = ComplianceStatus.COMPLETION_STATUS_CHOICES
     now = timezone.now()
     comment_form = CommentForm()
-    comments = Comment.objects.filter(asset_id=id, parent_comment__isnull=True).order_by('created_date')  # Fetch top-level comments only
+    comments = Comment.objects.filter(asset_id=id, parent_comment__isnull=True).order_by('-created_date')  # Fetch top-level comments only
     STATUS_CHOICES = [
         ('Complete', 'Complete'),
         ('InProgress', 'InProgress'),
