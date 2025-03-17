@@ -23,7 +23,7 @@
     var dUrl = deleteURL.replace("0",comment.comment_id);
 
     const comentItem = `
-    <div class="card mb-3" id=" ${comment.comment_id} ">
+    <div class="card mb-3" id="${comment.comment_id}">
         <div class="card-body">
             <h5 class="card-title">${comment.created_by}</h5>
             <p class="card-text" id="text${comment.comment_id}"> ${comment.comment_text}</p>
@@ -67,6 +67,39 @@
             $('#delete-comment-form').attr('action', deleteUrl);
             $('#deleteCommentModal').modal('show');
 
+    });
+
+    // Handle delete comment via AJAX
+    $('#delete-comment-form').submit(function(e) {
+        e.preventDefault();
+        var form = $(this);
+        var url = form.attr('action');
+        var commentText = $('#delete-comment-text').val();
+        $('#deleteCommentModal').modal('hide');
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: {
+                'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+                'comment_text': commentText
+            },
+            success: function(response) {
+                if (response.success) {
+                    
+                    $('#'+response.comment_id).remove();
+                    $('.ajax-alert').show()
+                    $('.alert-dismissible').show()
+                    $('#ajax-alert-message').text("Comment deleted successfuly ");
+                  
+                } else {
+                    alert('Error updating comment.');
+                }
+            },
+            error: function(response) {
+                alert('Error updating comment.');
+            }
+        });
     });
 
 
