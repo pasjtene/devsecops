@@ -257,7 +257,14 @@ def add_comment_json(request, assetid, parent_id=None):
             comment.parent_comment = parent_comment
             comment.asset = asset
             comment.save()
-            return JsonResponse({'success': True,'comment_text': comment.comment_text, 'comment_id': comment.id, 'message':"commnent deleted successfully"})
+            return JsonResponse({
+                'success': True,
+                'comment_text': comment.comment_text,
+                'comment_id': comment.id,
+                'message':"commnent created successfully",
+                'created_date': comment.created_date,
+                'created_by': comment.created_by.get_full_name
+                })
     else:
         comment_form = CommentForm()
         messages.error(request, "The form is not valid")

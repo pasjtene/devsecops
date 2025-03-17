@@ -20,9 +20,9 @@
     const comentItem = `
     <div class="card mb-3" id=" ${comment.comment_id} ">
         <div class="card-body">
-            <h5 class="card-title">{{ comment.created_by.get_full_name }}</h5>
+            <h5 class="card-title">${comment.created_by}</h5>
             <p class="card-text" id="text{{comment.id}}"> ${comment.comment_text}</p>
-            <small class="text-muted">{{ comment.created_date }}</small>
+            <small class="text-muted">${comment.created_date} </small>
 
             <!-- Reply, Update, and Delete Links -->
             <span href="#" class="comment-link reply-btn">Reply</span>
