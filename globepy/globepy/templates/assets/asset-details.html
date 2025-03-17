@@ -509,9 +509,9 @@
         </form>
 
         <form method="post" action="{% url 'add_comment_json' assetid=asset.id %}" id="comment-form-form" 
-        data-delete-url="{% url 'add_comment_json' commentid=0 %}
-        data-update-url="{% url 'add_comment_json' commentid=0 %}
-        ">
+        data-delete-url="{% url 'delete_comment' comment_id=0 %}"
+        data-update-url="{% url 'update_comment' comment_id=0 %}">
+       
           {% csrf_token %}
           <textarea id="comment-text" name="comment_text" placeholder="Your repply comment.." required class="form-control" rows="4"></textarea>
           <button type="submit" id="submitjson" class="btn btn-success mt-3">Submit json</button>
