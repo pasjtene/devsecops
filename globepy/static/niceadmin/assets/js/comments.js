@@ -16,11 +16,12 @@
      */
    
    function addComments(comment) {
+    const commentsList = document.getElementById('commentsList');
     const comentItem = `
-    <div class="card mb-3" id="{{ ${comment.id} }}">
+    <div class="card mb-3" id="{{ ${comment.comment_id} }}">
         <div class="card-body">
             <h5 class="card-title">{{ comment.created_by.get_full_name }}</h5>
-            <p class="card-text" id="text{{comment.id}}">{{ comment.comment_text }}</p>
+            <p class="card-text" id="text{{comment.id}}">{{ ${comment.comment_text} }}</p>
             <small class="text-muted">{{ comment.created_date }}</small>
 
             <!-- Reply, Update, and Delete Links -->
@@ -51,6 +52,8 @@
             {% endif %}
         </div>
     </div>`;
+
+    commentsList.innerHTML += comentItem;
    }
 
     function addCommentJson() {
@@ -92,39 +95,6 @@
             });
         });
         
-        
-        
-        
-        
-        document.getElementById('comment-form-form1').addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const commentText = document.getElementById('comment-text').value;
-            //const createdBy = document.getElementById('createdBy').value;
-            const url = $('#comment-form-form').attr('action');
-
-            console.log("The url: ",url)
-
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
-                    comment_text: commentText,
-                    //created_by: createdBy,
-                }),
-            });
-
-            if (response.ok) {
-                //document.getElementById('commentText').value = '';
-                //document.getElementById('createdBy').value = '';
-
-                console.log(response)
-                addComments(response); // Refresh the comments list
-            }
-        });
 
     }
 
