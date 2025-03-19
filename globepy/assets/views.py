@@ -261,6 +261,7 @@ def add_comment_json(request, assetid, parent_id=None):
                 'success': True,
                 'comment_text': comment.comment_text,
                 'comment_id': comment.id,
+                'parent_id': parent_id,
                 'message':"commnent created successfully",
                 'created_date': comment.created_date,
                 'created_by': request.user.get_full_name()

@@ -40,7 +40,7 @@
         commentsList.innerHTML =  comentItem + commentsList.innerHTML;
     } else if (role == "reply") {
         
-        $('#replyCommentsList'+comment.comment_id).innerHTML = comentItem + $('#replyCommentsList'+comment.comment_id).innerHTML;
+        $('#replyCommentsList'+comment.parent_id).innerHTML = comentItem + $('#replyCommentsList'+comment.comment_id).innerHTML;
         //commentsList.innerHTML =  comentItem + commentsList.innerHTML;
     } else {
         console.log ('Role not known: ', role);
