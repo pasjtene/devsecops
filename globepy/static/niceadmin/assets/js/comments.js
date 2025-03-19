@@ -19,6 +19,7 @@
    
    function addNewComments(comment,deleteURL, updateURL,role) {
     const commentsList = document.getElementById('commentsList');
+    const replyList = document.getElementById('replyCommentsList'+comment.parent_id);
     var uUrl = updateURL.replace("0",comment.comment_id);
     var dUrl = deleteURL.replace("0",comment.comment_id);
 
@@ -41,7 +42,7 @@
     } else if (role == "reply") {
         console.log("The area is: ",$('#replyCommentsList'+comment.parent_id) )
         
-        $('#replyCommentsList'+comment.parent_id).innerHTML = comentItem + $('#replyCommentsList'+comment.parent_id).innerHTML;
+        replyList.innerHTML = comentItem + replyList.innerHTML;
         //commentsList.innerHTML =  comentItem + commentsList.innerHTML;
     } else {
         console.log ('Role not known: ', role);
