@@ -195,11 +195,14 @@
                         console.log("The role is: ", role)
                       
                     } else {
-                        alert('Error updating comment.');
+                       // alert('Error updating comment.');
+                        console.log("No success")
+
                     }
                 },
                 error: function(response) {
-                    alert('Error updating comment.');
+                    //alert('Error updating comment.');
+                    console.log("error: ",response);
                 }
             });
         });
