@@ -124,7 +124,7 @@
         // Submit a new comment
         
         
-        $('#comment-form-form').submit(function(e) {
+        $('#comment-form-form1').submit(function(e) {
             e.preventDefault();
             var form = $(this);
             var url = form.attr('action');
@@ -171,7 +171,7 @@
             var role = $(this).closest(".comment-form-form").data('role');
             //var deleteURL = $(this).data('delete-url');
             //var updateURL = $(this).data('update-url');
-            var commentText = (this).closest(".comment-form-form").find("new-comment-text").val();
+            var commentText = (this).closest(".comment-form-form").find(".new-comment-text").val();
 
             //var commentText = $('#comment-text').val();
             
@@ -191,7 +191,7 @@
                         //$('.alert-dismissible').show()
                         $('#ajax-alert-message').text("Comment added successfuly ");
                         console.log(response)
-                        //addNewComments(response,deleteURL,updateURL,role); // Refresh the comments list
+                        addNewComments(response,deleteURL,updateURL,role); // Refresh the comments list
                         console.log("The role is: ", role)
                       
                     } else {
