@@ -171,7 +171,7 @@
             var role = $(this).closest(".comment-form-form").data('role');
             //var deleteURL = $(this).data('delete-url');
             //var updateURL = $(this).data('update-url');
-            var commentText = (this).closest(".comment-form-form").find(".new-comment-text").val();
+            var commentText = $(this).closest(".comment-form-form").find(".new-comment-text").val();
 
             //var commentText = $('#comment-text').val();
             
