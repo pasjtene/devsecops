@@ -39,8 +39,9 @@
     if (role == "comment") {
         commentsList.innerHTML =  comentItem + commentsList.innerHTML;
     } else if (role == "reply") {
+        console.log("The area is: ",$('#replyCommentsList'+comment.parent_id) )
         
-        $('#replyCommentsList'+comment.parent_id).innerHTML = comentItem + $('#replyCommentsList'+comment.comment_id).innerHTML;
+        $('#replyCommentsList'+comment.parent_id).innerHTML = comentItem + $('#replyCommentsList'+comment.parent_id).innerHTML;
         //commentsList.innerHTML =  comentItem + commentsList.innerHTML;
     } else {
         console.log ('Role not known: ', role);
