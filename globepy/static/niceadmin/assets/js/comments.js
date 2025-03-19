@@ -42,7 +42,9 @@
     } else if (role == "reply") {
         
         replyList.innerHTML = comentItem + replyList.innerHTML;
+        $(".reply-form").blur();
         $('.reply-form').hide();
+        
     } else {
         console.log ('Role not known: ', role);
     }
@@ -173,6 +175,8 @@
             //var deleteURL = $(this).data('delete-url');
             //var updateURL = $(this).data('update-url');
             var commentText = $(this).closest(".comment-form-form").find(".new-comment-text").val();
+            $(this).closest(".comment-form-form").find(".new-comment-text").val("");
+            $(this).closest(".comment-form-form").find(".new-comment-text").blur();
 
             //var commentText = $('#comment-text').val();
             
