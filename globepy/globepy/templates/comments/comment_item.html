@@ -18,6 +18,8 @@
         <div class="reply-form" style="display: none; margin-top: 10px;">
             <form method="post" action="{% url 'add_reply' assetid=asset.id parent_id=comment.id %}" 
             id="reply-form-form-save" class="comment-form-form"
+            data-delete-url="{% url 'delete_comment' comment_id=0 %}"
+            data-update-url="{% url 'update_comment' comment_id=0 %}"
             data-role="reply">
                 {% csrf_token %}
                 <textarea name="comment_text" 
@@ -27,12 +29,13 @@
                 
             </form>
         </div>
+        <div class="mt-3 ms-4" id="replyCommentsList{{comment.id}}">
         {% if comment.replies.all %}
-            <div class="mt-3 ms-4" id="replyCommentsList{{comment.id}}">
                 {% for reply in comment.replies.all %}
                     {% include 'comments/comment_item.html' with comment=reply %}
                 {% endfor %}
-            </div>
         {% endif %}
+        </div>
+
     </div>
 </div>

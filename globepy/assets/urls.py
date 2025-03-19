@@ -10,7 +10,7 @@ urlpatterns = [
     path('comments/add/<int:assetid>/', views.add_comment, name='add_comment'),
     path('comments/add-json/<int:assetid>/', views.add_comment_json, name='add_comment_json'),
     
-    path('comments/add/<int:assetid>/<int:parent_id>/', views.add_comment, name='add_reply'),
+    path('comments/add/<int:assetid>/<int:parent_id>/', views.add_comment_json, name='add_reply'),
     path('comments/delete/<int:comment_id>/', views.delete_comment, name='delete_comment'),
     path('comments/update/<int:comment_id>/', views.update_comment, name='update_comment'),
     path('framework/<int:assetid>/<int:frameworkid>/<str:frameworkname>/', views.framework_requirements, name='iso27001_requirements'), 
