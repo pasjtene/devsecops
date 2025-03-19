@@ -191,7 +191,8 @@
                         //$('.alert-dismissible').show()
                         $('#ajax-alert-message').text("Comment added successfuly ");
                         console.log(response)
-                        addNewComments(response,deleteURL,updateURL,role); // Refresh the comments list
+                        //addNewComments(response,deleteURL,updateURL,role); // Refresh the comments list
+                        console.log("The role is: ", role)
                       
                     } else {
                         alert('Error updating comment.');
