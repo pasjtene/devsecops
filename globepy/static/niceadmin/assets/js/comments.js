@@ -40,10 +40,9 @@
     if (role == "comment") {
         commentsList.innerHTML =  comentItem + commentsList.innerHTML;
     } else if (role == "reply") {
-        console.log("The area is: ",$('#replyCommentsList'+comment.parent_id) )
         
         replyList.innerHTML = comentItem + replyList.innerHTML;
-        //commentsList.innerHTML =  comentItem + commentsList.innerHTML;
+        $('.reply-form').hide();
     } else {
         console.log ('Role not known: ', role);
     }
