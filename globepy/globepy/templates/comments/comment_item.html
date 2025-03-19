@@ -16,15 +16,19 @@
 
          <!-- Reply Form -->
         <div class="reply-form" style="display: none; margin-top: 10px;">
-            <form method="post" action="{% url 'add_reply' assetid=asset.id parent_id=comment.id %}">
+            <form method="post" action="{% url 'add_reply' assetid=asset.id parent_id=comment.id %}" 
+            id="reply-form-form-save" class="comment-form-form"
+            data-role="reply">
                 {% csrf_token %}
-                <textarea name="comment_text" placeholder="Your repply comment.." required class="form-control" rows="4"></textarea>
-                <button type="submit" class="btn btn-success mt-3">Submit Reply</button>
+                <textarea name="comment_text" 
+                placeholder="Your repply comment.." required 
+                class="form-control new-comment-text" rows="4"></textarea>
+                <button type="submit" class="btn btn-success mt-3 submit-comment-btn">Submit Reply</button>
                 
             </form>
         </div>
         {% if comment.replies.all %}
-            <div class="mt-3 ms-4">
+            <div class="mt-3 ms-4" id="replyCommentsList{{comment.id}}">
                 {% for reply in comment.replies.all %}
                     {% include 'comments/comment_item.html' with comment=reply %}
                 {% endfor %}

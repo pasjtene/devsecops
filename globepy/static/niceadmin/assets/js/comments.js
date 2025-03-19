@@ -17,7 +17,7 @@
      * Easy selector helper function
      */
    
-   function addNewComments(comment,deleteURL, updateURL) {
+   function addNewComments(comment,deleteURL, updateURL,role) {
     const commentsList = document.getElementById('commentsList');
     var uUrl = updateURL.replace("0",comment.comment_id);
     var dUrl = deleteURL.replace("0",comment.comment_id);
@@ -36,7 +36,16 @@
         </div>
     </div>`;
 
-    commentsList.innerHTML =  comentItem + commentsList.innerHTML;
+    if (role == "comment") {
+        commentsList.innerHTML =  comentItem + commentsList.innerHTML;
+    } else if (role == "reply") {
+        
+        $('#replyCommentsList'+comment.comment_id).innerHTML = comentItem + $('#replyCommentsList'+comment.comment_id).innerHTML;
+        //commentsList.innerHTML =  comentItem + commentsList.innerHTML;
+    } else {
+        console.log ('Role not known: ', role);
+    }
+    
     updateComment();
     //$('#text'+comment.comment_id).text(" ");
     $('#comment-text').val(' ');
@@ -123,7 +132,7 @@
             var updateURL = $(this).data('update-url');
 
             var commentText = $('#comment-text').val();
-            //$('#deleteCommentModal').modal('hide');
+            
 
             $.ajax({
                 url: url,
@@ -141,6 +150,48 @@
                         $('#ajax-alert-message').text("Comment added successfuly ");
                         console.log(response)
                         addNewComments(response,deleteURL,updateURL); // Refresh the comments list
+                      
+                    } else {
+                        alert('Error updating comment.');
+                    }
+                },
+                error: function(response) {
+                    alert('Error updating comment.');
+                }
+            });
+        });
+
+        $('.submit-comment-btn').click(function(e) {
+            e.preventDefault();
+            //var form = $(this);
+            //var url = form.attr('action');
+            var url = $(this).closest(".comment-form-form").attr('action');
+            var deleteURL = $(this).closest(".comment-form-form").data('delete-url');
+            var updateURL = $(this).closest(".comment-form-form").data('update-url');
+            var role = $(this).closest(".comment-form-form").data('role');
+            //var deleteURL = $(this).data('delete-url');
+            //var updateURL = $(this).data('update-url');
+            var commentText = (this).closest(".comment-form-form").find("new-comment-text").val();
+
+            //var commentText = $('#comment-text').val();
+            
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: {
+                    'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+                    'comment_text': commentText
+                },
+                success: function(response) {
+                    if (response.success) {
+                        
+                       // $('#'+response.comment_id).remove();
+                        //$('.ajax-alert').show()
+                        //$('.alert-dismissible').show()
+                        $('#ajax-alert-message').text("Comment added successfuly ");
+                        console.log(response)
+                        addNewComments(response,deleteURL,updateURL,role); // Refresh the comments list
                       
                     } else {
                         alert('Error updating comment.');
