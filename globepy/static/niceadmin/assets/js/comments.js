@@ -89,6 +89,8 @@
         var form = $(this);
         var durl = form.attr('action');
         var commentText = $('#delete-comment-text').val();
+        $('#delete-comment-text').val("");
+        $('#delete-comment-text').blur();
         $('#deleteCommentModal').modal('hide');
 
         $.ajax({
