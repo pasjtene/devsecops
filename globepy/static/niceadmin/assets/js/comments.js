@@ -118,67 +118,22 @@
             }
         });
     });
-
-
    }
 
     function addCommentJson() {
        
         // Submit a new comment
-        
-        
-        $('#comment-form-form1').submit(function(e) {
-            e.preventDefault();
-            var form = $(this);
-            var url = form.attr('action');
-            var deleteURL = $(this).data('delete-url');
-            var updateURL = $(this).data('update-url');
-
-            var commentText = $('#comment-text').val();
-            
-
-            $.ajax({
-                url: url,
-                type: 'POST',
-                data: {
-                    'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
-                    'comment_text': commentText
-                },
-                success: function(response) {
-                    if (response.success) {
-                        
-                       // $('#'+response.comment_id).remove();
-                        //$('.ajax-alert').show()
-                        //$('.alert-dismissible').show()
-                        $('#ajax-alert-message').text("Comment added successfuly ");
-                        console.log(response)
-                        addNewComments(response,deleteURL,updateURL); // Refresh the comments list
-                      
-                    } else {
-                        alert('Error updating comment.');
-                    }
-                },
-                error: function(response) {
-                    alert('Error updating comment.');
-                }
-            });
-        });
-
         $('.submit-comment-btn').click(function(e) {
             e.preventDefault();
-            //var form = $(this);
-            //var url = form.attr('action');
             var url = $(this).closest(".comment-form-form").attr('action');
             var deleteURL = $(this).closest(".comment-form-form").data('delete-url');
             var updateURL = $(this).closest(".comment-form-form").data('update-url');
             var role = $(this).closest(".comment-form-form").data('role');
-            //var deleteURL = $(this).data('delete-url');
-            //var updateURL = $(this).data('update-url');
             var commentText = $(this).closest(".comment-form-form").find(".new-comment-text").val();
             $(this).closest(".comment-form-form").find(".new-comment-text").val("");
+            
+            //Remove focus from the text area before hiding it. This avoids browser errors.
             $(this).closest(".comment-form-form").find(".new-comment-text").blur();
-
-            //var commentText = $('#comment-text').val();
             
 
             $.ajax({
@@ -191,13 +146,9 @@
                 success: function(response) {
                     if (response.success) {
                         
-                       // $('#'+response.comment_id).remove();
-                        //$('.ajax-alert').show()
-                        //$('.alert-dismissible').show()
                         $('#ajax-alert-message').text("Comment added successfuly ");
-                        console.log(response)
+                        //The response is a comment. if the comment is a reply, then the parent_id is not null or None.
                         addNewComments(response,deleteURL,updateURL,role); // Refresh the comments list
-                        console.log("The role is: ", role)
                       
                     } else {
                        // alert('Error updating comment.');
@@ -211,7 +162,6 @@
                 }
             });
         });
-        
 
     }
 
